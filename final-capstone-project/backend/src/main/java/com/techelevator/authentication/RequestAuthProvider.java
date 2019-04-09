@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 
 import com.techelevator.model.User;
-import com.techelevator.model.UserDao;
+import com.techelevator.model.UserDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,11 +17,11 @@ import org.springframework.stereotype.Component;
 public class RequestAuthProvider implements AuthProvider {
 
     private HttpServletRequest request;
-    private UserDao dao;
+    private UserDAO dao;
     public final static String USER_KEY = "appCurrentUser";
 
     @Autowired
-    public RequestAuthProvider(HttpServletRequest request, UserDao dao) {
+    public RequestAuthProvider(HttpServletRequest request, UserDAO dao) {
         this.request = request;
         this.dao = dao;
     }

@@ -21,9 +21,11 @@ import com.techelevator.model.User;
 /**
  * AccountController
  */
+
 @RestController
 @CrossOrigin
 public class AccountController {
+	
     @Autowired
     private AuthProvider auth;
 

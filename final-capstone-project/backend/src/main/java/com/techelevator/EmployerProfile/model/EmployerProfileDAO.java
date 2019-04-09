@@ -1,10 +1,11 @@
 package com.techelevator.EmployerProfile.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface EmployerProfileDAO {
 
-	public void insertEmployerProfile(String companyName, String logoFile, String content, int numberOfTeams);
 	public EmployerProfile viewEmployerProfile(String companyName);
 	public List<EmployerProfile> showAllEmployers();
+	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile);
 }

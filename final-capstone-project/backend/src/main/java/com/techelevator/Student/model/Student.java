@@ -1,7 +1,8 @@
-package com.techelevator.Student;
+package com.techelevator.Student.model;
 
 public class Student {
 
+	private int studentId;
 	private String firstName;
 	private String lastName;
 	private int choice1;
@@ -9,6 +10,12 @@ public class Student {
 	private int choice3;
 	private int choice4;
 	
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

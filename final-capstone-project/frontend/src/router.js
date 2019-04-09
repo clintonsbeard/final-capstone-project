@@ -4,6 +4,8 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import EmployerForm from './views/EmployerForm.vue'
 import Logout from './views/Logout.vue'
+import ThankYou from './views/ThankYou.vue'
+import StudentForm from './views/StudentForm.vue'
 // import auth from './auth'
 
 Vue.use(Router)
@@ -31,6 +33,16 @@ const router = new Router({
       path: '/logout',
       name: 'logout',
       component: Logout
+    },
+    {
+      path: '/thank-you',
+      name: 'thank-you',
+      component: ThankYou
+    },
+    {
+      path: '/student-form',
+      name: 'student-form',
+      component: StudentForm
     }
   ]
 });

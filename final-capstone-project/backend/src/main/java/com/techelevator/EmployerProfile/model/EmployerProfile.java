@@ -1,34 +1,59 @@
 package com.techelevator.EmployerProfile.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class EmployerProfile {
 
+	private int employerId;
 	private String companyName;
-	private String logoFile;
-	private String content;
+	private String companySummary;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date daysAttending;
 	private int numberOfTeams;
+	private String restrictions;
 	
-	public String getLogoFile() {
-		return logoFile;
+	public int getEmployerId() {
+		return employerId;
 	}
-	public void setLogoFile(String logoFile) {
-		this.logoFile = logoFile;
+	public void setEmployerId(int employerId) {
+		this.employerId = employerId;
 	}
-	public int getNumberOfTeams() {
-		return numberOfTeams;
-	}
-	public void setNumberOfTeams(int numberOfTeams) {
-		this.numberOfTeams = numberOfTeams;
-	}
+	
 	public String getCompanyName() {
 		return companyName;
 	}
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	public String getContent() {
-		return content;
+	
+	public String getCompanySummary() {
+		return companySummary;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setCompanySummary(String companySummary) {
+		this.companySummary = companySummary;
 	}
+	
+	public Date getDaysAttending() {
+		return daysAttending;
+	}
+	public void setDaysAttending(Date daysAttending) {
+		this.daysAttending = daysAttending;
+	}
+	
+	public int getNumberOfTeams() {
+		return numberOfTeams;
+	}
+	public void setNumberOfTeams(int numberOfTeams) {
+		this.numberOfTeams = numberOfTeams;
+	}
+	
+	public String getRestrictions() {
+		return restrictions;
+	}
+	public void setRestrictions(String restrictions) {
+		this.restrictions = restrictions;
+	}
+	
 }

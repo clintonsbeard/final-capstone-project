@@ -1,4 +1,4 @@
-package com.techelevator.Student;
+package com.techelevator.Student.model;
 
 import java.util.List;
 

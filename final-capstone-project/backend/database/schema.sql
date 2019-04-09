@@ -1,3 +1,4 @@
+
 -- *************************************************************************************************
 -- This script creates all of the database objects (tables, sequences, etc) for the database
 -- *************************************************************************************************
@@ -22,6 +23,7 @@ CREATE TABLE student(
 
   student_id SERIAL PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
   choice_1 INTEGER NOT NULL,
   choice_2 INTEGER NOT NULL,
   choice_3 INTEGER NOT NULL,
@@ -33,7 +35,7 @@ CREATE TABLE employer(
   employer_id SERIAL PRIMARY KEY,
   company_name VARCHAR(100) NOT NULL,
   company_summary TEXT NOT NULL,
-  day_attending DATE NOT NULL,
+  days_attending DATE NOT NULL,
   number_of_teams INTEGER NOT NULL,
   restrictions TEXT
   

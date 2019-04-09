@@ -44,12 +44,9 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
 				+ "days_attending, number_of_teams, restrictions) "
 				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql,
-				employerProfile.getCompanyName(), 
-				employerProfile.getCompanySummary(), 
-				employerProfile.getDaysAttending(), 
-				employerProfile.getNumberOfTeams(), 
-				employerProfile.getRestrictions());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
+				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
+				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
 		results.next();
 		employerProfile.setEmployerId(results.getInt("employer_id"));
 		return employerProfile;
@@ -65,5 +62,6 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		empProf.setRestrictions(results.getString("restrictions"));
 		return empProf;
 	}
+
 
 }

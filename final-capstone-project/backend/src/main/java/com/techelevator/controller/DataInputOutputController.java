@@ -1,6 +1,6 @@
 package com.techelevator.controller;
 
-import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,4 +27,8 @@ public class DataInputOutputController {
 		 return employerProfileDAO.insertEmployerProfile(employerProfile);
 	}
 	
+	@RequestMapping(path="/studentForm", method=RequestMethod.GET)
+	public List<EmployerProfile> sendListOfEmployers(){
+		return employerProfileDAO.showAllEmployers();
+	}
 }

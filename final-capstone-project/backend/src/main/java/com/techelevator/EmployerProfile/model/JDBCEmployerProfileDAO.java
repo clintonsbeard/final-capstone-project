@@ -1,6 +1,7 @@
 package com.techelevator.EmployerProfile.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -28,8 +29,14 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 
 	@Override
 	public List<EmployerProfile> showAllEmployers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<EmployerProfile> listOfEmployers = new ArrayList<>();
+		String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, number_of_teams, restrictions FROM employer";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
+		
+		while(results.next()) {
+			listOfEmployers.add(mapRowToSqlResults(results));
+		}
+		return listOfEmployers;
 	}
 
 	@Override
@@ -37,17 +44,24 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
 				+ "days_attending, number_of_teams, restrictions) "
 				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql,
-				employerProfile.getCompanyName(), 
-				employerProfile.getCompanySummary(), 
-				employerProfile.getDaysAttending(), 
-				employerProfile.getNumberOfTeams(), 
-				employerProfile.getRestrictions());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
+				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
+				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
 		results.next();
 		employerProfile.setEmployerId(results.getInt("employer_id"));
 		return employerProfile;
 	}
 
+	private EmployerProfile mapRowToSqlResults (SqlRowSet results) {
+		EmployerProfile empProf = new EmployerProfile();
+		empProf.setEmployerId(results.getInt("employer_id"));
+		empProf.setCompanyName(results.getString("company_name"));
+		empProf.setCompanySummary(results.getString("company_summary"));
+		empProf.setDaysAttending(results.getDate("days_attending"));
+		empProf.setNumberOfTeams(results.getInt("number_of_teams"));
+		empProf.setRestrictions(results.getString("restrictions"));
+		return empProf;
+	}
 
 
 }

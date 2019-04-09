@@ -46,7 +46,6 @@ export default {
     },
     methods: {
         submitEmployerForm() {
-            console.log("Hi, I'm here");
             fetch(`${process.env.VUE_APP_API_URL}/employerForm`, {
                 method: 'POST',
                 headers: {
@@ -55,9 +54,11 @@ export default {
                 body: JSON.stringify(this.employer),
             })
             .then((response) => {
-                if (response.ok) {
-                    console.log("response was ok");
-                    this.$router.push({ path: '/thankyou' });
+                return response.json();
+            })
+            .then((data) => {
+                if (data.employerId > 0) {
+                    this.$router.push('/thank-you');
                 }
             })
             .catch((err) => console.error(err));

@@ -1,6 +1,5 @@
 package com.techelevator.EmployerProfile.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface EmployerProfileDAO {

@@ -22,7 +22,6 @@ CREATE TABLE student(
 
   student_id SERIAL PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL,
   choice_1 INTEGER NOT NULL,
   choice_2 INTEGER NOT NULL,
   choice_3 INTEGER NOT NULL,

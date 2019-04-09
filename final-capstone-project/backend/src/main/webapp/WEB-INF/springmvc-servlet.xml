@@ -25,21 +25,20 @@
 
 	<mvc:annotation-driven />
 	
-	<mvc:interceptors>
+
+<!-- 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean class="com.techelevator.authentication.JwtAuthInterceptor">
 				<property name="excludedUrls">
 					<list>
-					<!-- Every url in the app must be authenticated
-						except /login -->
 						<value>/login</value>
 						<value>/register</value>
 					</list>
 				</property>
 			</bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 	
 	<mvc:cors>
 	    <mvc:mapping path="/**" allowed-methods="*"/>
@@ -62,12 +61,12 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/capstone" />
-		<property name="username" value="capstone_appuser" />
-		<property name="password" value="capstone_appuser1" />
-	
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres1" />
 	</bean>
 	
     <!-- enable the configuration of transactional behavior based on annotations -->
+    <!-- 
     <tx:annotation-driven transaction-manager="txManager"/>
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -83,4 +82,5 @@
 			<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
 		</bean>	
 	</beans>
+	 -->
 </beans>

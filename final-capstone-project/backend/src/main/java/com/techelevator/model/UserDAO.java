@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserDAO {
 
     /**
      * Save a new user to the database. The password that is passed in will be

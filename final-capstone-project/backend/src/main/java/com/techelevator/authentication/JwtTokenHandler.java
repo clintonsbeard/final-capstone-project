@@ -7,7 +7,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 import com.techelevator.model.User;
-import com.techelevator.model.UserDao;
+import com.techelevator.model.UserDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class JwtTokenHandler {
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Autowired
-    private UserDao dao;
+    private UserDAO dao;
 
     public String createToken(String username, String role) {
         Date now = new Date();

@@ -14,7 +14,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcUserDao implements UserDao {
+public class JDBCUserDAO implements UserDAO {
 
     private JdbcTemplate jdbcTemplate;
     private PasswordHasher passwordHasher;
@@ -27,7 +27,7 @@ public class JdbcUserDao implements UserDao {
      * @param passwordHasher an object to salt and hash passwords
      */
     @Autowired
-    public JdbcUserDao(DataSource dataSource, PasswordHasher passwordHasher) {
+    public JDBCUserDAO(DataSource dataSource, PasswordHasher passwordHasher) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.passwordHasher = passwordHasher;
     }

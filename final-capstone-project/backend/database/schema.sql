@@ -38,6 +38,7 @@ CREATE TABLE employer(
   days_attending DATE NOT NULL,
   number_of_teams INTEGER NOT NULL,
   restrictions TEXT
+  
 );
 
 

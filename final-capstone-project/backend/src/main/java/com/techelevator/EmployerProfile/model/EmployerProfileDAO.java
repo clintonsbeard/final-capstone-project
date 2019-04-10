@@ -4,7 +4,10 @@ import java.util.List;
 
 public interface EmployerProfileDAO {
 
-	public EmployerProfile viewEmployerProfile(String companyName);
+	public EmployerProfile viewEmployerProfile(int employerId);
+	
 	public List<EmployerProfile> showAllEmployers();
+	
 	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile);
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
-import com.techelevator.Student.model.Student;
-import com.techelevator.Student.model.StudentDAO;
 
 @RestController
 @CrossOrigin
@@ -22,8 +21,6 @@ public class DataInputOutputController {
 
 	@Autowired
 	private EmployerProfileDAO employerProfileDAO;
-	@Autowired
-	private StudentDAO studentDAO;
 	
 	@RequestMapping(path="/employerForm", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -36,8 +33,9 @@ public class DataInputOutputController {
 		return employerProfileDAO.showAllEmployers();
 	}
 	
-	@RequestMapping(path="/studentForm", method=RequestMethod.POST)
-	public Student getStudentChoices(@RequestBody Student student) {
-		return studentDAO.insertNewStudentChoices(student);
+	@RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
+	public EmployerProfile getEmployerById(@PathVariable int employerId){
+		return employerProfileDAO.viewEmployerProfile(employerId);
 	}
+	
 }

@@ -11,7 +11,7 @@
               :key="employer.employerId"
             >{{employer.companyName}}</option>
           </select>
-          <button :disabled="!isValidForm" v-on:click="saveStudentChoices">Submit</button>
+          <button :disabled="!isValidForm" v-on:click="submitStudentChoices">Submit</button>
         </div>
       </div>
     </div>
@@ -24,16 +24,29 @@ export default {
   props: {},
   data() {
     return {
-      // showEmployerDropDown: true,
       listOfEmployers: [],
       student: {
         choice1: ""
-      }
+      },
+      studentChoices: []
     };
   },
-  methods: {},
+  methods: {
+      submitStudentChoices(){
+          fetch(`${process.env.VUE_APP_API_URL}/studentForm`, => {
+              method: 'POST',
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify(this.student)
+          }).then( (response) => {
+                return response.json();
+          }).then( (student) => {
+                this.studentChoices = student;
+          }).catch( (err) => console.error(err));
+      }
+  },
   created() {
-    //load the list of employers for a choiced - dropdown in student form
     fetch(`${process.env.VUE_APP_API_URL}/studentForm`)
       .then(response => {
         return response.json();

@@ -36,4 +36,8 @@ public class DataInputOutputController {
 		return employerProfileDAO.showAllEmployers();
 	}
 	
+	@RequestMapping(path="/studentForm", method=RequestMethod.POST)
+	public Student getStudentChoices(@RequestBody Student student) {
+		return studentDAO.insertNewStudentChoices(student);
+	}
 }

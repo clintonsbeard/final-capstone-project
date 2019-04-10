@@ -1,6 +1,5 @@
 package com.techelevator.EmployerProfile.model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,7 @@
   <div id="app">
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
-                Tech Elevator
+                <img src="./assets/img/te-logo.png" height="40" class="d-inline-block align-top">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

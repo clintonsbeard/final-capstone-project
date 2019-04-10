@@ -1,5 +1,6 @@
 package com.techelevator.Student.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import com.techelevator.EmployerProfile.model.EmployerProfile;
 
 @Component
 public class JDBCStudentDAO implements StudentDAO{
@@ -19,19 +22,6 @@ public class JDBCStudentDAO implements StudentDAO{
 		jdbcTemplate = new JdbcTemplate(datasource);
 	}
 	
-
-	@Override
-	public List<Student> getAllStudents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Student getStudentByName(String firstName, String lastName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public Student insertNewStudentChoices(Student student) {
 		String insertSql = "INSERT INTO student (student_id, first_name, last_name, "
@@ -45,5 +35,37 @@ public class JDBCStudentDAO implements StudentDAO{
 		student.setStudentId(results.getInt("student_id"));
 		return student;
 	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		List<Student> listOfStudents = new ArrayList<>();
+		String selectSql = "SELECT student_id, first_name, choice_1, choice_2, choice_3, choice_4 FROM student";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
+		
+		while(results.next()) {
+			listOfStudents.add(mapRowToSqlResults(results));
+		}
+		return listOfStudents;
+	}
+
+	@Override
+	public Student getStudentByName(String firstName, String lastName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private Student mapRowToSqlResults (SqlRowSet results) {
+		Student student = new Student();
+		student.setStudentId(results.getInt("student_id"));
+		student.setFirstName(results.getString("first_name"));
+		student.setLastName(results.getString("last_name"));
+		student.setChoice1(results.getString("choice_1"));
+		student.setChoice2(results.getString("choice_2"));
+		student.setChoice3(results.getString("choice_3"));
+		student.setChoice4(results.getString("choice_4"));
+		return student;
+	}
+
+
 
 }

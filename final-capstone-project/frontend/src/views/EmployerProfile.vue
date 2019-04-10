@@ -2,8 +2,8 @@
   <div class="employers-profile">
     <div class="container-fluid">
       <div class="col-12">
-        <h4>{{employer.companyName}}</h4>
-        <p>employer id is {{employer_id}}</p>
+        <h4>{{employer_id.companyName}}</h4>
+        <p>employer id is {{employer_id}}, {{company_name}}</p>        
       </div>
     </div>
   </div>
@@ -13,7 +13,8 @@
 export default {
   name: "viewEmployerProfile",
   props: [
-    "employer_id"
+    'employer_id',
+    'company_name'
   ],
   data() {
     return {

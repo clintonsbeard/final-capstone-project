@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
+import com.techelevator.Student.model.Student;
+import com.techelevator.Student.model.StudentDAO;
 
 @RestController
 @CrossOrigin
@@ -21,6 +23,9 @@ public class DataInputOutputController {
 
 	@Autowired
 	private EmployerProfileDAO employerProfileDAO;
+	
+	@Autowired
+	private StudentDAO studentDAO;
 	
 	@RequestMapping(path="/employerForm", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -31,6 +36,11 @@ public class DataInputOutputController {
 	@RequestMapping(path="/studentForm", method=RequestMethod.GET)
 	public List<EmployerProfile> sendListOfEmployers(){
 		return employerProfileDAO.showAllEmployers();
+	}
+	
+	@RequestMapping(path="/studentForm", method=RequestMethod.POST)
+	public Student getStudentForms(@RequestBody Student student){
+		return studentDAO.insertNewStudentChoices(student);
 	}
 	
 	@RequestMapping(path="/employers/{id}", method=RequestMethod.GET)

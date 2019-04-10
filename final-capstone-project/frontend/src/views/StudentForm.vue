@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
           <label for="choice1">First Choice</label>
-          <select v-model="student.choice1" class="form-control">
+          <select v-model="student.choice1" class="form-control" required>
             <option value="" selected disabled>Choose...</option>
             <option v-for="employer in listOfEmployers" :key="employer.employerId">{{employer.companyName}}</option>
           </select>
@@ -64,18 +64,24 @@ export default {
     };
   },
   methods: {
-      submitStudentChoices(){
+      submitStudentForm(){
           fetch(`${process.env.VUE_APP_API_URL}/studentForm`, {
               method: 'POST',
               headers: {
                   "Content-Type": "application/json"
               },
               body: JSON.stringify(this.student)
-          }).then( (response) => {
-                return response.json();
-          }).then( (student) => {
-                this.studentChoices = student;
-          }).catch( (err) => console.error(err));
+          })
+          .then( (response) => {
+            console.log(response);
+            return response.json();
+          })
+          .then( (student) => {
+            console.table(student)            
+            this.studentChoices = student;
+            this.$router.push('/thank-you');      
+          })
+          .catch((err) => console.error(err));
       }
   },
   created() {
@@ -84,10 +90,10 @@ export default {
       .then(response => {
         return response.json();
       })
-      .then(employers => {
+      .then((employers) => {
         this.listOfEmployers = employers;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }

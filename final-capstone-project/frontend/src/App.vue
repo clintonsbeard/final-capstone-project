@@ -19,6 +19,9 @@
                         <router-link to="/student-form" class="nav-link">Student Submission Form</router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link to="/employers" class="nav-link">Employers Attending</router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/login" class="nav-link">Login</router-link>
                     </li>
                     <li class="nav-item">

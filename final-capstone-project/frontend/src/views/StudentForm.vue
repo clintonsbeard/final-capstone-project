@@ -65,7 +65,7 @@ export default {
   },
   methods: {
       submitStudentChoices(){
-          fetch(`${process.env.VUE_APP_API_URL}/studentForm`, => {
+          fetch(`${process.env.VUE_APP_API_URL}/studentForm`, {
               method: 'POST',
               headers: {
                   "Content-Type": "application/json"

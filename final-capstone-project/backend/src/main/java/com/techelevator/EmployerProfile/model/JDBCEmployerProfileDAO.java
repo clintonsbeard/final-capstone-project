@@ -21,9 +21,14 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 	}
 	
 	@Override
-	public EmployerProfile viewEmployerProfile(String companyName) {
-		// TODO Auto-generated method stub
-		return null;
+	public EmployerProfile viewEmployerProfile(int employerId) {
+		
+		String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, " +
+						   "number_of_teams, restrictions FROM employer WHERE employer_id = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql, employerId);
+		results.next();
+		return mapRowToSqlResults(results);
 	}
 
 	@Override
@@ -61,6 +66,5 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		empProf.setRestrictions(results.getString("restrictions"));
 		return empProf;
 	}
-
 
 }

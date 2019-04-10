@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import EmployerForm from './views/EmployerForm.vue'
+import EmployersList from './views/EmployersList.vue'
+import EmployerProfile from './views/EmployerProfile.vue'
 import StudentForm from './views/StudentForm.vue'
 import Logout from './views/Logout.vue'
 import ThankYou from './views/ThankYou.vue'
@@ -28,6 +30,17 @@ const router = new Router({
       path: '/employer-form',
       name: 'employer-form',
       component: EmployerForm
+    },
+    {
+      path: '/employers',
+      name: 'employers-list',
+      component: EmployersList
+    },
+    {
+      path: '/employers/:employer_id',
+      name: 'employer-profile',
+      component: EmployerProfile,
+      props: true
     },
     {
       path: '/student-form',

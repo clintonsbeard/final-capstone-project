@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
-import com.techelevator.Student.model.Student;
-import com.techelevator.Student.model.StudentDAO;
 
 @RestController
 @CrossOrigin

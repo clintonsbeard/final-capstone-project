@@ -63,7 +63,21 @@ export default {
       }
     };
   },
-  methods: {},
+  methods: {
+      submitStudentChoices(){
+          fetch(`${process.env.VUE_APP_API_URL}/studentForm`, => {
+              method: 'POST',
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify(this.student)
+          }).then( (response) => {
+                return response.json();
+          }).then( (student) => {
+                this.studentChoices = student;
+          }).catch( (err) => console.error(err));
+      }
+  },
   created() {
     //load the list of employers for a choice - dropdown in student form
     fetch(`${process.env.VUE_APP_API_URL}/studentForm`)

@@ -24,26 +24,24 @@ export default {
   props: {},
   data() {
     return {
-      // showEmployerDropDown: true,
-      listOfEmployers: [],
-      student: {
-        choice1: ""
-      }
-    };
-  },
+    listOfEmployers: [],
+    student: {
+    choice1: ""
+    }
+  };
+},
   methods: {},
   created() {
-    //load the list of employers for a choiced - dropdown in student form
-    fetch(`${process.env.VUE_APP_API_URL}/studentForm`)
-      .then(response => {
-        return response.json();
-      })
-      .then(employers => {
-        this.listOfEmployers = employers;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  fetch('${process.env.VUE_APP_API_URL}/studentForm')
+    .then(response => {
+      return response.json();
+    })
+    .then(employers => {
+      this.listOfEmployers = employers;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+   }
 };
 </script>

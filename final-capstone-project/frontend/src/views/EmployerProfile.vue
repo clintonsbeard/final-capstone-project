@@ -16,28 +16,33 @@ export default {
     'employer_id',
     'company_name'
   ],
+  watch: {
+    // employer_id: onPropChange()
+  },
   data() {
     return {
       employer: []
     };
   },
-  created() {
-    fetch(`${process.env.VUE_APP_API_URL}/employers/:employer_id`, {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(employer_id)
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(employer => {
-      this.employer = employer;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
+  // methods: {
+  //   onPropChange(newVal){
+  //     fetch(`${process.env.VUE_APP_API_URL}/employers/${employer_id}`, {
+  //       method: 'GET',
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify(employer_id)
+  //     })
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(employer => {
+  //       this.employer = employer;
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }
 }
 </script>

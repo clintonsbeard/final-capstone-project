@@ -21,6 +21,18 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 	}
 	
 	@Override
+	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile) {
+		String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
+				+ "days_attending, number_of_teams, restrictions) "
+				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
+				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
+				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
+		results.next();
+		employerProfile.setEmployerId(results.getInt("employer_id"));
+		return employerProfile;
+	}
+		
 	public EmployerProfile viewEmployerProfile(int employerId) {
 		
 		String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, " +
@@ -30,7 +42,7 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		results.next();
 		return mapRowToSqlResults(results);
 	}
-
+	
 	@Override
 	public List<EmployerProfile> showAllEmployers() {
 		List<EmployerProfile> listOfEmployers = new ArrayList<>();
@@ -43,19 +55,6 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		return listOfEmployers;
 	}
 
-	@Override
-	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile) {
-		String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
-				+ "days_attending, number_of_teams, restrictions) "
-				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
-				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
-				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
-		results.next();
-		employerProfile.setEmployerId(results.getInt("employer_id"));
-		return employerProfile;
-	}
-
 	private EmployerProfile mapRowToSqlResults (SqlRowSet results) {
 		EmployerProfile empProf = new EmployerProfile();
 		empProf.setEmployerId(results.getInt("employer_id"));
@@ -66,5 +65,5 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		empProf.setRestrictions(results.getString("restrictions"));
 		return empProf;
 	}
-
 }
+

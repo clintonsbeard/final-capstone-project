@@ -55,5 +55,5 @@ public class EmployerProfile {
 	public void setRestrictions(String restrictions) {
 		this.restrictions = restrictions;
 	}
-	
+
 }

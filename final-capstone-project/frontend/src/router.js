@@ -43,11 +43,6 @@ const router = new Router({
       path: '/thank-you',
       name: 'thank-you',
       component: ThankYou
-    },
-    {
-      path: '/student-form',
-      name: 'student-form',
-      component: StudentForm
     }
   ]
 });

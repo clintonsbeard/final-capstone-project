@@ -1,19 +1,47 @@
 <template>
   <div class="student-form">
     <div class="container-fluid">
-      <h3>Student Choices Form</h3>
-      <div class="form">
-        <div>First Choice</div>
-        <div>
-          <select v-model="student.choice1">
-            <option
-              v-for="employer in listOfEmployers"
-              :key="employer.employerId"
-            >{{employer.companyName}}</option>
-          </select>
-          <button :disabled="!isValidForm" v-on:click="submitStudentChoices">Submit</button>
+      <h3>Matchmaking: Student Form</h3>
+      <hr>
+      <form v-on:submit.prevent="submitStudentForm()">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="Enter First Name..." v-model="student.firstName" required>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name..." v-model="student.lastName" required>
+        </div>
+        <div class="form-group">
+          <label for="choice1">First Choice</label>
+          <select v-model="student.choice1" class="form-control">
+            <option value="" selected disabled>Choose...</option>
+            <option v-for="employer in listOfEmployers" :key="employer.employerId">{{employer.companyName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="choice2">Second Choice</label>
+          <select v-model="student.choice2" class="form-control">
+            <option value="" selected disabled>Choose...</option>
+            <option v-for="employer in listOfEmployers" :key="employer.employerId">{{employer.companyName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="choice3">Third Choice</label>
+          <select v-model="student.choice3" class="form-control">
+            <option value="" selected disabled>Choose...</option>
+            <option v-for="employer in listOfEmployers" :key="employer.employerId">{{employer.companyName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="choice4">Fourth Choice</label>
+          <select v-model="student.choice4" class="form-control">
+            <option value="" selected disabled>Choose...</option>
+            <option v-for="employer in listOfEmployers" :key="employer.employerId">{{employer.companyName}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </template>
@@ -26,9 +54,13 @@ export default {
     return {
       listOfEmployers: [],
       student: {
-        choice1: ""
-      },
-      studentChoices: []
+        firstName: '',
+        lastName: '',
+        choice1: '',
+        choice2: '',
+        choice3: '',
+        choice4: ''
+      }
     };
   },
   methods: {
@@ -47,6 +79,7 @@ export default {
       }
   },
   created() {
+    //load the list of employers for a choice - dropdown in student form
     fetch(`${process.env.VUE_APP_API_URL}/studentForm`)
       .then(response => {
         return response.json();

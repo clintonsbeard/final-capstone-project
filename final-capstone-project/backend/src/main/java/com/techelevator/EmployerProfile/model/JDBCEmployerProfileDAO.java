@@ -71,10 +71,10 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 	public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile) {
 		String updateSql = "UPDATE employer SET company_name = ?, company_summary = ?, days_attending = ?, number_of_teams = ?, " +
 						   "restrictions = ? WHERE employer_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(updateSql, employerProfile.getCompanyName(), 
+		jdbcTemplate.update(updateSql, employerProfile.getCompanyName(), 
 				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
-				employerProfile.getNumberOfTeams(), employerProfile.getEmployerId());
-		results.next();
+				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions(), 
+				employerProfile.getEmployerId());
 		return employerProfile;
 	}
 	

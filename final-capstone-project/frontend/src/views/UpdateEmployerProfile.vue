@@ -14,6 +14,9 @@
                     <hr>
                     <form v-on:submit.prevent="updateEmployerProfile()">
                         <div class="form-group">
+                            <input type="hidden" class="form-control" id="employerId" v-model="employer.employerId" required>
+                        </div>
+                        <div class="form-group">
                             <h6>Company Name</h6>
                             <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name..." v-model="employer.companyName" required>
                         </div>
@@ -56,7 +59,7 @@ export default {
     },
     methods: {
         updateEmployerProfile() {
-            fetch(`${process.env.VUE_APP_API_URL}/employers/${this.employer.employerId}`, {
+            fetch(`${process.env.VUE_APP_API_URL}/employers/update`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type" : "application/json"
@@ -68,7 +71,7 @@ export default {
             })
             .then((data) => {
                 if (data.employerId > 0) {
-                    this.$router.push(`/employers/${employer.employerId}`);
+                    this.$router.push(`/employers/${this.employer.employerId}`);
                 }
             })
             .catch((err) => console.error(err));

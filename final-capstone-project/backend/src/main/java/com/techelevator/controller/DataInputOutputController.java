@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techelevator.EmployerProfile.model.EmployerProfile;
-import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
+import com.techelevator.Employer.model.Employer;
+import com.techelevator.Employer.model.EmployerDAO;
 import com.techelevator.Student.model.Student;
 import com.techelevator.Student.model.StudentDAO;
 
@@ -22,19 +22,19 @@ import com.techelevator.Student.model.StudentDAO;
 public class DataInputOutputController {
 
 	@Autowired
-	private EmployerProfileDAO employerProfileDAO;
+	private EmployerDAO employerProfileDAO;
 	
 	@Autowired
 	private StudentDAO studentDAO;
 	
 	@RequestMapping(path="/employerForm", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
+	public Employer submitEmployerForm(@RequestBody Employer employerProfile) {
 		 return employerProfileDAO.insertEmployerProfile(employerProfile);
 	}
 	
 	@RequestMapping(path="/studentForm", method=RequestMethod.GET)
-	public List<EmployerProfile> sendListOfEmployers(){
+	public List<Employer> sendListOfEmployers(){
 		return employerProfileDAO.showAllEmployers();
 	}
 	
@@ -44,8 +44,8 @@ public class DataInputOutputController {
 	}
 	
 	@RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
-	public EmployerProfile getEmployerById(@PathVariable int employerId){
-		return employerProfileDAO.viewEmployerProfile(employerId);
+	public Employer getEmployerById(@PathVariable int employerId){
+		return employerProfileDAO.viewEmployerProfileById(employerId);
 	}
 	
 }

@@ -1,19 +1,19 @@
-package com.techelevator.EmployerProfile.model;
+package com.techelevator.Employer.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class EmployerProfile {
+public class Employer {
 
 	private int employerId;
-	private String companyName;
-	private String companySummary;
+	private String employerName;
+	private String employerSummary;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date daysAttending;
 	private int numberOfTeams;
 	private String restrictions;
+	
 	
 	public int getEmployerId() {
 		return employerId;
@@ -23,17 +23,17 @@ public class EmployerProfile {
 	}
 	
 	public String getCompanyName() {
-		return companyName;
+		return employerName;
 	}
 	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+		this.employerName = companyName;
 	}
 	
 	public String getCompanySummary() {
-		return companySummary;
+		return employerSummary;
 	}
 	public void setCompanySummary(String companySummary) {
-		this.companySummary = companySummary;
+		this.employerSummary = companySummary;
 	}
 	
 	public Date getDaysAttending() {

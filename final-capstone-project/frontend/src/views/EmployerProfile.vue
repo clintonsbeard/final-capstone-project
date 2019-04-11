@@ -2,8 +2,8 @@
   <div class="employers-profile">
     <div class="container-fluid">
       <div class="col-12">
-        <h4>{{employer_id.companyName}}</h4>
-        <p>employer id is {{employer_id}}, {{company_name}}</p>        
+        <p>employer id is {{employer_id}}</p> 
+        <p></p>       
       </div>
     </div>
   </div>
@@ -13,36 +13,29 @@
 export default {
   name: "viewEmployerProfile",
   props: [
-    'employer_id',
-    'company_name'
+    'employer_id'
   ],
-  watch: {
-    // employer_id: onPropChange()
-  },
   data() {
     return {
-      employer: []
+      fetchedEmployer: [],
     };
   },
-  // methods: {
-  //   onPropChange(newVal){
-  //     fetch(`${process.env.VUE_APP_API_URL}/employers/${employer_id}`, {
-  //       method: 'GET',
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify(employer_id)
-  //     })
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(employer => {
-  //       this.employer = employer;
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
+  // computed: {
+  //   employerIdParam(){
+  //     return this.$route.params.employer_id;
   //   }
-  // }
+  // },
+  created() {
+      fetch(`${process.env.VUE_APP_API_URL}/employers/${this.employer_id}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(employer => {
+        this.fetchedEmployer = employer;
+      })
+      .catch(err => {
+        console.log(err);
+      }); 
+  }
 }
 </script>

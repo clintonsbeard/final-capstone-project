@@ -1,5 +1,8 @@
 package com.techelevator.Student.model;
 
+import com.techelevator.Employer.model.Employer;
+import com.techelevator.Scheduler.Slot;
+
 public class Student {
 
 	private int studentId;
@@ -9,6 +12,8 @@ public class Student {
 	private String choice2;
 	private String choice3;
 	private String choice4;
+	private Employer assignedEmployer;
+	private Slot assignedSlot;
 	
 	public int getStudentId() {
 		return studentId;
@@ -51,6 +56,18 @@ public class Student {
 	}
 	public void setChoice4(String choice4) {
 		this.choice4 = choice4;
+	}
+	public Employer getAssignedEmployer() {
+		return assignedEmployer;
+	}
+	public void setAssignedEmployer(Employer assignedEmployer) {
+		this.assignedEmployer = assignedEmployer;
+	}
+	public Slot getAssignedSlot() {
+		return assignedSlot;
+	}
+	public void setAssignedSlot(Slot assignedSlot) {
+		this.assignedSlot = assignedSlot;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.techelevator.EmployerProfile.model;
+package com.techelevator.Employer.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,29 +11,29 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
+public class JDBCEmployerDAO implements EmployerDAO{
 
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	public JDBCEmployerProfileDAO (DataSource datasource) {
+	public JDBCEmployerDAO (DataSource datasource) {
 		jdbcTemplate = new JdbcTemplate(datasource);
 	}
 	
 	@Override
-	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile) {
+	public Employer insertEmployerProfile(Employer employer) {
 		String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
 				+ "days_attending, number_of_teams, restrictions) "
 				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
-				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
-				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employer.getCompanyName(), 
+				employer.getCompanySummary(), employer.getDaysAttending(), 
+				employer.getNumberOfTeams(), employer.getRestrictions());
 		results.next();
-		employerProfile.setEmployerId(results.getInt("employer_id"));
-		return employerProfile;
+		employer.setEmployerId(results.getInt("employer_id"));
+		return employer;
 	}
 		
-	public EmployerProfile viewEmployerProfile(int employerId) {
+	public Employer viewEmployerProfileById(int employerId) {
 		
 		String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, " +
 						   "number_of_teams, restrictions FROM employer WHERE employer_id = ?";
@@ -44,8 +44,8 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 	}
 	
 	@Override
-	public List<EmployerProfile> showAllEmployers() {
-		List<EmployerProfile> listOfEmployers = new ArrayList<>();
+	public List<Employer> showAllEmployers() {
+		List<Employer> listOfEmployers = new ArrayList<>();
 		String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, number_of_teams, restrictions FROM employer";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
 		
@@ -55,15 +55,16 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		return listOfEmployers;
 	}
 
-	private EmployerProfile mapRowToSqlResults (SqlRowSet results) {
-		EmployerProfile empProf = new EmployerProfile();
-		empProf.setEmployerId(results.getInt("employer_id"));
-		empProf.setCompanyName(results.getString("company_name"));
-		empProf.setCompanySummary(results.getString("company_summary"));
-		empProf.setDaysAttending(results.getDate("days_attending"));
-		empProf.setNumberOfTeams(results.getInt("number_of_teams"));
-		empProf.setRestrictions(results.getString("restrictions"));
-		return empProf;
+	private Employer mapRowToSqlResults (SqlRowSet results) {
+		Employer employer = new Employer();
+		employer.setEmployerId(results.getInt("employer_id"));
+		employer.setCompanyName(results.getString("company_name"));
+		employer.setCompanySummary(results.getString("company_summary"));
+		employer.setDaysAttending(results.getDate("days_attending"));
+		employer.setNumberOfTeams(results.getInt("number_of_teams"));
+		employer.setRestrictions(results.getString("restrictions"));
+		return employer;
 	}
+
 }
 

@@ -34,8 +34,13 @@ public class DataInputOutputController {
 	}
 	
 	@RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
-	public EmployerProfile getEmployerById(@PathVariable int employerId){
-		return employerProfileDAO.viewEmployerProfile(employerId);
+	public EmployerProfile getEmployerById(@PathVariable int id){
+		return employerProfileDAO.viewEmployerProfile(id);
+	}
+	
+	@RequestMapping(path="/employers/{id}", method=RequestMethod.PUT)
+	public EmployerProfile updateEmployerProfile(@PathVariable int id, @RequestBody EmployerProfile employer){
+		return employerProfileDAO.updateEmployerProfile(employer);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.techelevator.EmployerProfile.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -10,7 +11,7 @@ public class EmployerProfile {
 	private String companyName;
 	private String companySummary;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date daysAttending;
+	private LocalDate daysAttending;
 	private int numberOfTeams;
 	private String restrictions;
 	
@@ -35,10 +36,10 @@ public class EmployerProfile {
 		this.companySummary = companySummary;
 	}
 	
-	public Date getDaysAttending() {
+	public LocalDate getDaysAttending() {
 		return daysAttending;
 	}
-	public void setDaysAttending(Date daysAttending) {
+	public void setDaysAttending(LocalDate daysAttending) {
 		this.daysAttending = daysAttending;
 	}
 	

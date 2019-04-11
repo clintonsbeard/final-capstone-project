@@ -1,8 +1,8 @@
 <template>
   <div id="app">
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                <img src="./assets/img/te-logo.png" height="40" class="d-inline-block align-top">
+            <a class="navbar-brand" href="/">
+                <img src="./assets/img/te-logo.png" height="35" class="d-inline-block align-top">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -13,17 +13,16 @@
                         <router-link to="/" class="nav-link">Home</router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link to="/employers" class="nav-link">Employers</router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/employer-form" class="nav-link">Employer Submission Form</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/student-form" class="nav-link">Student Submission Form</router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/employers" class="nav-link">Employers Attending</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/login" class="nav-link">Login</router-link>
-                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <router-link to="/logout" class="nav-link">Logout</router-link>
                     </li>

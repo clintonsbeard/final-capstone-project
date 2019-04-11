@@ -3,11 +3,12 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import EmployerForm from './views/EmployerForm.vue'
-import EmployersList from './views/EmployersList.vue'
+import Employers from './views/Employers.vue'
 import EmployerProfile from './views/EmployerProfile.vue'
 import StudentForm from './views/StudentForm.vue'
 import Logout from './views/Logout.vue'
 import ThankYou from './views/ThankYou.vue'
+import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
 // import auth from './auth'
 
 Vue.use(Router)
@@ -33,8 +34,8 @@ const router = new Router({
     },
     {
       path: '/employers',
-      name: 'employers-list',
-      component: EmployersList
+      name: 'employers',
+      component: Employers
     },
     {
       path: '/employers/:employer_id',
@@ -56,6 +57,12 @@ const router = new Router({
       path: '/thank-you',
       name: 'thank-you',
       component: ThankYou
+    },
+    {
+      path: '/update-employer-profile/:employer_id',
+      name: 'update-employer-profile',
+      component: UpdateEmployerProfile,
+      props: true
     }
   ]
 });

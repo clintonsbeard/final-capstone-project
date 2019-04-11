@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.techelevator.Employer.model.Employer;
+import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.Student.model.Student;
 
 public class Scheduler {
@@ -27,7 +27,7 @@ public class Scheduler {
 	private List<Student> listOfAllStudents;
 	private List<Student> reservedList = new ArrayList<Student>();
 	private List<Slot> numberOfSlots = new ArrayList<>();
-	private List<Employer> numberOfEmployers = new ArrayList<>();
+	private List<EmployerProfile> numberOfEmployers = new ArrayList<>();
 
 	//constructor
 	public Scheduler(List<Appointment> allAvailableAppointments, List<Student>listOfAllStudents) {
@@ -72,11 +72,11 @@ public class Scheduler {
 		this.numberOfSlots = numberOfSlots;
 	}
 
-	public List<Employer> getNumberOfEmployers() {
+	public List<EmployerProfile> getNumberOfEmployers() {
 		return numberOfEmployers;
 	}
 
-	public void setNumberOfEmployers(List<Employer> numberOfEmployers) {
+	public void setNumberOfEmployers(List<EmployerProfile> numberOfEmployers) {
 		this.numberOfEmployers = numberOfEmployers;
 	}
 

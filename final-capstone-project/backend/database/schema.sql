@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS app_user;
 DROP TABLE IF EXISTS student_employer;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS employer;
+DROP TABLE IF EXISTS schedule;
 
 CREATE TABLE app_user (
   id SERIAL PRIMARY KEY,
@@ -35,12 +36,20 @@ CREATE TABLE employer(
   employer_id SERIAL PRIMARY KEY,
   company_name VARCHAR(100) NOT NULL,
   company_summary TEXT NOT NULL,
-  days_attending DATE NOT NULL,
-  number_of_teams INTEGER NOT NULL,
-  restrictions TEXT
+  days_attending DATE DEFAULT '1111-11-11',
+  number_of_teams INTEGER DEFAULT 0,
+  restrictions TEXT DEFAULT 'None'
   
 );
 
+CREATE TABLE schedule(
+
+  first_date_start_time TIME NOT NULL,
+  first_date_end_time TIME NOT NULL,
+  second_date_start_time TIME,
+  second_date_end_time TIME
+  
+);
 
 CREATE TABLE student_employer(
 

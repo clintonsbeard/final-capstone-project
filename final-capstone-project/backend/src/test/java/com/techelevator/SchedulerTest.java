@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.junit.*;
 
-import com.techelevator.Employer.model.Employer;
+import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.Scheduler.Appointment;
 import com.techelevator.Scheduler.Scheduler;
 import com.techelevator.Scheduler.Slot;
@@ -19,14 +19,14 @@ public class SchedulerTest {
 	private Scheduler target;
 	private List<Student> allStudents;
 	private List<Appointment> allAppointments;
-	private List<Employer> allEmployers;
+	private List<EmployerProfile> allEmployers;
 	private List<Slot> allSlots;
 	
 	@Before
 	public void setup() {
 		allStudents = new ArrayList<Student>();
 		allAppointments = new ArrayList<Appointment>();
-		allEmployers = new ArrayList<Employer>();
+		allEmployers = new ArrayList<EmployerProfile>();
 		allSlots = new ArrayList<Slot>();
 		target = new Scheduler(allAppointments, allStudents);
 	}
@@ -42,7 +42,7 @@ public class SchedulerTest {
 		allStudents.add(student2);
 		allStudents.add(student3);
 			
-		Employer oneEmployer = new Employer();
+		EmployerProfile oneEmployer = new EmployerProfile();
 		
 		allAppointments.add(new Appointment(oneEmployer, new Slot(1)));
 		allAppointments.add(new Appointment(oneEmployer, new Slot(2)));
@@ -62,7 +62,7 @@ public class SchedulerTest {
 	public void fiveSlotsAndThreeCompaniesMakeFifteenAppointments() {
 		//arrange
 		for(int i = 1; i <=3; i++) {
-			allEmployers.add(new Employer());
+			allEmployers.add(new EmployerProfile());
 		}
 		
 		for(int i = 1; i <=5; i++) {

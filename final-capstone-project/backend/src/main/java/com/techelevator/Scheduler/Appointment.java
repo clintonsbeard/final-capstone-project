@@ -1,13 +1,13 @@
 package com.techelevator.Scheduler;
 
-import com.techelevator.Employer.model.Employer;
+import com.techelevator.EmployerProfile.model.EmployerProfile;
 
 public class Appointment {
 	
 	private Slot slot;
-	private Employer employer;
+	private EmployerProfile employer;
 	
-	public Appointment(Employer employer, Slot slot) {
+	public Appointment(EmployerProfile employer, Slot slot) {
 		this.slot = slot;
 		this.employer = employer;
 	}
@@ -20,11 +20,11 @@ public class Appointment {
 		this.slot = slot;
 	}
 
-	public Employer getEmployer() {
+	public EmployerProfile getEmployer() {
 		return employer;
 	}
 
-	public void setEmployer(Employer employer) {
+	public void setEmployer(EmployerProfile employer) {
 		this.employer = employer;
 	}
 		

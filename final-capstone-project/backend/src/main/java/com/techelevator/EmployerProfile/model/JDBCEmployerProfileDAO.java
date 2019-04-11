@@ -24,7 +24,7 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile) {
 		String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
 				+ "days_attending, number_of_teams, restrictions) "
-				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";		
+				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
 				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
 				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
@@ -61,10 +61,21 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		empProf.setEmployerId(results.getInt("employer_id"));
 		empProf.setCompanyName(results.getString("company_name"));
 		empProf.setCompanySummary(results.getString("company_summary"));
-		empProf.setDaysAttending(results.getDate("days_attending"));
+		empProf.setDaysAttending(results.getDate("days_attending").toLocalDate());
 		empProf.setNumberOfTeams(results.getInt("number_of_teams"));
 		empProf.setRestrictions(results.getString("restrictions"));
 		return empProf;
 	}
-}
 
+	@Override
+	public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile) {
+		String updateSql = "UPDATE employer SET company_name = ?, company_summary = ?, days_attending = ?, number_of_teams = ?, " +
+						   "restrictions = ? WHERE employer_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(updateSql, employerProfile.getCompanyName(), 
+				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
+				employerProfile.getNumberOfTeams(), employerProfile.getEmployerId());
+		results.next();
+		return employerProfile;
+	}
+	
+}

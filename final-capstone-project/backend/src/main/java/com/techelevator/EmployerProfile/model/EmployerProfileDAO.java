@@ -10,4 +10,6 @@ public interface EmployerProfileDAO {
 	
 	public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile);
 	
+	public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile);
+	
 }

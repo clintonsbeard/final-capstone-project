@@ -14,15 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label for="daysAttending">Days Attending</label>
-                    <input type="date" class="form-control" id="daysAttending" placeholder="Enter Days Attending..." v-model="employer.daysAttending" required>
-                </div>
-                <div class="form-group">
-                    <label for="numberOfTeams">Number of Teams Attending</label>
-                    <input type="number" class="form-control" id="numberOfTeams" placeholder="Enter Number of Teams Attending..." v-model="employer.numberOfTeams" min="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="restrictions">Additional Appointment Restrictions</label>
-                    <textarea class="form-control" id="restrictions" placeholder="Enter Additional Appointment Restrictions..." v-model="employer.restrictions" rows="3"></textarea>
+                    <input type="date" class="form-control" id="daysAttending" placeholder="Enter Days Attending..." v-model="employer.daysAttending">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

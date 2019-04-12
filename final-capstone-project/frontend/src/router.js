@@ -9,6 +9,8 @@ import StudentForm from './views/StudentForm.vue'
 import Logout from './views/Logout.vue'
 import ThankYou from './views/ThankYou.vue'
 import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
+import Register from './views/Register.vue'
+
 // import auth from './auth'
 
 Vue.use(Router)
@@ -63,7 +65,12 @@ const router = new Router({
       name: 'update-employer-profile',
       component: UpdateEmployerProfile,
       props: true
-    }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
   ]
 });
 

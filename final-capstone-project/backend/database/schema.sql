@@ -14,10 +14,11 @@ DROP TABLE IF EXISTS schedule;
 
 CREATE TABLE app_user (
   id SERIAL PRIMARY KEY,
-  user_name varchar(32) NOT NULL UNIQUE,
+  user_name varchar(255) NOT NULL UNIQUE,
   password varchar(32) NOT NULL,
-  role varchar(32),
-  salt varchar(255) NOT NULL
+  salt varchar(255) NOT NULL,
+  role varchar(32) NOT NULL
+
 );
 
 CREATE TABLE student(
@@ -51,14 +52,36 @@ CREATE TABLE schedule(
   
 );
 
-CREATE TABLE student_employer(
 
+CREATE TABLE student_employer(
+  
+  selection_id SERIAL PRIMARY KEY,
   student_id INT NOT NULL,
+  choice_number INT NOT NULL,
   employer_id INT NOT NULL,
         
   constraint fk_student_employer_student_id foreign key (student_id) references student(student_id),
   constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
 );
+
+CREATE SEQUENCE sequence_1
+  increment by 1
+  minvalue 1
+  maxvalue 4
+  start with 1
+  cycle
+  owned by student_employer.choice_number;
+
+
+--
+--CREATE TABLE student_employer(
+--
+--  student_id INT NOT NULL,
+--  employer_id INT NOT NULL,
+--        
+--  constraint fk_student_employer_student_id foreign key (student_id) references student(student_id),
+--  constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
+--);
 
 
 COMMIT;

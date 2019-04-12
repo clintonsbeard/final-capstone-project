@@ -25,20 +25,23 @@ public class JDBCStudentDAO implements StudentDAO{
 	public Student insertNewStudentChoices(Student student) {
 		String insertSql = "INSERT INTO student (student_id, first_name, last_name, "
 				+ "choice_1, choice_2, choice_3, choice_4) "
-				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?) RETURNING student_id";
+				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?) RETURNING student_id;";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, student.getFirstName(),
 								student.getLastName(), student.getChoice1(),
 								student.getChoice2(), student.getChoice3(),
 								student.getChoice4());
+		
 		results.next();
 		student.setStudentId(results.getInt("student_id"));
+
 		return student;
 	}
 
 	@Override
 	public List<Student> getAllStudents() {
 		List<Student> listOfStudents = new ArrayList<>();
-		String selectSql = "SELECT student_id, first_name, choice_1, choice_2, choice_3, choice_4 FROM student";
+		String selectSql = "SELECT student_id, first_name, "
+				+ "choice_1, choice_2, choice_3, choice_4 FROM student";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
 		
 		while(results.next()) {
@@ -62,6 +65,21 @@ public class JDBCStudentDAO implements StudentDAO{
 		student.setChoice2(results.getString("choice_2"));
 		student.setChoice3(results.getString("choice_3"));
 		student.setChoice4(results.getString("choice_4"));
+		return student;
+	}
+
+	@Override
+	public Student insertStudentChoicesIntoJoinerTable(Student student) {
+		
+		String insertSql = "INSERT INTO student_employer (student_id, CHOICE_NUMBER, employer_id) " 
+				+ "SELECT student_id, nextval('sequence_1'), (SELECT employer_id FROM EMPLOYER WHERE COMPANY_NAME = CHOICE_1) " 
+				+ "FROM STUDENT " 
+				+ "WHERE STUDENT_ID = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, student.getStudentId(),
+								student.getEmployerId());
+		results.next();
+		student.setStudentId(results.getInt("student_id"));
 		return student;
 	}
 

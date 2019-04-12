@@ -47,8 +47,8 @@ public class JDBCUserDAO implements UserDAO {
         byte[] salt = passwordHasher.generateRandomSalt();
         String hashedPassword = passwordHasher.computeHash(password, salt);
         String saltString = new String(Base64.encode(salt));
-        long newId = jdbcTemplate.queryForObject("INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class, userName,
-                hashedPassword, saltString, role);
+        long newId = jdbcTemplate.queryForObject("INSERT INTO app_user(user_name, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class, userName,
+                hashedPassword, saltString, role.toLowerCase());
 
         User newUser = new User();
         newUser.setId(newId);
@@ -64,7 +64,7 @@ public class JDBCUserDAO implements UserDAO {
         String hashedPassword = passwordHasher.computeHash(newPassword, salt);
         String saltString = new String(Base64.encode(salt));
 
-        jdbcTemplate.update("UPDATE users SET password=?, salt=? WHERE id=?",
+        jdbcTemplate.update("UPDATE app_user SET password=?, salt=? WHERE id=?",
                 hashedPassword, saltString, user.getId());
     }
 
@@ -79,7 +79,7 @@ public class JDBCUserDAO implements UserDAO {
      */
     @Override
     public User getValidUserWithPassword(String userName, String password) {
-        String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = ?";
+        String sqlSearchForUser = "SELECT * FROM app_user WHERE UPPER(user_name) = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
         if (results.next()) {
@@ -103,7 +103,7 @@ public class JDBCUserDAO implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        String sqlSelectAllUsers = "SELECT id, username, role FROM users";
+        String sqlSelectAllUsers = "SELECT id, user_name, role FROM app_user";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
 
         while(results.next()) {
@@ -117,14 +117,14 @@ public class JDBCUserDAO implements UserDAO {
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();
         user.setId(results.getLong("id"));
-        user.setUsername(results.getString("username"));
+        user.setUsername(results.getString("user_name"));
         user.setRole(results.getString("role"));
         return user;
     }
 
     @Override
     public User getUserByUsername(String username) {
-        String sqlSelectUserByUsername = "SELECT id, username, role FROM users WHERE username = ?";
+        String sqlSelectUserByUsername = "SELECT id, user_name, role FROM app_user WHERE user_name = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectUserByUsername, username);
 
         if(results.next()) {

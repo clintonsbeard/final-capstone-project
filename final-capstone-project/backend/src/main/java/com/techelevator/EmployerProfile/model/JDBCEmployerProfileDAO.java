@@ -22,9 +22,9 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
     
     @Override
     public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile) {
-        String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, "
-                + "days_attending, number_of_teams, restrictions) "
-                + "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";
+        String insertSql = "INSERT INTO employer (employer_id, company_name, company_summary, " +
+                           "days_attending, number_of_teams, restrictions) " +
+                           "VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING employer_id";
         SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, employerProfile.getCompanyName(), 
                 employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
                 employerProfile.getNumberOfTeams(), employerProfile.getRestrictions());
@@ -47,7 +47,6 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
     public List<EmployerProfile> showAllEmployers() {
         List<EmployerProfile> listOfEmployers = new ArrayList<>();
         String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, number_of_teams, restrictions FROM employer";
-        
         SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
         
         while(results.next()) {

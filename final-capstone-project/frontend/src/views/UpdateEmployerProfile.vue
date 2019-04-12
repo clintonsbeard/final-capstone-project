@@ -6,7 +6,7 @@
                     <div class="d-flex w-100 justify-content-between"> 
                         <h5 class="mb-1">{{employer.companyName}}</h5>
                         <small><a href="#" class="edit-review">
-                            <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer}}">
+                            <router-link to="`/employers/${{employer.employerId}}`">
                                 cancel
                             </router-link>
                         </a></small>

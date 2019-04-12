@@ -73,11 +73,9 @@ export default {
               body: JSON.stringify(this.student)
           })
           .then( (response) => {
-            console.log(response);
             return response.json();
           })
-          .then( (student) => {
-            console.table(student)            
+          .then( (student) => {          
             this.studentChoices = student;
             this.$router.push('/thank-you');      
           })

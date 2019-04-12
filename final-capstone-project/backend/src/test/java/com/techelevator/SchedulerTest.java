@@ -82,4 +82,9 @@ public class SchedulerTest {
 		assertTrue(target.getAllAvailableAppointments().size() == 15);
 		
 	}
+	
+	/*
+	 * when number of appointments is same as number of students
+	 */
+	
 }

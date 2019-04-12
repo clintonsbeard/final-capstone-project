@@ -36,7 +36,6 @@ public class Scheduler {
 	}
 	
 	//getters and setters
-
 	public List<Appointment> getAllAvailableAppointments() {
 		return allAvailableAppointments;
 	}
@@ -60,10 +59,6 @@ public class Scheduler {
 		this.reservedList = reservedList;
 	}	
 
-	/*
-	 * Build an appointment Grid
-	 */
-	
 	public List<Slot> getNumberOfSlots() {
 		return numberOfSlots;
 	}
@@ -80,6 +75,10 @@ public class Scheduler {
 		this.numberOfEmployers = numberOfEmployers;
 	}
 
+	/*
+	 * Build an appointment Grid
+	 */
+	
 	public void buildAppointmentGrid() {
 		for(int i = 0; i < numberOfSlots.size(); i++) {
 			for(int j = 0; j < numberOfEmployers.size(); j++) {
@@ -87,6 +86,7 @@ public class Scheduler {
 			}
 		}
 	}
+	
 	/*
 	 * Synchronous assignment
 	 */

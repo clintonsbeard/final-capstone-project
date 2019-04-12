@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
+import com.techelevator.Schedule.model.Schedule;
+import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
 import com.techelevator.Student.model.StudentDAO;
 
@@ -26,6 +28,9 @@ public class DataInputOutputController {
     
     @Autowired
     private StudentDAO studentDAO;
+    
+    @Autowired
+    private ScheduleDAO scheduleDAO;
     
     @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,6 +56,11 @@ public class DataInputOutputController {
     @RequestMapping(path="/employers/update", method=RequestMethod.PUT)
     public EmployerProfile updateEmployerProfile(@RequestBody EmployerProfile employer){
         return employerProfileDAO.updateEmployerProfile(employer);
+    }
+    
+    @RequestMapping(path="/schedule/add", method=RequestMethod.POST)
+    public Schedule addDayToSchedule(@RequestBody Schedule schedule){
+        return scheduleDAO.addDayToSchedule(schedule);
     }
     
 }

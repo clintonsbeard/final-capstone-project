@@ -21,36 +21,36 @@ import com.techelevator.Student.model.StudentDAO;
 @CrossOrigin
 public class DataInputOutputController {
 
-	@Autowired
-	private EmployerProfileDAO employerProfileDAO;
-	
-	@Autowired
-	private StudentDAO studentDAO;
-	
-	@RequestMapping(path="/employerForm", method=RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
-	public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
-		 return employerProfileDAO.insertEmployerProfile(employerProfile);
-	}
-	
-	@RequestMapping(path="/studentForm", method=RequestMethod.GET)
-	public List<EmployerProfile> sendListOfEmployers(){
-		return employerProfileDAO.showAllEmployers();
-	}
-	
-	@RequestMapping(path="/studentForm", method=RequestMethod.POST)
-	public Student getStudentForms(@RequestBody Student student){
-		return studentDAO.insertNewStudentChoices(student);
-	}
-	
-	@RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
-	public EmployerProfile getEmployerById(@PathVariable int id){
-		return employerProfileDAO.viewEmployerProfile(id);
-	}
-	
-	@RequestMapping(path="/employers/update", method=RequestMethod.PUT)
-	public EmployerProfile updateEmployerProfile(@RequestBody EmployerProfile employer){
-		return employerProfileDAO.updateEmployerProfile(employer);
-	}
-	
+    @Autowired
+    private EmployerProfileDAO employerProfileDAO;
+    
+    @Autowired
+    private StudentDAO studentDAO;
+    
+    @RequestMapping(path="/employerForm", method=RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
+         return employerProfileDAO.insertEmployerProfile(employerProfile);
+    }
+    
+    @RequestMapping(path="/studentForm", method=RequestMethod.GET)
+    public List<EmployerProfile> sendListOfEmployers(){
+        return employerProfileDAO.showAllEmployers();
+    }
+    
+    @RequestMapping(path="/studentForm", method=RequestMethod.POST)
+    public Student getStudentForms(@RequestBody Student student){
+        return studentDAO.insertNewStudentChoices(student);
+    }
+    
+    @RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
+    public EmployerProfile getEmployerById(@PathVariable int id){
+        return employerProfileDAO.viewEmployerProfile(id);
+    }
+    
+    @RequestMapping(path="/employers/{id}", method=RequestMethod.PUT)
+    public EmployerProfile updateEmployerProfile(@PathVariable int id, @RequestBody EmployerProfile employer){
+        return employerProfileDAO.updateEmployerProfile(employer);
+    }
+    
 }

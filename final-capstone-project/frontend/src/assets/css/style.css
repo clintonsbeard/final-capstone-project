@@ -1,15 +1,22 @@
 body {
-  padding-bottom: 18px;
+    background-color: rgb(0, 175, 239, 1);
+    background-image: linear-gradient(rgb(0, 175, 239, 1), rgb(143, 199, 74, 0.5));
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 18px;
 }
+.jumbotron {
+    background-color: rgb(255, 255, 255, 1) !important;
 
+}
 .navbar {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
-
 .cancel-edit {
-  font-size: 120%;
+    font-size: 120%;
 }
-
 .edit-review {
-  font-size: 120%;
+    font-size: 120%;
 }

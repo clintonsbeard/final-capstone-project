@@ -13,16 +13,34 @@
                         <router-link to="/" class="nav-link">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/employers" class="nav-link">Employers</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/employer-form" class="nav-link">Employer Submission Form</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/student-form" class="nav-link">Student Submission Form</router-link>
+                        <router-link to="/employers" class="nav-link">Matchmaking Information</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Student Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <router-link class="dropdown-item" to="/student-form">Student Submission Form</router-link>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Employer Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <router-link class="dropdown-item" to="/employer-form">Employer Submission Form</router-link>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administrator Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <router-link class="dropdown-item" to="/set-schedule">Set Matchmaking Schedule</router-link>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <router-link to="/logout" class="nav-link">Logout</router-link>
                     </li>

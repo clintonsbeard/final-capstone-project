@@ -36,7 +36,7 @@ CREATE TABLE employer(
   employer_id SERIAL PRIMARY KEY,
   company_name VARCHAR(100) NOT NULL,
   company_summary TEXT NOT NULL,
-  days_attending DATE DEFAULT '1111-11-11',
+  days_attending DATE NOT NULL,
   number_of_teams INTEGER DEFAULT 0,
   restrictions TEXT DEFAULT 'None'
   
@@ -44,10 +44,13 @@ CREATE TABLE employer(
 
 CREATE TABLE schedule(
 
-  first_date_start_time TIME NOT NULL,
-  first_date_end_time TIME NOT NULL,
-  second_date_start_time TIME,
-  second_date_end_time TIME
+  schedule_id SERIAL PRIMARY KEY,
+  matchmaking_date DATE NOT NULL,
+  start_time TIME NOT NULL,
+  end_time TIME NOT NULL,
+  interview_length INT NOT NULL,
+  break_start_time TIME NOT NULL,
+  break_end_time TIME NOT NULL
   
 );
 

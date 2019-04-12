@@ -55,26 +55,26 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		return listOfEmployers;
 	}
 
-	private EmployerProfile mapRowToSqlResults (SqlRowSet results) {
-		EmployerProfile empProf = new EmployerProfile();
-		empProf.setEmployerId(results.getInt("employer_id"));
-		empProf.setCompanyName(results.getString("company_name"));
-		empProf.setCompanySummary(results.getString("company_summary"));
-		empProf.setDaysAttending(results.getDate("days_attending").toLocalDate());
-		empProf.setNumberOfTeams(results.getInt("number_of_teams"));
-		empProf.setRestrictions(results.getString("restrictions"));
-		return empProf;
-	}
+    private EmployerProfile mapRowToSqlResults (SqlRowSet results) {
+        EmployerProfile empProf = new EmployerProfile();
+        empProf.setEmployerId(results.getInt("employer_id"));
+        empProf.setCompanyName(results.getString("company_name"));
+        empProf.setCompanySummary(results.getString("company_summary"));
+        empProf.setDaysAttending(results.getDate("days_attending").toLocalDate());
+        empProf.setNumberOfTeams(results.getInt("number_of_teams"));
+        empProf.setRestrictions(results.getString("restrictions"));
+        return empProf;
+    }
 
-	@Override
-	public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile) {
-		String updateSql = "UPDATE employer SET company_name = ?, company_summary = ?, days_attending = ?, number_of_teams = ?, " +
-						   "restrictions = ? WHERE employer_id = ?";
-		jdbcTemplate.update(updateSql, employerProfile.getCompanyName(), 
-				employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
-				employerProfile.getNumberOfTeams(), employerProfile.getRestrictions(), 
-				employerProfile.getEmployerId());
-		return employerProfile;
-	}
-	
+    @Override
+    public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile) {
+        String updateSql = "UPDATE employer SET company_name = ?, company_summary = ?, days_attending = ?, number_of_teams = ?, " +
+                           "restrictions = ? WHERE employer_id = ?";
+        jdbcTemplate.update(updateSql, employerProfile.getCompanyName(), 
+                employerProfile.getCompanySummary(), employerProfile.getDaysAttending(), 
+                employerProfile.getNumberOfTeams(), employerProfile.getRestrictions(), 
+                employerProfile.getEmployerId());
+        return employerProfile;
+    }
+    
 }

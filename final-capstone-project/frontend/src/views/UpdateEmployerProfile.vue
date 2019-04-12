@@ -5,11 +5,11 @@
                 <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between"> 
                         <h5 class="mb-1">{{employer.companyName}}</h5>
-                        <small><a href="#" class="edit-review">
-                            <router-link to="`/employers/${{employer.employerId}}`">
+                            <a href="#" class="cancel-edit">
+                            <router-link :to="{name: 'employer-profile', params:{employer: this.employer}}">
                                 cancel
                             </router-link>
-                        </a></small>
+                            </a>
                     </div>
                     <hr>
                     <form v-on:submit.prevent="updateEmployerProfile()">
@@ -58,6 +58,9 @@ export default {
         }
     },
     methods: {
+        backToRmployerProfile(){
+            this.$router.push(`/employers/${this.employer.employerId}`);
+        },
         updateEmployerProfile() {
             fetch(`${process.env.VUE_APP_API_URL}/employers/update`, {
                 method: 'PUT',

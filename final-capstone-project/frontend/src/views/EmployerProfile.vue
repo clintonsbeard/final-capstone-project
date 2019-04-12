@@ -5,11 +5,11 @@
         <div class="list-group-item list-group-item-action">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{employer.companyName}}</h5>
-            <small><a href="#" class="edit-review">
+            <a href="#" class="edit-review">
                 <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer}}">
                     edit
                 </router-link>
-            </a></small>
+            </a>
           </div>
           <hr>
           <h6>Summary</h6>

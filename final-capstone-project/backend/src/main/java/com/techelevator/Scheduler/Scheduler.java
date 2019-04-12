@@ -1,9 +1,11 @@
 package com.techelevator.Scheduler;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.Student.model.Student;
@@ -24,15 +26,16 @@ public class Scheduler {
 	 */
 	
 	private List<Appointment> allAvailableAppointments;
-	private List<Student> listOfAllStudents;
-	private List<Student> reservedList = new ArrayList<Student>();
+	private Queue<Student> listOfAllStudents;
+	private Queue<Student> reservedList;
 	private List<Slot> numberOfSlots = new ArrayList<>();
 	private List<EmployerProfile> numberOfEmployers = new ArrayList<>();
 
 	//constructor
-	public Scheduler(List<Appointment> allAvailableAppointments, List<Student>listOfAllStudents) {
+	public Scheduler(List<Appointment> allAvailableAppointments, Queue<Student>listOfAllStudents) {
 		this.allAvailableAppointments = new ArrayList<Appointment>();
-		this.listOfAllStudents = new ArrayList<Student>();
+		this.listOfAllStudents = new ArrayDeque<Student>();
+		this.reservedList = new ArrayDeque<Student>();
 	}
 	
 	//getters and setters
@@ -43,19 +46,19 @@ public class Scheduler {
 		this.allAvailableAppointments = allAvailableAppointments;
 	}
 
-	public List<Student> getListOfAllStudents() {
+	public Queue<Student> getListOfAllStudents() {
 		return listOfAllStudents;
 	}
 
-	public void setListOfAllStudents(List<Student> listOfAllStudents) {
+	public void setListOfAllStudents(Queue<Student> listOfAllStudents) {
 		this.listOfAllStudents = listOfAllStudents;
 	}
 
-	public List<Student> getReservedList() {
+	public Queue<Student> getReservedList() {
 		return reservedList;
 	}
 
-	public void setReservedList(List<Student> reservedList) {
+	public void setReservedList(Queue<Student> reservedList) {
 		this.reservedList = reservedList;
 	}	
 
@@ -94,11 +97,35 @@ public class Scheduler {
 	public Map<Appointment, Student> makeSchedule(){
 		Map<Appointment, Student> schedule = new HashMap<>();
 		for(int i = 0; i < allAvailableAppointments.size(); i++) {
-			schedule.put(allAvailableAppointments.get(i), listOfAllStudents.get(i));
+			schedule.put(allAvailableAppointments.get(i), listOfAllStudents.poll());
 		}
 		return schedule;
 	}
 	
+	/*
+	 * assign each student to an appointment and remove them from list
+	 */
+	
+	public Map<Appointment, Student> oneScenerio() {
+		Map<Appointment, Student> schedule = new HashMap<>();
+		int countForList = 0;
+		int numberOfStudents = listOfAllStudents.size();
+		for (int i = 0; i < allAvailableAppointments.size(); i++) {
+			Appointment currentAppointment = allAvailableAppointments.get(i);
+				Student currentStudent = listOfAllStudents.peek();
+				schedule.put(currentAppointment, currentStudent);
+				listOfAllStudents.poll();
+				reservedList.add(currentStudent);
+				countForList++;
+			
+				currentStudent = reservedList.peek();
+				schedule.put(currentAppointment, currentStudent);
+				reservedList.poll();
+				listOfAllStudents.add(currentStudent);
+			
+		}
+		return schedule;
+	}
 	
 	
 	

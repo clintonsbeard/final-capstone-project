@@ -47,17 +47,17 @@
         <form v-else v-on:submit.prevent="rankAllCompanies()">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name..." v-model="student.firstName" required>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name..." v-model="studentAll.firstName" required>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name..." v-model="student.lastName" required>
+            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name..." v-model="studentAll.lastName" required>
           </div>
           <div class="form-group" v-for="employer in listOfEmployers" :key="employer.employerId">
             <label for="choice1">Choice #{{employer.employerId}}</label>
-            <select class="form-control" required>
+            <select class="form-control" v-model="studentAll.choices[employer.employerId - 1]" required>
               <option value="" selected disabled>Choose...</option>
-              <option v-for="employer in listOfEmployers" :key="employer.employerId">{{employer.companyName}}</option>
+              <option v-for="employer in listOfEmployers" :key="employer.employerId" :value="employer.employerId">{{employer.companyName}}</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary btn-custom">Submit</button>
@@ -83,6 +83,11 @@ export default {
         choice2: '',
         choice3: '',
         choice4: ''
+      },
+      studentAll: {
+        firstName: '',
+        lastName: '',
+        choices: []
       }
     };
   },
@@ -105,19 +110,16 @@ export default {
           .catch((err) => console.error(err));
       },
       rankAllCompanies(){
-          fetch(`${process.env.VUE_APP_API_URL}/studentForm`, {
+          console.table(this.studentAll)
+          fetch(`${process.env.VUE_APP_API_URL}/rankAllCompanies`, {
               method: 'POST',
               headers: {
                   "Content-Type": "application/json"
               },
-              body: JSON.stringify(this.student)
+              body: JSON.stringify(this.studentAll)
           })
           .then( (response) => {
             return response.json();
-          })
-          .then( (student) => {          
-            this.studentChoices = student;
-            this.$router.push('/thank-you');      
           })
           .catch((err) => console.error(err));
       }

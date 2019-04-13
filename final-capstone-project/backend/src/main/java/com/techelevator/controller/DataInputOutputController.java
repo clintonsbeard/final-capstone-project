@@ -49,12 +49,7 @@ public class DataInputOutputController {
     }
     
     @RequestMapping(path="/studentForm", method=RequestMethod.POST)
-    public Student postFourStudentChoices(@RequestBody Student student){
-        return studentDAO.insertNewStudentChoices(student);
-    }
-    
-    @RequestMapping(path="/studentForm", method=RequestMethod.POST)
-    public Student postAllStudentChoices(@RequestBody Student student){
+    public Student postStudentChoices(@RequestBody Student student){
         return studentDAO.insertNewStudentChoices(student);
     }
     

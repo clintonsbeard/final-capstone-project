@@ -75,16 +75,4 @@ CREATE SEQUENCE sequence_1
   cycle
   owned by student_employer.choice_number;
 
-
---
---CREATE TABLE student_employer(
---
---  student_id INT NOT NULL,
---  employer_id INT NOT NULL,
---        
---  constraint fk_student_employer_student_id foreign key (student_id) references student(student_id),
---  constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
---);
-
-
 COMMIT;

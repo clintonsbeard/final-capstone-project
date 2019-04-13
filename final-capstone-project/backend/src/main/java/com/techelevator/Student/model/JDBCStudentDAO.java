@@ -65,6 +65,4 @@ public class JDBCStudentDAO implements StudentDAO{
 		return student;
 	}
 
-
-
 }

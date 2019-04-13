@@ -10,7 +10,14 @@ import Logout from './views/Logout.vue'
 import ThankYou from './views/ThankYou.vue'
 import SetSchedule from './views/SetSchedule.vue'
 import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
+<<<<<<< HEAD
 import ChangeRanking from './views/ChangeRanking.vue'
+=======
+import Register from './views/Register.vue'
+import RegisteredStudents from './views/RegisteredStudents.vue'
+
+
+>>>>>>> 043c9a4eba7ee1884ab2d75381cb57b294dd0a1b
 // import auth from './auth'
 
 Vue.use(Router)
@@ -67,8 +74,14 @@ const router = new Router({
       props: true
     },
     {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+    {
       path: '/set-schedule',
       name: 'set-schedule',
+<<<<<<< HEAD
       component: SetSchedule,
     },
     {
@@ -76,6 +89,15 @@ const router = new Router({
       name: 'change-ranking',
       component: ChangeRanking,
     },
+=======
+      component: SetSchedule
+    },
+    {
+      path: '/registered-students',
+      name: 'registered-students',
+      component: RegisteredStudents
+    }
+>>>>>>> 043c9a4eba7ee1884ab2d75381cb57b294dd0a1b
   ]
 });
 

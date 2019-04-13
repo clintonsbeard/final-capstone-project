@@ -3,7 +3,6 @@
     <div class="container-fluid">
       <div class="jumbotron">
         <h2>Students Who Have Registered For Matchmaking:</h2>
-        <hr>
         <div class="card" v-for="student in listOfStudents" :key="student.studentId">
           <div class="card-body">
             <h5 class="card-title">{{student.firstName}} {{student.lastName}}</h5>

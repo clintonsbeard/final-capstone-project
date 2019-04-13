@@ -32,6 +32,8 @@ public class JDBCStudentDAO implements StudentDAO{
 								student.getChoice4());
 		
 		results.next();
+		Integer id = results.getInt(1);
+		insertStudentChoicesIntoJoinerTable(id);
 		student.setStudentId(results.getInt("student_id"));
 
 		return student;
@@ -68,18 +70,39 @@ public class JDBCStudentDAO implements StudentDAO{
 		return student;
 	}
 
-	@Override
-	public Student insertStudentChoicesIntoJoinerTable(Student student) {
+	private void insertStudentChoicesIntoJoinerTable(Integer id) {
 		
-		String insertSql = "INSERT INTO student_employer (student_id, CHOICE_NUMBER, employer_id) " 
+		String insertSql1 = "INSERT INTO student_employer (student_id, CHOICE_NUMBER, employer_id) " 
 				+ "SELECT student_id, nextval('sequence_1'), (SELECT employer_id FROM EMPLOYER WHERE COMPANY_NAME = CHOICE_1) " 
 				+ "FROM STUDENT " 
-				+ "WHERE STUDENT_ID = ?";
+				+ "WHERE STUDENT_ID = ?;";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, student.getStudentId(),
-								student.getEmployerId());
-		results.next();
-		return student;
+		jdbcTemplate.update(insertSql1, id);
+				
+		String insertSql2 = "INSERT INTO student_employer (student_id, CHOICE_NUMBER, employer_id) "
+				+ "SELECT student_id, nextval('sequence_1'), (SELECT employer_id FROM EMPLOYER WHERE COMPANY_NAME = CHOICE_2) " 
+				+ "FROM STUDENT " 
+				+ "WHERE STUDENT_ID = ?;";
+		
+		jdbcTemplate.update(insertSql2, id);
+
+		
+		String insertSql3 = "INSERT INTO student_employer (student_id, CHOICE_NUMBER, employer_id) "
+				+ "SELECT student_id, nextval('sequence_1'), (SELECT employer_id FROM EMPLOYER WHERE COMPANY_NAME = CHOICE_3) " 
+				+ "FROM STUDENT " 
+				+ "WHERE STUDENT_ID = ?;";
+		
+		jdbcTemplate.update(insertSql3, id);
+
+		
+		String insertSql4 = "INSERT INTO student_employer (student_id, CHOICE_NUMBER, employer_id) "
+				+ "SELECT student_id, nextval('sequence_1'), (SELECT employer_id FROM EMPLOYER WHERE COMPANY_NAME = CHOICE_4) " 
+				+ "FROM STUDENT " 
+				+ "WHERE STUDENT_ID = ?;";
+		
+		jdbcTemplate.update(insertSql4, id);
+
+
 	}
 
 

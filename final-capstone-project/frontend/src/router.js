@@ -11,6 +11,8 @@ import ThankYou from './views/ThankYou.vue'
 import SetSchedule from './views/SetSchedule.vue'
 import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
 import Register from './views/Register.vue'
+import RegisteredStudents from './views/RegisteredStudents.vue'
+
 
 // import auth from './auth'
 
@@ -75,7 +77,12 @@ const router = new Router({
     {
       path: '/set-schedule',
       name: 'set-schedule',
-      component: SetSchedule,
+      component: SetSchedule
+    },
+    {
+      path: '/registered-students',
+      name: 'registered-students',
+      component: RegisteredStudents
     }
   ]
 });

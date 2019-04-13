@@ -63,4 +63,9 @@ public class DataInputOutputController {
         return scheduleDAO.addDayToSchedule(schedule);
     }
     
+    @RequestMapping(path="/registeredStudents", method=RequestMethod.GET)
+	public List<Student> getAllRegisteredStudents() {
+        return studentDAO.getAllRegisteredStudents();
+    }
+    
 }

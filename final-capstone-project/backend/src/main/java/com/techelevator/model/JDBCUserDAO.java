@@ -47,7 +47,7 @@ public class JDBCUserDAO implements UserDAO {
         byte[] salt = passwordHasher.generateRandomSalt();
         String hashedPassword = passwordHasher.computeHash(password, salt);
         String saltString = new String(Base64.encode(salt));
-        long newId = jdbcTemplate.queryForObject("INSERT INTO app_user(user_name, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class, userName,
+        long newId = jdbcTemplate.queryForObject("INSERT INTO app_user(user_name, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class, userName.toLowerCase(),
                 hashedPassword, saltString, role.toLowerCase());
 
         User newUser = new User();
@@ -79,9 +79,9 @@ public class JDBCUserDAO implements UserDAO {
      */
     @Override
     public User getValidUserWithPassword(String userName, String password) {
-        String sqlSearchForUser = "SELECT * FROM app_user WHERE UPPER(user_name) = ?";
+        String sqlSearchForUser = "SELECT * FROM app_user WHERE LOWER(user_name) = ?";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toLowerCase());
         if (results.next()) {
             String storedSalt = results.getString("salt");
             String storedPassword = results.getString("password");

@@ -13,6 +13,7 @@ public class Student {
 	private String choice3;
 	private String choice4;
 	private EmployerProfile assignedEmployer;
+	private int employerId;
 	private Slot assignedSlot;
 	
 	public int getStudentId() {
@@ -68,6 +69,12 @@ public class Student {
 	}
 	public void setAssignedSlot(Slot assignedSlot) {
 		this.assignedSlot = assignedSlot;
+	}
+	public int getEmployerId() {
+		return employerId;
+	}
+	public void setEmployerId(int employerId) {
+		this.employerId = employerId;
 	}
 
 }

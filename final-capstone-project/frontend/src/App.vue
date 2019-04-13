@@ -10,9 +10,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link">Home</router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/employers" class="nav-link">Matchmaking Information</router-link>
                     </li>
                 </ul>
@@ -38,7 +35,8 @@
                             Administrator Menu
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <router-link class="dropdown-item" to="/set-schedule">Set Matchmaking Schedule</router-link>
+                            <router-link class="dropdown-item" to="/set-schedule">Add Matchmaking Day</router-link>
+                            <router-link class="dropdown-item" to="/change-ranking">Change Ranking System</router-link>
                         </div>
                     </li>
                     <li class="nav-item">

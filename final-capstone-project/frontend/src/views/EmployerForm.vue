@@ -1,23 +1,25 @@
 <template>
     <div class="employer-form">
         <div class="container-fluid">
-            <h3>Employer Submission Form</h3>
-            <hr>
-            <form v-on:submit.prevent="submitEmployerForm()">
-                <div class="form-group">
-                    <label for="companyName">Company Name</label>
-                    <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name..." v-model="employer.companyName" required>
-                </div>
-                <div class="form-group">
-                    <label for="companySummary">Company Summary</label>
-                    <textarea class="form-control" id="companySummary" rows="3" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="daysAttending">Days Attending</label>
-                    <input type="date" class="form-control" id="daysAttending" placeholder="Enter Days Attending..." v-model="employer.daysAttending">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div class="jumbotron">
+                <h3>Employer Submission Form</h3>
+                <hr>
+                <form v-on:submit.prevent="submitEmployerForm()">
+                    <div class="form-group">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name..." v-model="employer.companyName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="companySummary">Company Summary</label>
+                        <textarea class="form-control" id="companySummary" rows="3" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="daysAttending">Days Attending</label>
+                        <input type="date" class="form-control" id="daysAttending" placeholder="Enter Days Attending..." v-model="employer.daysAttending">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-custom">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </template>
@@ -55,6 +57,6 @@ export default {
             })
             .catch((err) => console.error(err));
         }
-    }
+    },
 }
 </script>

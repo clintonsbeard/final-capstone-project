@@ -1,6 +1,6 @@
 body {
     background-color: rgb(0, 175, 239, 1);
-    background-image: linear-gradient(rgb(0, 175, 239, 1), rgb(143, 199, 74, 0.5));
+    background-image: linear-gradient(rgb(0, 175, 239, 1), rgb(143, 199, 74, 0.75));
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
@@ -9,7 +9,10 @@ body {
 }
 .jumbotron {
     background-color: rgb(255, 255, 255, 1) !important;
-
+}
+.btn-primary.btn-custom {
+	background-color: rgb(0, 175, 239, 1);
+	border-color: rgb(0, 175, 239, 1);
 }
 .navbar {
     margin-bottom: 15px;

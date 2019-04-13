@@ -33,6 +33,7 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		return employerProfile;
 	}
 		
+	@Override
 	public EmployerProfile viewEmployerProfile(int employerId) {
 		
 		String selectSql = "SELECT employer_id, company_name, company_summary, days_attending, " +

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techelevator.AdminFormChoice.AdminChoice;
+import com.techelevator.AdminFormChoice.AdminChoiceDAO;
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
 import com.techelevator.Schedule.model.Schedule;
@@ -31,6 +33,9 @@ public class DataInputOutputController {
     
     @Autowired
     private ScheduleDAO scheduleDAO;
+    
+    @Autowired
+    private AdminChoiceDAO adminChoiceDAO;
     
     @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,9 +63,24 @@ public class DataInputOutputController {
         return employerProfileDAO.updateEmployerProfile(employer);
     }
     
+    @RequestMapping(path="/schedules", method=RequestMethod.GET)
+    public List<Schedule> getAllSchedules(){
+        return scheduleDAO.getAllSchedules();
+    }
+    
     @RequestMapping(path="/schedule/add", method=RequestMethod.POST)
     public Schedule addDayToSchedule(@RequestBody Schedule schedule){
         return scheduleDAO.addDayToSchedule(schedule);
+    }
+    
+    @RequestMapping(path="/toggleRankingChoice", method=RequestMethod.PUT)
+    public void changeRankingSystem(@RequestBody AdminChoice rankingChoice) {
+    	adminChoiceDAO.setAdminFormChoice(rankingChoice);
+    }
+    
+    @RequestMapping(path="/checkRankingChoice", method=RequestMethod.GET)
+    public AdminChoice checkRankingSystemChoice() {
+    	return adminChoiceDAO.getAdminFormChoice();
     }
     
 }

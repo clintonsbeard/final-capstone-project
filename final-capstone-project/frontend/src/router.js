@@ -10,6 +10,7 @@ import Logout from './views/Logout.vue'
 import ThankYou from './views/ThankYou.vue'
 import SetSchedule from './views/SetSchedule.vue'
 import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
+import ChangeRanking from './views/ChangeRanking.vue'
 // import auth from './auth'
 
 Vue.use(Router)
@@ -69,7 +70,12 @@ const router = new Router({
       path: '/set-schedule',
       name: 'set-schedule',
       component: SetSchedule,
-    }
+    },
+    {
+      path: '/change-ranking',
+      name: 'change-ranking',
+      component: ChangeRanking,
+    },
   ]
 });
 

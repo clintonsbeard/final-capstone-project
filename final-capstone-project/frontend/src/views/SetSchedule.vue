@@ -34,7 +34,7 @@
                         <label for="breakEndTime">Break End Time</label>
                         <input type="time" class="form-control" id="breakEndTime" step="300" v-model="schedule.breakEndTime" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-custom">Submit</button>
                 </form>
             </div>
         </div>

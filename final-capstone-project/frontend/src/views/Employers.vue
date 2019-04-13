@@ -1,22 +1,24 @@
 <template>
   <div class="employers-list">
     <div class="container-fluid">
-      <h2>Matchmaking Information</h2>
-      <hr>
-      <div class="card">
-        <img src="../assets/img/matchmaking.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h4 class="card-title">1:00 - 5:00 pm</h4>
-          <h5 class="card-title">April 19th & 21st 2019</h5>
-          <p class="card-text">1275 Kinnear Rd, Columbus, OH 43212</p>
+      <div class="jumbotron">
+        <h3>Matchmaking Information</h3>
+        <hr>
+        <div class="card">
+          <img src="../assets/img/matchmaking.jpeg" class="card-img-top" alt="...">
+          <div class="card-body" v-for="schedule in schedules" :key="schedule.scheduleId">
+            <h4 class="card-title">{{ schedule.startTime | moment("h:mm a") }} - {{schedule.endTime}}</h4>
+            <h5 class="card-title">{{schedule.matchmakingDate}}</h5>
+            <p class="card-text">1275 Kinnear Rd, Columbus, OH 43212</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" v-for="employer in employers" :key="employer.employerId">
+              <router-link :to="{name: 'employer-profile', params:{employer_id: employer.employerId}}">
+                {{employer.companyName}}
+              </router-link>
+            </li>
+          </ul>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" v-for="employer in employers" :key="employer.employerId">
-            <router-link :to="{name: 'employer-profile', params:{employer_id: employer.employerId}}">
-              {{employer.companyName}}
-            </router-link>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -29,7 +31,8 @@ export default {
   },
   data() {
     return {
-      employers: []
+      employers: [],
+      schedules: []
     };
   },
   created() {
@@ -39,6 +42,16 @@ export default {
       })
       .then(employers => {
         this.employers = employers;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+      .then(response => {
+        return response.json();
+      })
+      .then(schedules => {
+        this.schedules = schedules;
       })
       .catch(err => {
         console.log(err);

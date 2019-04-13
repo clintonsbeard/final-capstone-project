@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style>
-html,
+/* html,
 body {
   height: 100%;
 }
@@ -140,5 +140,5 @@ form {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
+} */
 </style>

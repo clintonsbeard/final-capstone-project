@@ -10,9 +10,9 @@ import Logout from './views/Logout.vue'
 import ThankYou from './views/ThankYou.vue'
 import SetSchedule from './views/SetSchedule.vue'
 import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
+import ChangeRanking from './views/ChangeRanking.vue'
 import Register from './views/Register.vue'
 import RegisteredStudents from './views/RegisteredStudents.vue'
-
 
 // import auth from './auth'
 
@@ -77,7 +77,12 @@ const router = new Router({
     {
       path: '/set-schedule',
       name: 'set-schedule',
-      component: SetSchedule
+      component: SetSchedule,
+    },
+    {
+      path: '/change-ranking',
+      name: 'change-ranking',
+      component: ChangeRanking,
     },
     {
       path: '/registered-students',

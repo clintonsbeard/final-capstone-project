@@ -9,6 +9,5 @@ public interface StudentDAO {
 	public Student getStudentByName(String firstName, String lastName);
 	
 	public Student insertNewStudentChoices(Student student);
-	
-	public Student insertStudentChoicesIntoJoinerTable(Student student);
+
 }

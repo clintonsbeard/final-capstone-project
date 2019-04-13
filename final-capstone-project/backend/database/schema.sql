@@ -37,16 +37,7 @@ CREATE TABLE student_all (
   student_id SERIAL PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
-  choice_1 VARCHAR(100) NOT NULL,
-  choice_2 VARCHAR(100) NOT NULL,
-  choice_3 VARCHAR(100) NOT NULL,
-  choice_4 VARCHAR(100) NOT NULL,
-  choice_5 VARCHAR(100) NOT NULL,
-  choice_6 VARCHAR(100) NOT NULL,
-  choice_7 VARCHAR(100) NOT NULL,
-  choice_8 VARCHAR(100) NOT NULL,
-  choice_9 VARCHAR(100) NOT NULL,
-  choice_10 VARCHAR(100) NOT NULL
+  
   
 );
 
@@ -90,6 +81,18 @@ CREATE TABLE student_employer(
   constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
 
   );
+  
+CREATE TABLE student_all_employer(
+  
+  selection_id SERIAL PRIMARY KEY,
+  student_id INT NOT NULL,
+  employer_id INT NOT NULL,
+  choice_number INT NOT NULL,
+        
+  constraint fk_student_employer_student_id foreign key (student_id) references student(student_id),
+  constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
+
+);
 
 CREATE SEQUENCE sequence_1
 

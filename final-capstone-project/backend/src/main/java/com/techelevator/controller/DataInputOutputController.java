@@ -20,6 +20,8 @@ import com.techelevator.Schedule.model.Schedule;
 import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
 import com.techelevator.Student.model.StudentDAO;
+import com.techelevator.StudentAll.model.StudentAll;
+import com.techelevator.StudentAll.model.StudentAllDAO;
 
 @RestController
 @CrossOrigin
@@ -30,6 +32,9 @@ public class DataInputOutputController {
     
     @Autowired
     private StudentDAO studentDAO;
+    
+    @Autowired
+    private StudentAllDAO studentAllDAO;
     
     @Autowired
     private ScheduleDAO scheduleDAO;
@@ -49,6 +54,11 @@ public class DataInputOutputController {
     }
     
     @RequestMapping(path="/studentForm", method=RequestMethod.POST)
+    public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
+    int[] choices = studentRanksAllEmployers.getChoices();
+    studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
+    }
+
     public Student postStudentChoices(@RequestBody Student student){
         return studentDAO.insertNewStudentChoices(student);
     }
@@ -82,5 +92,11 @@ public class DataInputOutputController {
     public AdminChoice checkRankingSystemChoice() {
     	return adminChoiceDAO.getAdminFormChoice();
     }
+    
+//    @RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
+//    public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
+//    int[] choices = studentRanksAllEmployers.getChoices();
+//    studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
+//    }
     
 }

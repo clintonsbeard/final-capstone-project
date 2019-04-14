@@ -7,6 +7,7 @@ BEGIN;
 DROP TABLE IF EXISTS app_user;
 DROP TABLE IF EXISTS student_employer_2;
 DROP TABLE IF EXISTS student_employer;
+DROP TABLE IF EXISTS student_all;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS employer;
 DROP TABLE IF EXISTS schedule;
@@ -37,9 +38,9 @@ CREATE TABLE student_all (
 
   student_id SERIAL PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL
-  
-  
+  last_name VARCHAR(100) NOT NULL,
+  choices INTEGER[] NULL
+
 );
 
 CREATE TABLE employer(

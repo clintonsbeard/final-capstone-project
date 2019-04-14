@@ -51,9 +51,6 @@ VALUES ('Stephanie', 'Lopez', 'AEP Electric Company', 'CJB Beardsley', 'SPL Inc'
 INSERT INTO student (first_name, last_name, choice_1, choice_2, choice_3, choice_4) 
 VALUES ('Bindiya', 'Sameem', 'BIM Inc', 'AEP Electric Company', 'CJB Beardsley', 'SPL Inc');
 
-INSERT INTO student (first_name, last_name, choice_1, choice_2, choice_3, choice_4)
-VALUES ('Bindiya', 'Sameem', 'BIM Inc', 'AEP Electric Company', 'CJB Beardsley', 'SPL Inc');
-
 INSERT INTO student_employer (student_id, choice_number, employer_id)
 SELECT STUDENT_ID, NEXTVAL('sequence_1'), (SELECT employer_id FROM EMPLOYER WHERE COMPANY_NAME = CHOICE_1)
 FROM STUDENT
@@ -138,4 +135,5 @@ INSERT INTO admin_choice (choice)
 VALUES (false);
 
 COMMIT;
+
 

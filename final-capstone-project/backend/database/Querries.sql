@@ -1,2 +1,3 @@
- INSERT INTO person (person_id, first_name, last_name, date_added, type, update_date) 
-VALUES (DEFAULT, ?, ?, ?, ?, ?) RETURNING person_id
+ INSERT INTO student (student_id, first_name, last_name, choice_1, choice_2, choice_3, choice_4) VALUES (0, '', '', '', '', '', '');
+ 
+

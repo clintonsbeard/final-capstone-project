@@ -34,13 +34,13 @@ public class DataInputOutputController {
     private StudentDAO studentDAO;
     
     @Autowired
-    private StudentAllDAO studentAllDAO;
-    
-    @Autowired
     private ScheduleDAO scheduleDAO;
     
     @Autowired
     private AdminChoiceDAO adminChoiceDAO;
+    
+    @Autowired
+    private StudentAllDAO studentAllDAO;
     
     @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -54,11 +54,6 @@ public class DataInputOutputController {
     }
     
     @RequestMapping(path="/studentForm", method=RequestMethod.POST)
-    public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
-    int[] choices = studentRanksAllEmployers.getChoices();
-    studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
-    }
-
     public Student postStudentChoices(@RequestBody Student student){
         return studentDAO.insertNewStudentChoices(student);
     }
@@ -93,10 +88,10 @@ public class DataInputOutputController {
     	return adminChoiceDAO.getAdminFormChoice();
     }
     
-//    @RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
-//    public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
-//    int[] choices = studentRanksAllEmployers.getChoices();
-//    studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
-//    }
+    @RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
+    public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
+    	int[] choices = studentRanksAllEmployers.getChoices();
+    	studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
+    }
     
 }

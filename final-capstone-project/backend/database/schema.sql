@@ -28,9 +28,9 @@ CREATE TABLE student(
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   choice_1 VARCHAR(100) NULL,
-  choice_2 VARCHAR(100) NOT NULL,
-  choice_3 VARCHAR(100) NOT NULL,
-  choice_4 VARCHAR(100) NOT NULL
+  choice_2 VARCHAR(100) NULL,
+  choice_3 VARCHAR(100) NULL,
+  choice_4 VARCHAR(100) NULL
   
 );
 

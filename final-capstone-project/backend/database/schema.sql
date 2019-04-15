@@ -34,6 +34,10 @@ CREATE TABLE employer(
   employer_id SERIAL PRIMARY KEY,
   company_name VARCHAR(100) NOT NULL,
   company_summary TEXT NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  website VARCHAR(50) NOT NULL,
+  positions_summary TEXT NOT NULL,
+  path_preference VARCHAR(10) NOT NULL,
   number_of_teams INTEGER DEFAULT 0,
   restrictions TEXT DEFAULT 'None'
   

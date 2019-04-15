@@ -13,6 +13,7 @@ import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
 import ChangeRanking from './views/ChangeRanking.vue'
 import Register from './views/Register.vue'
 import RegisteredStudents from './views/RegisteredStudents.vue'
+import Schedule from './views/Schedule.vue'
 
 // import auth from './auth'
 
@@ -87,7 +88,12 @@ const router = new Router({
     {
       path: '/registered-students',
       name: 'registered-students',
-      component: RegisteredStudents
+      component: RegisteredStudents,
+    },
+    {
+      path: '/schedule',
+      name: 'schedule',
+      component: Schedule,
     }
   ]
 });

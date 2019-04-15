@@ -57,7 +57,7 @@ public class DataInputOutputController {
     public Student postStudentChoices(@RequestBody Student student){
         return studentDAO.insertNewStudentChoices(student);
     }
-    
+        
     @RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
     public EmployerProfile getEmployerById(@PathVariable int id){
         return employerProfileDAO.viewEmployerProfile(id);
@@ -94,4 +94,10 @@ public class DataInputOutputController {
     	return studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
     }
     
+    @RequestMapping(path="/students", method=RequestMethod.GET)
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<StudentAll> getListOfAllStudents(){
+    	return studentAllDAO.getAllRegisteredStudents();
+    }
+
 }

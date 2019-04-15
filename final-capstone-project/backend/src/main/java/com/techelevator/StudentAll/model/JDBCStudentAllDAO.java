@@ -1,5 +1,8 @@
 package com.techelevator.StudentAll.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +36,27 @@ public class JDBCStudentAllDAO implements StudentAllDAO {
 		studentAll.setStudentId(studentId);
 		return studentAll;
 	}
+	
+    @Override
+    public List<StudentAll> getAllRegisteredStudents() {
+        List<StudentAll> listOfStudents = new ArrayList<>();
+        String selectSql = "SELECT * FROM student";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
+        
+        while(results.next()) {
+            listOfStudents.add(mapRowToSqlResults(results));
+        }
+        return listOfStudents;
+    }
+    
+    private StudentAll mapRowToSqlResults(SqlRowSet results) {
+    	StudentAll studentAll = new StudentAll();
+    	
+    	studentAll.setStudentId(results.getInt("student_id"));
+        studentAll.setFirstName(results.getString("first_name"));
+        studentAll.setLastName(results.getString("last_name"));
+        
+        return studentAll;
+    }
 	
 }

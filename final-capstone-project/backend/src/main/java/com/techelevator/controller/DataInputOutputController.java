@@ -20,6 +20,7 @@ import com.techelevator.Schedule.model.Schedule;
 import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
 import com.techelevator.Student.model.StudentDAO;
+import com.techelevator.StudentAll.model.StudentAll;
 
 @RestController
 @CrossOrigin

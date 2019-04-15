@@ -5,11 +5,9 @@
                 <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between"> 
                         <h5 class="mb-1">{{employer.companyName}}</h5>
-                            <a href="#" class="cancel-edit">
                             <router-link :to="{name: 'employer-profile', params:{employer: this.employer}}">
                                 cancel
                             </router-link>
-                            </a>
                     </div>
                     <hr>
                     <form v-on:submit.prevent="updateEmployerProfile()">
@@ -21,12 +19,44 @@
                             <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name..." v-model="employer.companyName" required>
                         </div>
                         <div class="form-group">
-                            <h6>Summary</h6>
-                            <textarea class="form-control" id="companySummary" rows="3" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
+                            <h6>Company Summary</h6>
+                            <textarea class="form-control" id="companySummary" rows="5" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <h6>E-Mail Address</h6>
+                            <input type="email" class="form-control" id="email" placeholder="Enter E-Mail Address..." v-model="employer.email" required>
+                        </div>
+                        <div class="form-group">
+                            <h6>Website</h6>
+                            <input type="text" class="form-control" id="website" placeholder="Enter Website..." v-model="employer.website" required>
+                        </div>
+                        <div class="form-group">
+                            <h6>Position Summary</h6>
+                            <textarea class="form-control" id="positionsSummary" rows="5" placeholder="Enter Positions Summary..." v-model="employer.positionsSummary" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <h6>Path Preference</h6>
+                            <select class="form-control" v-model="employer.pathPreference" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="Java">Java</option>
+                                <option value=".NET">.NET</option>
+                                <option value="Either">Either</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <h6>Days Attending</h6>
-                            <input type="date" class="form-control" id="daysAttending" placeholder="Enter Days Attending..." v-model="employer.daysAttending">
+                            <div v-for="schedule in schedules" :key="schedule.scheduleId">
+                                <input class="form-check-input" type="checkbox" id="daysAttending" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId"/>
+                                {{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}
+                            </div>
+                            <!-- <div class="form-check" v-for="schedule in schedules" :key="schedule.scheduleId">
+                                <input class="form-check-input" type="checkbox" id="daysAttending" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId" >
+                                <label class="form-check-label" for="daysAttending">
+                                    
+                                    <br>
+                                    {{ [ schedule.startTime, "HH:mm" ] | moment("h:mm a") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm a") }}
+                                </label>
+                            </div> -->
                         </div>
                         <div class="form-group">
                             <h6>Number Of Teams Attending</h6>
@@ -48,19 +78,15 @@
 export default {
     name: "updateProfile",
     props: [
-        'employer'
+        'employer',
+        'schedules'
     ],
-    data(){
-        return{
-            none: {
-                
-            }
-        }
-    },
+    // data(){
+    //     return {
+    //         schedules: []
+    //     }
+    // },
     methods: {
-        backToRmployerProfile(){
-            this.$router.push(`/employers/${this.employer.employerId}`);
-        },
         updateEmployerProfile() {
             fetch(`${process.env.VUE_APP_API_URL}/employers/update`, {
                 method: 'PUT',
@@ -70,15 +96,26 @@ export default {
                 body: JSON.stringify(this.employer),
             })
             .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                if (data.employerId > 0) {
+                if (response.ok) {
                     this.$router.push(`/employers/${this.employer.employerId}`);
                 }
             })
             .catch((err) => console.error(err));
         }
     }
+    // created() {
+    //     fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+    //     .then(response => {
+    //         console.log(response)
+    //         return response.json();
+    //     })
+    //     .then((schedules) => {
+    //         console.table(schedules)
+    //         this.schedules = schedules;
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     });
+    // }
 }
 </script>

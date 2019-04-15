@@ -10,8 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.Student.model.Student;
-
 @Component
 public class JDBCStudentAllDAO implements StudentAllDAO {
 	
@@ -39,16 +37,26 @@ public class JDBCStudentAllDAO implements StudentAllDAO {
 		return studentAll;
 	}
 	
-	@Override
-	public List<Student> getAllRegisteredStudents() {
-		List<Student> listOfStudents = new ArrayList<>();
-		String selectSql = "SELECT * FROM student_employer_top_four";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
-		
-		while(results.next()) {
-			listOfStudents.add(mapRowToSqlResults(results));
-		}
-		return listOfStudents;
-	}
+    @Override
+    public List<StudentAll> getAllRegisteredStudents() {
+        List<StudentAll> listOfStudents = new ArrayList<>();
+        String selectSql = "SELECT * FROM student";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
+        
+        while(results.next()) {
+            listOfStudents.add(mapRowToSqlResults(results));
+        }
+        return listOfStudents;
+    }
+    
+    private StudentAll mapRowToSqlResults(SqlRowSet results) {
+    	StudentAll studentAll = new StudentAll();
+    	
+    	studentAll.setStudentId(results.getInt("student_id"));
+        studentAll.setFirstName(results.getString("first_name"));
+        studentAll.setLastName(results.getString("last_name"));
+        
+        return studentAll;
+    }
 	
 }

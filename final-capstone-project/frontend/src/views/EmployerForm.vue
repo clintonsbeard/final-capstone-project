@@ -6,24 +6,24 @@
                 <hr>
                 <form v-on:submit.prevent="submitEmployerForm()">
                     <div class="form-group">
-                        <label for="companyName">Company Name</label>
-                        <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name..." v-model="employer.companyName" required>
+                        <label for="name">Company Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Company Name..." v-model="employer.name" required>
                     </div>
                     <div class="form-group">
                         <label for="companySummary">Company Summary</label>
                         <textarea class="form-control" id="companySummary" rows="5" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="companyEmail">E-Mail Address</label>
-                        <input type="text" class="form-control" id="companyEmail" placeholder="Enter E-Mail Address..." v-model="employer.companyEmail" required>
+                        <label for="email">E-Mail Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter E-Mail Address..." v-model="employer.email" required>
                     </div>
                     <div class="form-group">
-                        <label for="companyWebsite">Website</label>
-                        <input type="text" class="form-control" id="companyWebsite" placeholder="Enter Website..." v-model="employer.companyWebsite" required>
+                        <label for="website">Website</label>
+                        <input type="text" class="form-control" id="website" placeholder="Enter Website..." v-model="employer.website" required>
                     </div>
                     <div class="form-group">
-                        <label for="companyJobs">Position Information</label>
-                        <textarea class="form-control" id="companyJobs" rows="5" placeholder="Enter Position Information..." v-model="employer.companyJobs" required></textarea>
+                        <label for="companyJobs">Summary of Open Positions</label>
+                        <textarea class="form-control" id="companyJobs" rows="5" placeholder="Enter Position Information..." v-model="employer.positionsSummary" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="pathPreference">Path Preference</label>
@@ -37,11 +37,21 @@
                     <div class="form-group">
                         <label for="daysAttending">Days Attending</label>
                         <div class="form-check" v-for="schedule in schedules" :key="schedule.scheduleId">
-                            <input class="form-check-input" type="checkbox" id="defaultCheck1" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId" required>
-                            <label class="form-check-label" for="defaultCheck1">
+                            <input class="form-check-input" type="checkbox" id="daysAttending" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId" >
+                            <label class="form-check-label" for="daysAttending">
                                 {{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}
+                                <br>
+                                {{ [ schedule.startTime, "HH:mm" ] | moment("h:mm a") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm a") }}
                             </label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfTeams">Number Of Teams Attending</label>
+                        <input type="number" class="form-control" id="numberOfTeams" placeholder="Enter Number of Teams Attending..." v-model="employer.numberOfTeams" min="1">
+                    </div>
+                    <div class="form-group">    
+                        <label for="restrictions">Additional Restrictions</label>
+                        <textarea class="form-control" id="restrictions" placeholder="Enter Additional Restrictions..." v-model="employer.restrictions" rows="5"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-custom">Submit</button>
                 </form>
@@ -58,8 +68,9 @@ export default {
             employer: {
                 companyName: '',
                 companySummary: '',
-                companyEmail: '',
-                companyWebsite: '',
+                email: '',
+                website: '',
+                positionsSummary: '',
                 pathPreference: '',
                 daysAttending: [],
                 numberOfTeams: '',
@@ -70,6 +81,7 @@ export default {
     },
     methods: {
         submitEmployerForm() {
+            console.table(this.employer)
             fetch(`${process.env.VUE_APP_API_URL}/employerForm`, {
                 method: 'POST',
                 headers: {

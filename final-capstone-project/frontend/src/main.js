@@ -4,6 +4,7 @@ import router from './router'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'vue-moment'
 
 Vue.config.productionTip = false
 
@@ -11,3 +12,5 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.use(require('vue-moment'));

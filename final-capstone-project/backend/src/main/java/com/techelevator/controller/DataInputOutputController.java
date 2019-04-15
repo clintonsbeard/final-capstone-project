@@ -89,9 +89,9 @@ public class DataInputOutputController {
     }
     
     @RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
-    public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
-    	int[] choices = studentRanksAllEmployers.getChoices();
-    	studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
+    @ResponseStatus(HttpStatus.CREATED)
+    public StudentAll updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
+    	return studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
     }
     
 }

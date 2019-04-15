@@ -25,6 +25,8 @@ VALUES ('Stepdad Corporation', 'Sorry', '2019-01-02', 3, 'Lactose Intolerant');
 
 INSERT INTO employer (company_name, company_summary, days_attending, number_of_teams, restrictions)
 VALUES ('AEP Electric Company', 'Gas', '2019-07-01', 1, 'NONE');
+
+INSERT INTO employer (company_name, company_summary, days_attending, number_of_teams, restrictions)
 VALUES ('Potatoes', 'We got em', '2019-01-08', 1, 'None');
 
 INSERT INTO employer (company_name, company_summary, days_attending, number_of_teams, restrictions)

@@ -117,9 +117,10 @@ export default {
                   "Content-Type": "application/json"
               },
               body: JSON.stringify(this.studentAll)
-          })
-          .then( (response) => {
-            return response.json();
+          }).then( (response) => {
+              if(response.ok){
+                this.$router.push('/thank-you');
+              }
           })
           .catch((err) => console.error(err));
       }

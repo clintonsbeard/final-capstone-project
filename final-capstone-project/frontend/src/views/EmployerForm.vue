@@ -11,11 +11,37 @@
                     </div>
                     <div class="form-group">
                         <label for="companySummary">Company Summary</label>
-                        <textarea class="form-control" id="companySummary" rows="3" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
+                        <textarea class="form-control" id="companySummary" rows="5" placeholder="Enter Company Summary..." v-model="employer.companySummary" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyEmail">E-Mail Address</label>
+                        <input type="text" class="form-control" id="companyEmail" placeholder="Enter E-Mail Address..." v-model="employer.companyEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyWebsite">Website</label>
+                        <input type="text" class="form-control" id="companyWebsite" placeholder="Enter Website..." v-model="employer.companyWebsite" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyJobs">Position Information</label>
+                        <textarea class="form-control" id="companyJobs" rows="5" placeholder="Enter Position Information..." v-model="employer.companyJobs" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="pathPreference">Path Preference</label>
+                        <select class="form-control" v-model="employer.pathPreference" required>
+                            <option value="" selected disabled>Choose...</option>
+                            <option value="Java">Java</option>
+                            <option value=".NET">.NET</option>
+                            <option value="Either">Either</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="daysAttending">Days Attending</label>
-                        <input type="date" class="form-control" id="daysAttending" placeholder="Enter Days Attending..." v-model="employer.daysAttending">
+                        <div class="form-check" v-for="schedule in schedules" :key="schedule.scheduleId">
+                            <input class="form-check-input" type="checkbox" id="defaultCheck1" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId" required>
+                            <label class="form-check-label" for="defaultCheck1">
+                                {{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}
+                            </label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-custom">Submit</button>
                 </form>
@@ -32,10 +58,14 @@ export default {
             employer: {
                 companyName: '',
                 companySummary: '',
-                daysAttending: '',
+                companyEmail: '',
+                companyWebsite: '',
+                pathPreference: '',
+                daysAttending: [],
                 numberOfTeams: '',
                 restrictions: ''
-            }
+            },
+            schedules: []
         }
     },
     methods: {
@@ -58,5 +88,17 @@ export default {
             .catch((err) => console.error(err));
         }
     },
+    created() {
+        fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+        .then(response => {
+            return response.json();
+        })
+        .then((schedules) => {
+            this.schedules = schedules;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 }
 </script>

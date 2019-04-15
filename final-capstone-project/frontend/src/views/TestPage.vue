@@ -1,51 +1,46 @@
 <template>
-    <div class="v-col--auto">
-  <div class="panel">
-      <div class="panel__heading">
-        <h3>List {{listName}}</h3>
+  <div class="registered-students">
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h2>Students Who Have Registered For Matchmaking:</h2>
+        <div class="card" v-for="student in listOfStudents" :key="student.studentId">
+          <div class="card-body">
+            <h5 class="card-title">{{student.firstName}} {{student.lastName}}</h5>
+            <p class="card-text">Student ID: {{student.studentId}}</p>
+            <p class="card-text">First Choice: {{student.choice1}}</p>
+            <p class="card-text">Second Choice: {{student.choice2}}</p>
+            <p class="card-text">Third Choice: {{student.choice3}}</p>
+            <p class="card-text">Fourth Choice: {{student.choice4}}</p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Confirm Student Selections</button>
       </div>
-      <div class="panel__body">
-        <vddl-list class="panel__body--list" :list="list" :horizontal="false">
-            <vddl-draggable class="panel__body--item" v-for="(item, index) in list" :key="item.id"
-              :draggable="item"
-              :index="index"
-              :wrapper="list"
-              effect-allowed="move">
-              {{item.label}}
-            </vddl-draggable>
-            <vddl-placeholder class="red">Custom placeholder</vddl-placeholder>
-        </vddl-list>
-      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            "lists": {
-            "A": [
-                {
-                "id": 1,
-                "label": "Item A1"
-                },
-                {
-                "id": 2,
-                "label": "Item A2"
-                },
-                //...
-            ],
-            "B": [
-                //...
-            ]
-            }
-        };
-    }
-}
-
+  name: "registeredStudents",
+  props: {
+  },
+  data() {
+    return {
+      listOfStudents: []
+    };
+  },
+  created() {
+    //load the list of employers for a choice - dropdown in student form
+    fetch(`${process.env.VUE_APP_API_URL}/registeredStudents`)
+      .then(response => {
+        return response.json();
+      })
+      .then((students) => {
+        this.listOfStudents = students;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
 </script>
-
-<style>
-
-</style>

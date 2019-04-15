@@ -1,5 +1,4 @@
 package com.techelevator.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +89,7 @@ public class DataInputOutputController {
     
     @RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
     public void updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
-    	int[] choices = studentRanksAllEmployers.getChoices();
+    	Object[] choices = studentRanksAllEmployers.getChoices();
     	studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
     }
     

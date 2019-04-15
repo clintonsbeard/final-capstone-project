@@ -1,5 +1,7 @@
 package com.techelevator.StudentAll.model;
 
+import java.util.List;
+
 public class StudentAll {
 
 	private int studentId;
@@ -27,7 +29,6 @@ public class StudentAll {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
 	public int[] getChoices() {
 		return choices;
 	}

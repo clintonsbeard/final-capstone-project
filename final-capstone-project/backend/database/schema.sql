@@ -39,7 +39,7 @@ CREATE TABLE student_all (
   student_id SERIAL PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
-  choices INTEGER[] NULL
+  choices int4[] NULL
 
 );
 

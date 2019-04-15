@@ -13,7 +13,9 @@ import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
 import ChangeRanking from './views/ChangeRanking.vue'
 import Register from './views/Register.vue'
 import RegisteredStudents from './views/RegisteredStudents.vue'
+
 import TestPage from './views/TestPage.vue'
+
 // import auth from './auth'
 Vue.use(Router)
 
@@ -92,7 +94,7 @@ const router = new Router({
       path: '/test-page',
       name: 'test-page',
       component: TestPage
-    }
+    },
   ]
 });
 

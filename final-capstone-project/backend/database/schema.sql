@@ -5,9 +5,8 @@
 BEGIN;
 
 DROP TABLE IF EXISTS app_user;
-DROP TABLE IF EXISTS student_employer_2;
-DROP TABLE IF EXISTS student_employer;
-DROP TABLE IF EXISTS student_all;
+DROP TABLE IF EXISTS student_employer_top_four;
+DROP TABLE IF EXISTS student_employer_rank_all;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS employer;
 DROP TABLE IF EXISTS schedule;
@@ -26,26 +25,8 @@ CREATE TABLE student(
 
   student_id SERIAL PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
-<<<<<<< HEAD
-  last_name VARCHAR(100) NOT NULL,
-  choice_1 VARCHAR(100) NULL,
-  choice_2 VARCHAR(100) NULL,
-  choice_3 VARCHAR(100) NULL,
-  choice_4 VARCHAR(100) NULL
-  
-);
-
-CREATE TABLE student_all (
-
-  student_id SERIAL PRIMARY KEY,
-  first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL,
-  choices int4[] NULL
-
-=======
   last_name VARCHAR(100) NOT NULL
   
->>>>>>> 88c012423c44b8d4ca0fa65ade43219285a605a3
 );
 
 CREATE TABLE employer(
@@ -53,7 +34,6 @@ CREATE TABLE employer(
   employer_id SERIAL PRIMARY KEY,
   company_name VARCHAR(100) NOT NULL,
   company_summary TEXT NOT NULL,
-  days_attending DATE,
   number_of_teams INTEGER DEFAULT 0,
   restrictions TEXT DEFAULT 'None'
   
@@ -71,9 +51,19 @@ CREATE TABLE schedule(
   
 );
 
+CREATE TABLE employer_schedule(
+
+  employer_id SERIAL,
+  schedule_id SERIAL,
+  
+  constraint fk_employer_schedule_employer_id foreign key (employer_id) references employer(employer_id),
+  constraint fk_employer_schedule_schedule_id foreign key (schedule_id) references schedule(schedule_id) 
+  
+);
+
 CREATE TABLE admin_choice(
 
-    choice boolean NOT NULL
+  choice boolean NOT NULL
     
 );
 
@@ -84,10 +74,18 @@ CREATE TABLE student_employer_top_four(
   employer_id INT NOT NULL,  
   choice_number INT NOT NULL,
         
-  constraint fk_student_employer_student_id foreign key (student_id) references student(student_id),
-  constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
+  constraint student_employer_top_four_student_id foreign key (student_id) references student(student_id),
+  constraint student_employer_top_four_employer_id foreign key (employer_id) references employer(employer_id)      
 
   );
+  
+CREATE SEQUENCE sequence_1
+  increment by 1
+  minvalue 1
+  maxvalue 4
+  start with 1
+  cycle
+  owned by student_employer_top_four.choice_number;
 
 CREATE TABLE student_employer_rank_all(
   
@@ -96,8 +94,8 @@ CREATE TABLE student_employer_rank_all(
   employer_id INT NOT NULL,
   choice_number INT NOT NULL,
 
-  constraint fk_student_employer_student_id foreign key (student_id) references student(student_id),
-  constraint fk_student_employer_employer_id foreign key (employer_id) references employer(employer_id)      
+  constraint fk_student_employer_rank_all_student_id foreign key (student_id) references student(student_id),
+  constraint fk_student_employer_rank_all_employer_id foreign key (employer_id) references employer(employer_id)      
 
   );  
 

@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class JDBCStudentAllDAO implements StudentAllDAO {
 	
-private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	public JDBCStudentAllDAO (DataSource datasource) {
 		jdbcTemplate = new JdbcTemplate(datasource);
 	}
-
+	
 	@Override
-	public void insertAllChoicesIntoDatabase(StudentAll studentAll) {
+	public StudentAll insertAllChoicesIntoDatabase(StudentAll studentAll) {
 		String insertStudentInStudenTable = "INSERT INTO student (student_id, first_name, last_name) "
 												+ "VALUES (DEFAULT, ?, ?) RETURNING student_id;";
 		
@@ -26,12 +26,12 @@ private JdbcTemplate jdbcTemplate;
 		results.next();
 		Integer studentId = results.getInt(1);
 		
-		String insertAllStudentChoicesIntoJoinTable = "INSERT INTO student_employer_2 "
-														+ "VALUES (DEFAULT, ?,(UNNEST(ARRAY ?)), "
-														+ "nextval('sequence_2')); "
-														+ "SELECT setval('sequence_2', 0);";
-		jdbcTemplate.update(insertAllStudentChoicesIntoJoinTable, studentId, studentAll.getChoices());
+		for(int i = 0; i < studentAll.getChoices().length; i++) {
+			String updateStudentEmployerJoinTable = "INSERT INTO student_all_employer (selection_id, student_id, employer_id, choice_number) VALUES (DEFAULT, ?, ?, ?)";
+			jdbcTemplate.update(updateStudentEmployerJoinTable, studentId, studentAll.getChoices()[i], i+1);
+		}
+		studentAll.setStudentId(studentId);
+		return studentAll;
 	}
-
 	
 }

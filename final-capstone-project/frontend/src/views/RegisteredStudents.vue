@@ -1,59 +1,51 @@
 <template>
-    <div class="registered-students">
-        <table class="table dragArea">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                </tr>
-            </thead>
-            <draggable v-model="approveDocsNew" :options="{group:'people'}" :element="'tbody'">
-                <tr v-for="element in approveDocsNew" :key="" class="dragArea">
-                    <td class="dragArea">{{element.document_id}}</td>
-                </tr>
-            </draggable>
-        </table>
-        <table class="table dragArea">
-            <thead class="table">
-                <tr>
-                    <th>ID</th>
-                </tr>
-            </thead>
-            <draggable v-model="forApprovalDocsNew" :options="{group:'people'}" :element="'tbody'">
-                <tr v-for="element in forApprovalDocsNew" class="dragArea">
-                    <td class="dragArea">{{element.document_id}}</td>
-                </tr>
-            </draggable>
-        </table>
+  <div class="registered-students">
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h2>Students Who Have Registered For Matchmaking:</h2>
+        <div class="card" v-for="student in listOfStudents" :key="student.studentId">
+          <div class="card-body">
+            <h5 class="card-title">{{student.firstName}} {{student.lastName}}</h5>
+            <p class="card-text">Student ID: {{student.studentId}}</p>
+            <p class="card-text">First Choice: {{student.choice1}}</p>
+            <p class="card-text">Second Choice: {{student.choice2}}</p>
+            <p class="card-text">Third Choice: {{student.choice3}}</p>
+            <p class="card-text">Fourth Choice: {{student.choice4}}</p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Confirm Student Selections</button>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    import draggable from 'vuedraggable'
+import draggable from 'vuedraggable';
 
-    export default {
-        components: {
-            draggable
-        },
-
-        props: ['approvedDocs','forApprovalDocs'],
-
-        data() {
-            return {
-                approveDocsNew: this.approvedDocs,
-                forApprovalDocsNew: this.forApprovalDocs
-            }
-            
-        },
-
-        method: {
-
-        }
-    }
+export default {
+  components: {
+      draggable
+  },
+  name: "registeredStudents",
+  props: {
+  },
+  data() {
+    return {
+      listOfStudents: []
+    };
+  },
+  created() {
+    //load the list of employers for a choice - dropdown in student form
+    fetch(`${process.env.VUE_APP_API_URL}/students`)
+      .then(response => {
+        return response.json();
+      })
+      .then((students) => {
+        this.listOfStudents = students;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
 </script>
-
-<style>
-.dragArea {
-  min-height: 10px;
-}
-
-</style>

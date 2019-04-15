@@ -5,7 +5,9 @@ import router from './router'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'vue-moment'
+import draggable from 'vuedraggable'
 
+Vue.use(draggable);
 Vue.config.productionTip = false
 
 new Vue({

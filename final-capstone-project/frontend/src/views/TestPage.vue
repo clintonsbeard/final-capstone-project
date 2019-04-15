@@ -1,46 +1,64 @@
 <template>
-  <div class="registered-students">
-    <div class="container-fluid">
-      <div class="jumbotron">
-        <h2>Students Who Have Registered For Matchmaking:</h2>
-        <div class="card" v-for="student in listOfStudents" :key="student.studentId">
-          <div class="card-body">
-            <h5 class="card-title">{{student.firstName}} {{student.lastName}}</h5>
-            <p class="card-text">Student ID: {{student.studentId}}</p>
-            <p class="card-text">First Choice: {{student.choice1}}</p>
-            <p class="card-text">Second Choice: {{student.choice2}}</p>
-            <p class="card-text">Third Choice: {{student.choice3}}</p>
-            <p class="card-text">Fourth Choice: {{student.choice4}}</p>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Confirm Student Selections</button>
-      </div>
-    </div>
-  </div>
+<v-container fill-height fluid grid-list-md mt-0 class='about'>
+    <v-layout column fill-height>
+      <h1>This is an about page</h1>
+      <v-layout row fill-height>
+        <v-flex xs4>
+          <draggable class='dragArea' v-model='peopleList' :options='{group: "people"}'>
+            <div v-for='person in peopleList' :key='person.id'>{{ person.name }}</div>
+          </draggable>
+        </v-flex>
+        <v-flex xs4>
+          <draggable class='dragArea' v-model='employeeList' :options='{group: "people"}'>
+            <div v-for='person in employeeList' :key='person.id'>{{ person.name }}</div>
+          </draggable>
+        </v-flex>
+      </v-layout>
+    </v-layout>
+</v-container>
 </template>
-
 <script>
+import draggable from 'vuedraggable'
+
 export default {
-  name: "registeredStudents",
-  props: {
-  },
-  data() {
+  name: 'test-page',
+  data () {
     return {
-      listOfStudents: []
-    };
+      employees: [{ id: 6, name: 'Pete' },
+        { id: 7, name: 'Pat' }],
+      people: [
+        { id: 1, name: 'Bob' },
+        { id: 2, name: 'Mary' },
+        { id: 3, name: 'Jane' },
+        { id: 4, name: 'Alex' },
+        { id: 5, name: 'Jim' }
+      ]
+    }
   },
-  created() {
-    //load the list of employers for a choice - dropdown in student form
-    fetch(`${process.env.VUE_APP_API_URL}/registeredStudents`)
-      .then(response => {
-        return response.json();
-      })
-      .then((students) => {
-        this.listOfStudents = students;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  components: { draggable },
+  computed: {
+    employeeList: {
+      get () {
+        return this.employees
+      },
+      set (value) {
+        this.employees = value
+      }
+    },
+    peopleList: {
+      get () {
+        return this.people
+      },
+      set (value) {
+        this.people = value
+      }
+    }
   }
-};
+}
 </script>
+<style>
+div.dragArea {
+  border: 1px solid black;
+  min-width: 100px;
+}
+</style>

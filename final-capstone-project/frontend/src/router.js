@@ -14,6 +14,8 @@ import ChangeRanking from './views/ChangeRanking.vue'
 import Register from './views/Register.vue'
 import RegisteredStudents from './views/RegisteredStudents.vue'
 import Schedule from './views/Schedule.vue'
+import TestPage from './views/TestPage.vue'
+
 
 // import auth from './auth'
 
@@ -94,6 +96,11 @@ const router = new Router({
       path: '/schedule',
       name: 'schedule',
       component: Schedule,
+    },
+    {
+      path: '/test-page',
+      name: 'test-page',
+      component: TestPage
     }
   ]
 });

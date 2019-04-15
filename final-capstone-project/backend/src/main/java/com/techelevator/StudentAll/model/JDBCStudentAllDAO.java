@@ -1,11 +1,16 @@
 package com.techelevator.StudentAll.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import com.techelevator.Student.model.Student;
 
 @Component
 public class JDBCStudentAllDAO implements StudentAllDAO {
@@ -32,6 +37,18 @@ public class JDBCStudentAllDAO implements StudentAllDAO {
 		}
 		studentAll.setStudentId(studentId);
 		return studentAll;
+	}
+	
+	@Override
+	public List<Student> getAllRegisteredStudents() {
+		List<Student> listOfStudents = new ArrayList<>();
+		String selectSql = "SELECT * FROM student_employer_top_four";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
+		
+		while(results.next()) {
+			listOfStudents.add(mapRowToSqlResults(results));
+		}
+		return listOfStudents;
 	}
 	
 }

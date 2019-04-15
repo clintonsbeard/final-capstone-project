@@ -23,13 +23,10 @@ public class JDBCStudentDAO implements StudentDAO{
 	
 	@Override
 	public Student insertNewStudentChoices(Student student) {
-		String insertSql = "INSERT INTO student (student_id, first_name, last_name, "
-				+ "choice_1, choice_2, choice_3, choice_4) "
+		String insertSql = "INSERT INTO student (student_id, first_name, last_name) "
 				+ "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?) RETURNING student_id;";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(insertSql, student.getFirstName(),
-								student.getLastName(), student.getChoice1(),
-								student.getChoice2(), student.getChoice3(),
-								student.getChoice4());
+								student.getLastName());
 		
 		results.next();
 		Integer id = results.getInt(1);
@@ -37,19 +34,6 @@ public class JDBCStudentDAO implements StudentDAO{
 		student.setStudentId(results.getInt("student_id"));
 
 		return student;
-	}
-
-	@Override
-	public List<Student> getAllRegisteredStudents() {
-		List<Student> listOfStudents = new ArrayList<>();
-		String selectSql = "SELECT student_id, first_name, last_name, "
-				+ "choice_1, choice_2, choice_3, choice_4 FROM student";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
-		
-		while(results.next()) {
-			listOfStudents.add(mapRowToSqlResults(results));
-		}
-		return listOfStudents;
 	}
 
 	@Override

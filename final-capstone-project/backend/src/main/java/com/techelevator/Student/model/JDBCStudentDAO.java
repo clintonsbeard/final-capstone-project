@@ -101,10 +101,6 @@ public class JDBCStudentDAO implements StudentDAO{
 				+ "WHERE STUDENT_ID = ?;";
 		
 		jdbcTemplate.update(insertSql4, id);
-
-
 	}
-
-
 
 }

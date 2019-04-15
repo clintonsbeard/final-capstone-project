@@ -2,6 +2,6 @@ package com.techelevator.StudentAll.model;
 
 public interface StudentAllDAO {
 
-	public void insertAllChoicesIntoDatabase(StudentAll studentAll);
+	public StudentAll insertAllChoicesIntoDatabase(StudentAll studentAll);
 	
 }

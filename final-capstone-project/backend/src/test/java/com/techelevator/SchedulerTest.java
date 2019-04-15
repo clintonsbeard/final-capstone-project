@@ -2,9 +2,11 @@ package com.techelevator;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import org.junit.*;
 
@@ -17,14 +19,14 @@ import com.techelevator.Student.model.Student;
 public class SchedulerTest {
 
 	private Scheduler target;
-	private List<Student> allStudents;
+	private Queue<Student> allStudents;
 	private List<Appointment> allAppointments;
 	private List<EmployerProfile> allEmployers;
 	private List<Slot> allSlots;
 	
 	@Before
 	public void setup() {
-		allStudents = new ArrayList<Student>();
+		allStudents = new ArrayDeque<Student>();
 		allAppointments = new ArrayList<Appointment>();
 		allEmployers = new ArrayList<EmployerProfile>();
 		allSlots = new ArrayList<Slot>();
@@ -86,5 +88,35 @@ public class SchedulerTest {
 	/*
 	 * when number of appointments is same as number of students
 	 */
-	
+	@Test
+	public void scenarioForThreeEmployersFiveSlotsFifteenAppointments() {
+		//arrange
+		for(int i = 1; i <=3; i++) {
+			allEmployers.add(new EmployerProfile());
+		}
+		
+		for(int i = 1; i <=3; i++) {
+			allSlots.add(new Slot(i));
+		}
+		
+		for(int i = 1; i <=3; i++) {
+			allStudents.add(new Student());
+		}
+		
+		//act
+		target.setNumberOfEmployers(allEmployers);
+		target.setNumberOfSlots(allSlots);
+		target.setListOfAllStudents(allStudents);
+		target.buildAppointmentGrid();
+		
+		//assert
+		/*
+		 * each employer met each student
+		 * loop through appointments with a given employer
+		 * and all studens in there are unique
+		 */
+		
+		Map<Appointment, Student> newSchedule = target.oneScenerio();
+		
+	}
 }

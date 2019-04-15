@@ -45,18 +45,11 @@
                         </div>
                         <div class="form-group">
                             <h6>Days Attending</h6>
-                            <div v-for="schedule in schedules" :key="schedule.scheduleId">
-                                <input class="form-check-input" type="checkbox" id="daysAttending" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId"/>
+                            {{ employer.companyName }}
+                            <div class="form-check" v-for="schedule in schedules" :key="schedule.scheduleId">
+                                <input class="form-check-input" type="checkbox" id="daysAttending" :value="schedule.scheduleId"/>
                                 {{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}
                             </div>
-                            <!-- <div class="form-check" v-for="schedule in schedules" :key="schedule.scheduleId">
-                                <input class="form-check-input" type="checkbox" id="daysAttending" v-model="employer.daysAttending[schedule.scheduleId - 1]" :value="schedule.scheduleId" >
-                                <label class="form-check-label" for="daysAttending">
-                                    
-                                    <br>
-                                    {{ [ schedule.startTime, "HH:mm" ] | moment("h:mm a") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm a") }}
-                                </label>
-                            </div> -->
                         </div>
                         <div class="form-group">
                             <h6>Number Of Teams Attending</h6>
@@ -81,11 +74,6 @@ export default {
         'employer',
         'schedules'
     ],
-    // data(){
-    //     return {
-    //         schedules: []
-    //     }
-    // },
     methods: {
         updateEmployerProfile() {
             fetch(`${process.env.VUE_APP_API_URL}/employers/update`, {
@@ -103,19 +91,5 @@ export default {
             .catch((err) => console.error(err));
         }
     }
-    // created() {
-    //     fetch(`${process.env.VUE_APP_API_URL}/schedules`)
-    //     .then(response => {
-    //         console.log(response)
-    //         return response.json();
-    //     })
-    //     .then((schedules) => {
-    //         console.table(schedules)
-    //         this.schedules = schedules;
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     });
-    // }
 }
 </script>

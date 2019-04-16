@@ -15,6 +15,10 @@ public class EmployerProfile {
     private int numberOfTeams;
     private String restrictions;
     
+    public EmployerProfile(int employerId) {
+    	this.employerId = employerId;
+    }
+    
     public int getEmployerId() {
         return employerId;
     }

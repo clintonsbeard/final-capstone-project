@@ -16,6 +16,8 @@ import com.techelevator.AdminFormChoice.AdminChoice;
 import com.techelevator.AdminFormChoice.AdminChoiceDAO;
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
+import com.techelevator.JoinTable.TopFourChoices;
+import com.techelevator.JoinTable.TopFourChoicesDAO;
 import com.techelevator.Schedule.model.Schedule;
 import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
@@ -41,6 +43,9 @@ public class DataInputOutputController {
     
     @Autowired
     private StudentAllDAO studentAllDAO;
+    
+    @Autowired
+    private TopFourChoicesDAO topFourChoicesDAO;
     
     @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -99,5 +104,12 @@ public class DataInputOutputController {
     public List<StudentAll> getListOfAllStudents(){
     	return studentAllDAO.getAllRegisteredStudents();
     }
+    
+    @RequestMapping(path="/students", method=RequestMethod.GET)
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<TopFourChoices>  getListOfAllTables(){
+    	return topFourChoicesDAO.getTopFourChoicesOfAllStudents();
+    }
+
 
 }

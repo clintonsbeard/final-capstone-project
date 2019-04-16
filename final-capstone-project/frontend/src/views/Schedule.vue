@@ -1,33 +1,179 @@
 <template>
-    <div>
-        <div class="card-body">
-        <div v-for="employer in allEmployer" :key="employer.employerId">
-              <h5 class="card-title">{{ employer.companyName }}</h5>
-            </div>
-
-          <draggable class='dragArea' v-model='peopleList' :options='{group: "people"}'>
-            <div v-for='person in peopleList' :key='person.id'>{{ person.name }}</div>
-          </draggable>
-        </div>
-        <div class="card-body">
-        <div v-for="student in allStudents" :key="student.studentId">
-              <h5 class="card-title">{{ student.firstName }} {{ student.lastName }}</h5>
+    <div class="change-ranking">
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col" v-for="employer in allEmployers" :key="employer.employerId" class="align-middle">
+                            <div class="card-deck">
+                                <div class="card text-center">
+                                    <p>{{ employer.companyName }}</p>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>2:00 - 2:30 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                        <draggable class='dragArea' v-model='allStudents' :options='{group: "student"}'>
+                            <td class="text-center align-middle" v-for='student in allStudents' :key='student.studentId' colspan="4">{{ student.firstName }}  {{ student.lastName }}</td>
+                        </draggable>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>2:30 - 3:00 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                        <draggable class='dragArea' v-model='allStudents' :options='{group: "student"}'>
+                            <td class="text-center align-middle" v-for='student in allStudents2nd' :key='student.studentId'>{{ student.firstName }}  {{ student.lastName }}</td>
+                        </draggable>
+                    </tr>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>3:00 - 3:30 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    </tr>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>3:30 - 4:00 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="text-center align-middle" colspan="12">Break</td>
+                    </tr>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>4:00 - 4:30 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    </tr>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>4:30 - 5:00 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    </tr>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>5:00 - 5:30 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    </tr>
+                    <tr>
+                    <th scope="col" class="align-middle">
+                        <div class="card-deck">
+                            <div class="card text-center">
+                                <p>5:30 - 6:00 pm</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Mark</td>
+                    <td class="text-center align-middle">John</td>
+                    <td class="text-center align-middle">Connor</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    <td class="text-center align-middle">Chad</td>
+                    <td class="text-center align-middle">Dad</td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable';
+import draggable from 'vuedraggable'
 
 export default {
-  components: {
-      draggable
-  },
-    data(){
+    name: 'Schedule',
+    components: { 
+        draggable,
+    },
+    data() {
         return{
-            allEmployer: [],
-            allStudents:[],
+            allEmployers: [],
+            allStudents: [],
+            addedNewStudent: []
         }
     },
     created(){
@@ -36,7 +182,7 @@ export default {
             console.table(response);
             return response.json();
         }).then (data => {
-            this.allEmployer = data;
+            this.allEmployers = data;
         }).catch(err => {
             console.log(err);
         });
@@ -49,13 +195,29 @@ export default {
         }).catch(err => {
             console.log(err);
         })
-    }
+    },
+    computed: {
+        allEmployersList: {
+            get () {
+                return this.allEmployers
+        },
+            set (value) {
+                this.allEmployers = value
+            }
+        },
+        allStudentsList: {
+            get () {
+                return this.allStudents
+        },
+            set (value) {
+                this.allStudents = value
+            }
+        }
+    }    
 }
 </script>
-
 <style>
-div.dragArea {
-  border: 1px solid black;
+#dragArea {
   min-width: 100px;
 }
 </style>

@@ -26,7 +26,7 @@ export default {
   components: {
       draggable
   },
-  name: "registeredStudents",
+  name: "registered-students",
   props: {
   },
   data() {

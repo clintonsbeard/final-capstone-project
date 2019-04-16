@@ -1,5 +1,8 @@
 package com.techelevator.StudentAll.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class JDBCStudentAllDAO implements StudentAllDAO {
 	
-private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	public JDBCStudentAllDAO (DataSource datasource) {
 		jdbcTemplate = new JdbcTemplate(datasource);
 	}
-
+	
 	@Override
 	public StudentAll insertAllChoicesIntoDatabase(StudentAll studentAll) {
 		String insertStudentInStudenTable = "INSERT INTO student (student_id, first_name, last_name) "
@@ -33,4 +36,27 @@ private JdbcTemplate jdbcTemplate;
 		studentAll.setStudentId(studentId);
 		return studentAll;
 	}
+	
+    @Override
+    public List<StudentAll> getAllRegisteredStudents() {
+        List<StudentAll> listOfStudents = new ArrayList<>();
+        String selectSql = "SELECT * FROM student";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
+        
+        while(results.next()) {
+            listOfStudents.add(mapRowToSqlResults(results));
+        }
+        return listOfStudents;
+    }
+    
+    private StudentAll mapRowToSqlResults(SqlRowSet results) {
+    	StudentAll studentAll = new StudentAll();
+    	
+    	studentAll.setStudentId(results.getInt("student_id"));
+        studentAll.setFirstName(results.getString("first_name"));
+        studentAll.setLastName(results.getString("last_name"));
+        
+        return studentAll;
+    }
+	
 }

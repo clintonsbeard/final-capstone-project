@@ -16,10 +16,6 @@ public class Student {
 	private int employerId;
 	private Slot assignedSlot;
 	
-	public Student(int studentId) {
-		this.studentId = studentId;
-	}
-	
 	public int getStudentId() {
 		return studentId;
 	}

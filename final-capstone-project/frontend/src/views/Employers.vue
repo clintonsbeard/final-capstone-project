@@ -6,9 +6,11 @@
         <hr>
         <div class="card">
           <img src="../assets/img/matchmaking.jpeg" class="card-img-top" alt="...">
-          <div class="card-body" v-for="schedule in schedules" :key="schedule.scheduleId">
-            <h4 class="card-title">{{ schedule.startTime | moment("h:mm a") }} - {{schedule.endTime}}</h4>
-            <h5 class="card-title">{{schedule.matchmakingDate}}</h5>
+          <div class="card-body">
+            <div v-for="schedule in schedules" :key="schedule.scheduleId">
+              <h4 class="card-title">{{ [ schedule.startTime, "HH:mm" ] | moment("h:mm a") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm a") }}</h4>
+              <h5 class="card-title">{{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}</h5>
+            </div>
             <p class="card-text">1275 Kinnear Rd, Columbus, OH 43212</p>
           </div>
           <ul class="list-group list-group-flush">

@@ -14,7 +14,28 @@ public class StudentRanksAllEmployers {
 	private LocalDate employerPreferredDay;
 	private Time startTime;
 	private Time endTime;
+	private int timeLength;
+	private Time breakStartTime;
+	private Time breakEndTime;
 	
+	public Time getBreakStartTime() {
+		return breakStartTime;
+	}
+	public void setBreakStartTime(Time breakStartTime) {
+		this.breakStartTime = breakStartTime;
+	}
+	public Time getBreakEndTime() {
+		return breakEndTime;
+	}
+	public void setBreakEndTime(Time breakEndTime) {
+		this.breakEndTime = breakEndTime;
+	}
+	public int getTimeLength() {
+		return timeLength;
+	}
+	public void setTimeLength(int timeLength) {
+		this.timeLength = timeLength;
+	}
 	public int getStudentId() {
 		return studentId;
 	}

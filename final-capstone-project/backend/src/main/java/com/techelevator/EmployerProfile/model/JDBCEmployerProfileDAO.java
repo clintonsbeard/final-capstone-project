@@ -61,7 +61,7 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
 		List<EmployerProfile> listOfEmployers = new ArrayList<>();
 		String selectSql = "SELECT employer_id, company_name, company_summary, email, website, " + 
 						   "positions_summary, path_preference, number_of_teams, restrictions " + 
-						   "FROM employer";
+						   "FROM employer ORDER BY employer_id";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
 		
 		while(results.next()) {

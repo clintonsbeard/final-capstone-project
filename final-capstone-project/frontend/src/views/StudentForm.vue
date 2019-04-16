@@ -54,7 +54,7 @@
             <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name..." v-model="studentAll.lastName" required>
           </div>
           <div class="form-group" v-for="employer in listOfEmployers" :key="employer.employerId">
-            <label for="choice1">Choice #{{employer.employerId}}</label>
+            <label>Choice #{{employer.employerId}}</label>
             <select class="form-control" v-model="studentAll.choices[employer.employerId - 1]" required>
               <option value="" selected disabled>Choose...</option>
               <option v-for="employer in listOfEmployers" :key="employer.employerId" :value="employer.employerId">{{employer.companyName}}</option>

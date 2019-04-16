@@ -8,4 +8,5 @@ public interface ScheduleDAO {
 	
 	public List<Schedule> getAllSchedules();
 	
+	
 }

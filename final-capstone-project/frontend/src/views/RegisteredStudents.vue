@@ -20,8 +20,13 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable';
+
 export default {
-  name: "registeredStudents",
+  components: {
+      draggable
+  },
+  name: "registered-students",
   props: {
   },
   data() {
@@ -31,7 +36,7 @@ export default {
   },
   created() {
     //load the list of employers for a choice - dropdown in student form
-    fetch(`${process.env.VUE_APP_API_URL}/registeredStudents`)
+    fetch(`${process.env.VUE_APP_API_URL}/students`)
       .then(response => {
         return response.json();
       })

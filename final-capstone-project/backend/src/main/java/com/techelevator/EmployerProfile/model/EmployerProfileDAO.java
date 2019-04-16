@@ -12,4 +12,6 @@ public interface EmployerProfileDAO {
     
     public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile);
     
+	public List<EmployerProfile> showEmployersForScheduleId(int employerId);
+    
 }

@@ -16,8 +16,8 @@ import com.techelevator.AdminFormChoice.AdminChoice;
 import com.techelevator.AdminFormChoice.AdminChoiceDAO;
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
-import com.techelevator.JoinTable.TopFourChoices;
-import com.techelevator.JoinTable.TopFourChoicesDAO;
+import com.techelevator.JoinTable.StudentRanksAllEmployers;
+import com.techelevator.JoinTable.StudentRanksAllEmployersDAO;
 import com.techelevator.Schedule.model.Schedule;
 import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
@@ -29,87 +29,93 @@ import com.techelevator.StudentAll.model.StudentAllDAO;
 @CrossOrigin
 public class DataInputOutputController {
 
-    @Autowired
-    private EmployerProfileDAO employerProfileDAO;
-    
-    @Autowired
-    private StudentDAO studentDAO;
-    
-    @Autowired
-    private ScheduleDAO scheduleDAO;
-    
-    @Autowired
-    private AdminChoiceDAO adminChoiceDAO;
-    
-    @Autowired
-    private StudentAllDAO studentAllDAO;
-    
-    @Autowired
-    private TopFourChoicesDAO topFourChoicesDAO;
-    
-    @RequestMapping(path="/employerForm", method=RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
-         return employerProfileDAO.insertEmployerProfile(employerProfile);
-    }
-    
-    @RequestMapping(path="/studentForm", method=RequestMethod.GET)
-    public List<EmployerProfile> sendListOfEmployers(){
-        return employerProfileDAO.showAllEmployers();
-    }
-    
-    @RequestMapping(path="/studentForm", method=RequestMethod.POST)
-    public Student postStudentChoices(@RequestBody Student student){
-        return studentDAO.insertNewStudentChoices(student);
-    }
-        
-    @RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
-    public EmployerProfile getEmployerById(@PathVariable int id){
-        return employerProfileDAO.viewEmployerProfile(id);
-    }
-    
-    @RequestMapping(path="/employers/update", method=RequestMethod.PUT)
-    public EmployerProfile updateEmployerProfile(@RequestBody EmployerProfile employer){
-        return employerProfileDAO.updateEmployerProfile(employer);
-    }
-    
-    @RequestMapping(path="/schedules", method=RequestMethod.GET)
-    public List<Schedule> getAllSchedules(){
-        return scheduleDAO.getAllSchedules();
-    }
-    
-    @RequestMapping(path="/schedule/add", method=RequestMethod.POST)
-    public Schedule addDayToSchedule(@RequestBody Schedule schedule){
-        return scheduleDAO.addDayToSchedule(schedule);
-    }
-    
-    @RequestMapping(path="/toggleRankingChoice", method=RequestMethod.PUT)
-    public void changeRankingSystem(@RequestBody AdminChoice rankingChoice) {
-    	adminChoiceDAO.setAdminFormChoice(rankingChoice);
-    }
-    
-    @RequestMapping(path="/checkRankingChoice", method=RequestMethod.GET)
-    public AdminChoice checkRankingSystemChoice() {
-    	return adminChoiceDAO.getAdminFormChoice();
-    }
-    
-    @RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public StudentAll updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
-    	return studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
-    }
-    
-    @RequestMapping(path="/students", method=RequestMethod.GET)
-    @ResponseStatus(HttpStatus.CREATED)
-    public List<StudentAll> getListOfAllStudents(){
-    	return studentAllDAO.getAllRegisteredStudents();
-    }
-    
-    @RequestMapping(path="/students", method=RequestMethod.GET)
-    @ResponseStatus(HttpStatus.CREATED)
-    public List<TopFourChoices>  getListOfAllTables(){
-    	return topFourChoicesDAO.getTopFourChoicesOfAllStudents();
-    }
+	@Autowired
+	private EmployerProfileDAO employerProfileDAO;
+	
+	@Autowired
+	private StudentDAO studentDAO;
+	
+	@Autowired
+	private ScheduleDAO scheduleDAO;
+	
+	@Autowired
+	private AdminChoiceDAO adminChoiceDAO;
+	
+	@Autowired
+	private StudentAllDAO studentAllDAO;
+	
+	@Autowired
+	private StudentRanksAllEmployersDAO studentRanksAllEmployersDAO;
+	
+	@RequestMapping(path="/employerForm", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
+	     return employerProfileDAO.insertEmployerProfile(employerProfile);
+	}
+	
+	@RequestMapping(path="/studentForm", method=RequestMethod.GET)
+	public List<EmployerProfile> sendListOfEmployers(){
+	    return employerProfileDAO.showAllEmployers();
+	}
+	
+	@RequestMapping(path="/studentForm", method=RequestMethod.POST)
+	public Student postStudentChoices(@RequestBody Student student){
+	    return studentDAO.insertNewStudentChoices(student);
+	}
+	    
+	@RequestMapping(path="/employers/{id}", method=RequestMethod.GET)
+	public EmployerProfile getEmployerById(@PathVariable int id){
+	    return employerProfileDAO.viewEmployerProfile(id);
+	}
+	
+	@RequestMapping(path="/employers/update", method=RequestMethod.PUT)
+	public EmployerProfile updateEmployerProfile(@RequestBody EmployerProfile employer){
+	    return employerProfileDAO.updateEmployerProfile(employer);
+	}
+	
+	@RequestMapping(path="/schedules", method=RequestMethod.GET)
+	public List<Schedule> getAllSchedules(){
+	    return scheduleDAO.getAllSchedules();
+	}
+	
+	@RequestMapping(path="/schedules/{id}", method=RequestMethod.GET)
+	public List<EmployerProfile> getAllEmployersIdByScheduleId(@PathVariable int id){
+	    return employerProfileDAO.showEmployersForScheduleId(id);
+	}
+	
+	@RequestMapping(path="/schedule/add", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void addDayToSchedule(@RequestBody Schedule schedule){
+	    scheduleDAO.addDayToSchedule(schedule);
+	}
+	
+	@RequestMapping(path="/toggleRankingChoice", method=RequestMethod.PUT)
+	public void changeRankingSystem(@RequestBody AdminChoice rankingChoice) {
+	    adminChoiceDAO.setAdminFormChoice(rankingChoice);
+	}
+	
+	@RequestMapping(path="/checkRankingChoice", method=RequestMethod.GET)
+	public AdminChoice checkRankingSystemChoice() {
+	    return adminChoiceDAO.getAdminFormChoice();
+	}
+	
+	@RequestMapping(path="/rankAllCompanies", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public StudentAll updateStudentEmployerJoinTable(@RequestBody StudentAll studentRanksAllEmployers) {
+	    return studentAllDAO.insertAllChoicesIntoDatabase(studentRanksAllEmployers);
+	}
+	
+	@RequestMapping(path="/students", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<StudentAll> getListOfAllStudents(){
+	return studentAllDAO.getAllRegisteredStudents();
+	}
 
-
+	@RequestMapping(path="/getEverything", method=RequestMethod.GET)
+	public List<StudentRanksAllEmployers> getEverything() {
+	    return studentRanksAllEmployersDAO.getStudentRankingAllEmployersInfo();
+	}
+	
 }
+	
+

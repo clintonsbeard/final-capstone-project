@@ -1,5 +1,6 @@
 package com.techelevator.JoinTable;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class JDBCStudentRanksAllEmployersDAO implements StudentRanksAllEmployersDAO{
 
 	private JdbcTemplate jdbcTemplate;
+	private Time startTime;
 	
 	public JDBCStudentRanksAllEmployersDAO(DataSource datasource) {
         jdbcTemplate = new JdbcTemplate(datasource);
@@ -38,6 +40,8 @@ public class JDBCStudentRanksAllEmployersDAO implements StudentRanksAllEmployers
 		return allRankings;
 	}
 	
+	
+	
 	private StudentRanksAllEmployers mapRowToResults(SqlRowSet results) {
 		
 		StudentRanksAllEmployers thisRanking = new StudentRanksAllEmployers();
@@ -51,8 +55,12 @@ public class JDBCStudentRanksAllEmployersDAO implements StudentRanksAllEmployers
 		thisRanking.setEmployerPreferredDay(results.getDate("matchmaking_date").toLocalDate());
 		thisRanking.setStartTime(results.getTime("start_time"));
 		thisRanking.setEndTime(results.getTime("end_time"));
+		thisRanking.setTimeLength(results.getInt("interview_length"));
+		thisRanking.setBreakStartTime(results.getTime("break_start_time"));
+		thisRanking.setBreakEndTime(results.getTime("break_end_time"));
 
 		return thisRanking;
+		
 	}
 
 }

@@ -55,5 +55,7 @@ public class JDBCTopFourChoicesDAO implements TopFourChoicesDAO{
 
 			return choices;
 		}
+
+		
 		
 }

@@ -32,6 +32,7 @@ public class Schedule {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime breakEndTime;
 	
+	
 	public int getScheduleId() {
 		return scheduleId;
 	}
@@ -80,6 +81,7 @@ public class Schedule {
 	public void setBreakEndTime(LocalTime breakEndTime) {
 		this.breakEndTime = breakEndTime;
 	}
+	
 
 	public String incrementTime(LocalTime startTime, int lengthOfSlot) throws ParseException {
 		

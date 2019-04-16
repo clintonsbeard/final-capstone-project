@@ -53,7 +53,7 @@
                         <label for="restrictions">Additional Restrictions</label>
                         <textarea class="form-control" id="restrictions" placeholder="Enter Additional Restrictions..." v-model="employer.restrictions" rows="5"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-custom">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-custom ">Submit</button>
                 </form>
             </div>
         </div>

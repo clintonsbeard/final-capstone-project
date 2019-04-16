@@ -39,8 +39,8 @@ public class JDBCStudentDAO implements StudentDAO{
     @Override
     public List<Student> getAllRegisteredStudents() {
         List<Student> listOfStudents = new ArrayList<>();
-        String selectSql = "SELECT student_id, first_name, last_name, "
-                + "choice_1, choice_2, choice_3, choice_4 FROM student";
+        String selectSql = "SELECT student_id, first_name, last_name "
+                + "FROM student ORDER BY last_name";
         SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql);
         
         while(results.next()) {

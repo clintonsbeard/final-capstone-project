@@ -16,6 +16,8 @@ import com.techelevator.AdminFormChoice.AdminChoice;
 import com.techelevator.AdminFormChoice.AdminChoiceDAO;
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
+import com.techelevator.JoinTable.StudentRanksAllEmployers;
+import com.techelevator.JoinTable.StudentRanksAllEmployersDAO;
 import com.techelevator.Schedule.model.Schedule;
 import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
@@ -41,6 +43,9 @@ public class DataInputOutputController {
     
     @Autowired
     private StudentAllDAO studentAllDAO;
+    
+    @Autowired
+    private StudentRanksAllEmployersDAO studentRanksAllEmployersDAO;
     
     @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -98,6 +103,11 @@ public class DataInputOutputController {
     @ResponseStatus(HttpStatus.CREATED)
     public List<StudentAll> getListOfAllStudents(){
     	return studentAllDAO.getAllRegisteredStudents();
+    }
+    
+    @RequestMapping(path="/getEverything", method=RequestMethod.GET)
+    public List<StudentRanksAllEmployers> getEverything() {
+    	return studentRanksAllEmployersDAO.getStudentRankingAllEmployersInfo();
     }
 
 }

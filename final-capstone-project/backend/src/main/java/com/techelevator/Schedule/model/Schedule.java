@@ -32,71 +32,75 @@ public class Schedule {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime breakEndTime;
 	
+	private List<String> timeSlots;
 	
+	/*
+	 * GETTERS and SETTERS
+	 */
 	public int getScheduleId() {
 		return scheduleId;
 	}
 	public void setScheduleId(int scheduleId) {
 		this.scheduleId = scheduleId;
 	}
-	
 	public LocalDate getMatchmakingDate() {
 		return matchmakingDate;
 	}
 	public void setMatchmakingDate(LocalDate matchmakingDate) {
 		this.matchmakingDate = matchmakingDate;
 	}
-	
 	public LocalTime getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
-	
 	public LocalTime getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
-	
 	public int getInterviewLength() {
 		return interviewLength;
 	}
 	public void setInterviewLength(int interviewLength) {
 		this.interviewLength = interviewLength;
 	}
-	
 	public LocalTime getBreakStartTime() {
 		return breakStartTime;
 	}
 	public void setBreakStartTime(LocalTime breakStartTime) {
 		this.breakStartTime = breakStartTime;
 	}
-	
 	public LocalTime getBreakEndTime() {
 		return breakEndTime;
 	}
 	public void setBreakEndTime(LocalTime breakEndTime) {
 		this.breakEndTime = breakEndTime;
 	}
+	public List<String> getTimeSlots() throws ParseException {
+		return formattedSlots();
+	}
 	
-
-	public String incrementTime(LocalTime startTime, int lengthOfSlot) throws ParseException {
+	public String incrementTime() throws ParseException {
 		
 		String myTime = startTime.toString();
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 		Date d = df.parse(myTime);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
-		cal.add(Calendar.MINUTE, lengthOfSlot);
+		cal.add(Calendar.MINUTE, interviewLength);
 		String newTime = df.format(cal.getTime());
 		
 		return newTime;
 	}
 	
-	public List<String> listOfTimeSlots(LocalTime startTime, LocalTime endTime, int lengthOfSlot) throws ParseException{
+	/*
+	 * METHODS for generating Strings of Time Slot
+	 */
+	
+	private List<String> listOfTimeSlots() throws ParseException{
 		
 		List<String> listOfSlots = new ArrayList<>();
 		listOfSlots.add(startTime.toString());
@@ -110,7 +114,7 @@ public class Schedule {
 			Date d = df.parse(startTimeString);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(d);
-			cal.add(Calendar.MINUTE, lengthOfSlot);
+			cal.add(Calendar.MINUTE, interviewLength);
 			incrementedTime = df.format(cal.getTime());
 			listOfSlots.add(incrementedTime);
 			startTime = LocalTime.parse(incrementedTime);
@@ -120,8 +124,9 @@ public class Schedule {
 		return listOfSlots;
 	}
 	
-	public List<String> formattedSlots(List<String> oldList) throws ParseException{
+	public List<String> formattedSlots() throws ParseException{
 		
+		List<String> oldList = listOfTimeSlots();
 		List<String> newList = new ArrayList<>();
 		
 		for(int i = 0; i < oldList.size() - 1; i++) {

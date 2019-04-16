@@ -2,7 +2,6 @@ package com.techelevator;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.time.LocalTime;
 import java.util.List;
@@ -30,41 +29,43 @@ public class ScheduleTest {
 		int endMinute = 0;
 
 		int lengthOfSlot = 30;
-
-		LocalTime startTime = LocalTime.of(startHour, startMinute);
-		LocalTime endTime = LocalTime.of(endHour, endMinute);
+		
+		target.setStartTime(LocalTime.of(startHour, startMinute));
+		target.setEndTime(LocalTime.of(endHour, endMinute));
+		target.setInterviewLength(lengthOfSlot);
 
 		// act
 		/*
 		 * increment by 30 minutes
 		 */
 
-		String incrementedTime = target.incrementTime(startTime, lengthOfSlot);
+		String incrementedTime = target.incrementTime();
 
 		// assert
 		assertEquals(new String("13:30"), incrementedTime);
 	}
 
-	@Test
-	public void getListOfTimesAsString() throws ParseException {
-		// arrange
-		int startHour = 13;
-		int startMinute = 0;
-
-		int endHour = 18;
-		int endMinute = 0;
-
-		int lengthOfSlot = 30;
-
-		LocalTime startTime = LocalTime.of(startHour, startMinute);
-		LocalTime endTime = LocalTime.of(endHour, endMinute);
-
-		// act
-		List<String> slots = target.listOfTimeSlots(startTime, endTime, lengthOfSlot);
-
-		// assert
-		assertEquals(11, slots.size());
-	}
+//	@Test
+//	public void getListOfTimesAsString() throws ParseException {
+//		// arrange
+//		int startHour = 13;
+//		int startMinute = 0;
+//
+//		int endHour = 18;
+//		int endMinute = 0;
+//
+//		int lengthOfSlot = 30;
+//
+//		target.setStartTime(LocalTime.of(startHour, startMinute));
+//		target.setEndTime(LocalTime.of(endHour, endMinute));
+//		target.setInterviewLength(lengthOfSlot);
+//
+//		// act
+//		List<String> slots = target.listOfTimeSlots();
+//
+//		// assert
+//		assertEquals(11, slots.size());
+//	}
 
 	@Test
 	public void formattedSlotReturnsFormattedTimeSlots() throws ParseException {
@@ -77,12 +78,12 @@ public class ScheduleTest {
 
 		int lengthOfSlot = 30;
 
-		LocalTime startTime = LocalTime.of(startHour, startMinute);
-		LocalTime endTime = LocalTime.of(endHour, endMinute);
+		target.setStartTime(LocalTime.of(startHour, startMinute));
+		target.setEndTime(LocalTime.of(endHour, endMinute));
+		target.setInterviewLength(lengthOfSlot);
 
 		// act
-		List<String> slots = target.listOfTimeSlots(startTime, endTime, lengthOfSlot);
-		List<String> formattedSlots = target.formattedSlots(slots);
+		List<String> formattedSlots = target.formattedSlots();
 		
 		//assert
 		assertEquals(10, formattedSlots.size());

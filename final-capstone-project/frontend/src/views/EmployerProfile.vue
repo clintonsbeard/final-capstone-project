@@ -1,38 +1,40 @@
 <template>
   <div class="employers-profile">
     <div class="container-fluid">
-      <div class="list-group">
-        <div class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{employer.companyName}}</h5>
-            <a href="#" class="edit-review">
-                <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
-                    edit
-                </router-link>
-            </a>
-          </div>
-          <hr>
-          <h6>Company Summary</h6>
-            <p>{{employer.companySummary}}</p>
-          <h6>Email</h6>
-            <p>{{employer.email}}</p>
-          <h6>Website</h6>
-            <p>{{employer.website}}</p>
-          <h6>Positions Summary</h6>
-            <p>{{employer.positionsSummary}}</p>
-          <h6>Path Preference</h6>
-            <p>{{employer.pathPreference}}</p>
-          <h6>Days Attending</h6>
-            <div v-for="schedule in schedules" :key="schedule.scheduleId">
-              {{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}
-              <br>
-              {{ [ schedule.startTime, "HH:mm" ] | moment("h:mm a") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm a") }}
+      <div class="jumbotron">
+        <div class="list-group">
+          <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{employer.companyName}}</h5>
+              <a href="#" class="edit-review">
+                  <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
+                      edit
+                  </router-link>
+              </a>
             </div>
-            <p></p>
-          <h6>Number Of Teams Attending</h6>
-            <p>{{employer.numberOfTeams}}</p>
-          <h6>Additional Restrictions</h6>
-            <p>{{employer.restrictions}}</p>
+            <hr>
+            <h6>Company Summary</h6>
+              <p>{{employer.companySummary}}</p>
+            <h6>Email</h6>
+              <p>{{employer.email}}</p>
+            <h6>Website</h6>
+              <p>{{employer.website}}</p>
+            <h6>Positions Summary</h6>
+              <p>{{employer.positionsSummary}}</p>
+            <h6>Path Preference</h6>
+              <p>{{employer.pathPreference}}</p>
+            <h6>Days Attending</h6>
+              <div v-for="schedule in schedules" :key="schedule.scheduleId">
+                {{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }}
+                <br>
+                {{ [ schedule.startTime, "HH:mm" ] | moment("h:mm a") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm a") }}
+              </div>
+              <p></p>
+            <h6>Number Of Teams Attending</h6>
+              <p>{{employer.numberOfTeams}}</p>
+            <h6>Additional Restrictions</h6>
+              <p>{{employer.restrictions}}</p>
+          </div>
         </div>
       </div>
     </div>

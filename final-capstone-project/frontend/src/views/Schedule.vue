@@ -4,7 +4,7 @@
             <div class="jumbotron">
                 <h3>Create Final Schedule</h3>
                 <hr>
-                <table class="table table-responsive table-borderless table-hover table-striped">
+                <!-- <table class="table table-responsive table-borderless table-hover table-striped">
                 <thead>
                     <tr>
                         <th scope="col" v-for="student in students" :key="student.employerId" style="width: 5%">{{student.lastName}}, {{student.firstName}}</th>
@@ -19,7 +19,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
 
                 <hr class="my-4">
 
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                     <tbody>
-                            <tr v-for="time in timeArray" class="table-warning" v-if="time[0] === schedule.breakStartTime">
+                            <tr v-for="(time) in timeArray" class="table-warning" v-if="time[0] === schedule.breakStartTime">
                                 <th scope="row" class="text-center align-middle">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
                                 <td :colspan="employers.length" class="text-center align-middle">
                                     BREAK
@@ -40,10 +40,11 @@
                             </tr>
                             <tr v-else>
                                 <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
-                                <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
-                                    <select class="form-control" v-model="finalSchedule[employer.employerId + time[0]]">
+                                <td v-for="(employer) in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
+                                     <select class="form-control" v-model="finalSchedule['Key' + employer.employerId + time[0].replace(':','')]"> 
+                                        <!-- <select class="form-control" v-model="finalSchedule.studentNames[i]"> -->
                                         <option value="" selected disabled>Choose...</option>
-                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]">{{student.firstName}} {{student.lastName}}</option>
+                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]" :value="{startTime: time[0], studentId: student.studentId, employerId: employer.employerId}">{{student.firstName}} {{student.lastName}} {{time[0]}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -73,10 +74,10 @@ export default {
             students: [],
             timeSlots: [],
             schedule: [],
-            finalSchedule: [{
+            finalSchedule: {
 	            scheduleId: this.scheduleChoice,
                 studentNames: []
-            }]
+            }
         }
     },
     created() {
@@ -157,13 +158,22 @@ export default {
     },
     methods: {
         submitFinalSchedule() {
-            console.table(this.finalSchedule)
+            // console.table(JSON.stringify(this.finalSchedule))
+            // console.log(Object.keys(this.finalSchedule))
+            const sendArray = [];
+            Object.keys(this.finalSchedule).forEach(k => {
+                if(k.startsWith("Key")){
+                    sendArray.push(this.finalSchedule[k])
+                }
+            })
+            // console.log(JSON.stringify(sendArray));
+
             fetch(`${process.env.VUE_APP_API_URL}/submitFinalSchedule`, {
                 method: 'POST',
                 headers: {
                     "Content-Type" : "application/json"
                 },
-                body: JSON.stringify(this.finalSchedule),
+                body: JSON.stringify(this.sendArray),
             })
             .then((response) => {
                 if (response.ok) {

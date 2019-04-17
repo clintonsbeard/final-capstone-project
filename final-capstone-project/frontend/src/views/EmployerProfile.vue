@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
   name: "employerProfile",
   props: [
@@ -54,7 +56,13 @@ export default {
     };
   },
   created() {
-    fetch(`${process.env.VUE_APP_API_URL}/employers/${this.$route.params.employer_id}`)
+    fetch(`${process.env.VUE_APP_API_URL}/employers/${this.$route.params.employer_id}`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+      })
       .then(response => {
         return response.json();
       })
@@ -64,7 +72,13 @@ export default {
       .catch(err => {
         console.log(err);
       });
-    fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+    fetch(`${process.env.VUE_APP_API_URL}/schedules`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+      })
       .then(response => {
           return response.json();
       })

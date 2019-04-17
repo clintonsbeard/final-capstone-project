@@ -7,7 +7,7 @@
                 <form v-on:submit.prevent="submitEmployerForm()">
                     <div class="form-group">
                         <label for="name">Company Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Company Name..." v-model="employer.name" required>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Company Name..." v-model="employer.companyName" required>
                     </div>
                     <div class="form-group">
                         <label for="companySummary">Company Summary</label>
@@ -61,7 +61,10 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
+
     name: 'employerForm',
     data () {
         return {
@@ -84,10 +87,12 @@ export default {
             console.table(this.employer)
             fetch(`${process.env.VUE_APP_API_URL}/employerForm`, {
                 method: 'POST',
-                headers: {
+                headers: new Headers({
+                    Authorization: 'Bearer ' + auth.getToken(),   
                     "Content-Type" : "application/json"
-                },
+                }),
                 body: JSON.stringify(this.employer),
+                credentials: 'same-origin'            
             })
             .then((response) => {
                 return response.json();
@@ -101,7 +106,13 @@ export default {
         }
     },
     created() {
-        fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+        fetch(`${process.env.VUE_APP_API_URL}/schedules`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin'
+        })
         .then(response => {
             return response.json();
         })

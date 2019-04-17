@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/logout" class="nav-link">Logout</router-link>
+                         <a class="nav-link" href="#" @click="logout">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -49,6 +49,21 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import auth from './auth';
+
+export default {
+  name: 'app',
+  components: {},
+  methods: {
+    logout() {
+      auth.logout();
+      this.$router.go('/');
+    },
+  }
+}
+</script>
 
 <style>
 @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';

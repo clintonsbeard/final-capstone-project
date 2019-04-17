@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
     props: [
         'scheduleChoice'
@@ -74,7 +76,13 @@ export default {
         }
     },
     created() {
-        fetch(`${process.env.VUE_APP_API_URL}/timeslots/${this.$route.params.scheduleChoice}`)
+        fetch(`${process.env.VUE_APP_API_URL}/timeslots/${this.$route.params.scheduleChoice}`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+        })
         .then(response => {
             return response.json();
         }).then ((timeSlots) => {
@@ -82,7 +90,14 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        fetch(`${process.env.VUE_APP_API_URL}/studentsBySchedule/${this.$route.params.scheduleChoice}`)
+
+        fetch(`${process.env.VUE_APP_API_URL}/studentsBySchedule/${this.$route.params.scheduleChoice}`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+        })
         .then(response => {
             return response.json();
         }).then ((studentsBySchedule) => {
@@ -90,7 +105,14 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        fetch(`${process.env.VUE_APP_API_URL}/employersBySchedule/${this.$route.params.scheduleChoice}`)
+
+        fetch(`${process.env.VUE_APP_API_URL}/employersBySchedule/${this.$route.params.scheduleChoice}`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+        })
         .then(response => {
             return response.json();
         }).then ((employers) => {
@@ -98,7 +120,14 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        fetch(`${process.env.VUE_APP_API_URL}/schedule/${this.$route.params.scheduleChoice}`)
+        
+        fetch(`${process.env.VUE_APP_API_URL}/schedule/${this.$route.params.scheduleChoice}`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+        })
         .then(response => {
             return response.json();
         }).then ((schedule) => {
@@ -106,7 +135,14 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        fetch(`${process.env.VUE_APP_API_URL}/students`)
+
+        fetch(`${process.env.VUE_APP_API_URL}/students`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+        })
         .then(response => {
             return response.json();
         }).then ((students) => {

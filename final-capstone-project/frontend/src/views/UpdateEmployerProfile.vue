@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
     name: "updateProfile",
     props: [
@@ -76,12 +78,14 @@ export default {
     ],
     methods: {
         updateEmployerProfile() {
-            fetch(`${process.env.VUE_APP_API_URL}/employers/update`, {
-                method: 'PUT',
-                headers: {
-                    "Content-Type" : "application/json"
-                },
-                body: JSON.stringify(this.employer),
+            fetch(`${process.env.VUE_APP_API_URL}/employers/update`,  {
+            method: 'PUT',
+            headers: new Headers({
+                Authorization: 'Bearer ' + auth.getToken(),
+                "Content-Type": "application/json"
+            }),
+            body: JSON.stringify(this.employer),
+            credentials: 'same-origin'
             })
             .then((response) => {
                 if (response.ok) {
@@ -93,3 +97,6 @@ export default {
     }
 }
 </script>
+
+
+

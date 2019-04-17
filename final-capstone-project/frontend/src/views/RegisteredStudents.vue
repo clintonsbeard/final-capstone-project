@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
   name: "registered-students",
   props: {
@@ -31,7 +33,13 @@ export default {
   },
   created() {
     //load the list of employers for a choice - dropdown in student form
-    fetch(`${process.env.VUE_APP_API_URL}/students`)
+    fetch(`${process.env.VUE_APP_API_URL}/students`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+      })
       .then(response => {
         return response.json();
       })

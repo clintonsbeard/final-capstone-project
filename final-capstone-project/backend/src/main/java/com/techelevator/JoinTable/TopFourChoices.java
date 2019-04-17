@@ -69,5 +69,5 @@ public class TopFourChoices {
 	public void setChoiceNumber(int choiceNumber) {
 		this.choiceNumber = choiceNumber;
 	}
-	
+
 }

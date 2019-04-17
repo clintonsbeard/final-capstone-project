@@ -8,6 +8,8 @@ VALUES ('admin', 'jy072QcO/8+CBk2Zdo2jVQ==', 'YOTgqH3wx3OfAUugPhLjwtWcsH/GQuo+pF
 INSERT INTO app_user (user_name, password, salt, role) 
 VALUES ('dvega', 'FjZDm+sndmsdEDwNtfr6NA==', 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=', 'student');
 
+---Employers
+
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
 VALUES ('SPL Inc', 'Consulting Firm', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'None');
 
@@ -41,6 +43,8 @@ VALUES ('Tech Elevator', 'Not an elevator repair school', 'test@test.com', 'http
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
 VALUES ('The Picture of Dorian Gray', 'Don''t do it', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 3, 'Yes');
 
+---- Students
+
 INSERT INTO student (first_name, last_name) 
 VALUES ('Lincoln', 'Guthrie');
 
@@ -52,6 +56,29 @@ VALUES ('Stephanie', 'Lopez');
 
 INSERT INTO student (first_name, last_name) 
 VALUES ('Bindiya', 'Sameem');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('James', 'Cameron');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Alex', 'Harty');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Quinn', 'Sprouse');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Caitlin', 'Ho');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Ty', 'Owens');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Anish', 'Niroula');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Dominick', 'Hemphill');
+
+----Top 4 INSERTS
 
 INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
 VALUES (1, 1, 1);
@@ -100,6 +127,90 @@ VALUES (4, 2, 3);
 
 INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
 VALUES (4, 3, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (5, 11, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (5, 9, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (5, 7, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (5, 8, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (6, 7, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (6, 2, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (6, 6, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (6, 4, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (7, 8, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (7, 2, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (7, 5, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (7, 11, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (8, 3, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (8, 4, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (8, 1, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (8, 2, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (9, 9, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (9, 10, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (9, 11, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (9, 2, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (10, 3, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (10, 4, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (10, 1, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (10, 2, 4);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (11, 3, 1);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (11, 4, 2);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (11, 1, 3);
+
+INSERT INTO student_employer_top_four (student_id, employer_id, choice_number) 
+VALUES (11, 2, 4);
 
 --RANK ALL INSERTS
 
@@ -223,11 +334,225 @@ VALUES (4, 2, 9);
 INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
 VALUES (4, 3, 10);
 
-INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (5, 2, 10);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (6, 2, 10);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (7, 2, 10);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (8, 2, 10);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (9, 2, 10);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (10, 2, 10);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 3, 1);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 4, 2);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 5, 3);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 6, 4);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 7, 5);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 8, 6);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 9, 7);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 10, 8);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 1, 9);
+
+INSERT INTO student_employer_rank_all (student_id, employer_id, choice_number) 
+VALUES (11, 2, 10);
+
+---Schedule
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '16:00:00', '16:30:00');
+
+INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
+VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '15:00:00', '15:30:00');
+
+----Employer Schedule
 
 INSERT INTO employer_schedule (employer_id, schedule_id) 
 VALUES (1, 1);
@@ -267,6 +592,8 @@ VALUES (10, 2);
 
 INSERT INTO employer_schedule (employer_id, schedule_id) 
 VALUES (10, 1);
+
+---Admin Choice
 
 INSERT INTO admin_choice (choice)
 VALUES (false);

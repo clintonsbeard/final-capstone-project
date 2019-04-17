@@ -8,10 +8,10 @@ public interface EmployerProfileDAO {
     
     public List<EmployerProfile> showAllEmployers();
     
+    public List<EmployerProfile> showEmployersByScheduleId(int scheduleId);
+    
     public EmployerProfile insertEmployerProfile(EmployerProfile employerProfile);
     
     public EmployerProfile updateEmployerProfile(EmployerProfile employerProfile);
-    
-	public List<EmployerProfile> showEmployersByScheduleId(int employerId);
-    
+        
 }

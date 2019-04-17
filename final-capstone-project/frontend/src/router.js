@@ -14,6 +14,7 @@ import ChangeRanking from './views/ChangeRanking.vue'
 import Register from './views/Register.vue'
 import RegisteredStudents from './views/RegisteredStudents.vue'
 import Schedule from './views/Schedule.vue'
+import ChooseSchedule from './views/ChooseSchedule.vue'
 
 import auth from './auth'
 
@@ -78,22 +79,28 @@ const router = new Router({
     {
       path: '/set-schedule',
       name: 'set-schedule',
-      component: SetSchedule,
+      component: SetSchedule
     },
     {
       path: '/change-ranking',
       name: 'change-ranking',
-      component: ChangeRanking,
+      component: ChangeRanking
     },
     {
       path: '/registered-students',
       name: 'registered-students',
-      component: RegisteredStudents,
+      component: RegisteredStudents
     },
     {
-      path: '/schedule',
+      path: '/schedule/:scheduleChoice',
       name: 'schedule',
       component: Schedule,
+      props: true
+    },
+    {
+      path: '/choose-schedule',
+      name: 'choose-schedule',
+      component: ChooseSchedule
     }
   ]
 });

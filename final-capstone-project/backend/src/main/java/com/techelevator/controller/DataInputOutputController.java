@@ -59,7 +59,7 @@ public class DataInputOutputController {
     @Autowired
     private FinalScheduleDAO finalScheduleDAO;
     
-    @RequestMapping(path="/employerForm", method=RequestMethod.POST)
+    @RequestMapping(path="/employerForm", method=RequestMethod.POST) 
     @ResponseStatus(HttpStatus.CREATED)
     public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
          return employerProfileDAO.insertEmployerProfile(employerProfile);

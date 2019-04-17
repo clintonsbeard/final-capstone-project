@@ -8,6 +8,10 @@ VALUES ('admin', 'jy072QcO/8+CBk2Zdo2jVQ==', 'YOTgqH3wx3OfAUugPhLjwtWcsH/GQuo+pF
 INSERT INTO app_user (user_name, password, salt, role) 
 VALUES ('dvega', 'FjZDm+sndmsdEDwNtfr6NA==', 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=', 'student');
 
+INSERT INTO app_user (user_name, password, salt, role) 
+VALUES ('student', '07tHA1JERzCEni4VFTeh0w==', 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=', 'student');
+
+
 ---Employers
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
@@ -20,7 +24,7 @@ INSERT INTO employer (company_name, company_summary, email, website, positions_s
 VALUES ('CJB Beardsley', 'Taking Over the World with Vue', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 2, 'None');
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
-VALUES ('AEP Electric Company', 'Gas', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'None');
+VALUES ('Postman', 'API Development Environment', 'test@test.com', 'http://www.test.com', 'Postman an API Develpment Environmen that flexibly integrates with the software development cycle', 'Java', 1, 'None');
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
 VALUES ('Stepdad Corporation', 'Sorry', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'Lactose Intolerant');
@@ -41,42 +45,42 @@ INSERT INTO employer (company_name, company_summary, email, website, positions_s
 VALUES ('Tech Elevator', 'Not an elevator repair school', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'None');
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
-VALUES ('The Picture of Dorian Gray', 'Don''t do it', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 3, 'Yes');
+VALUES ('The Picture of Dorian Gray', 'Don''t do it', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'Yes');
 
 ---- Students
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Lincoln', 'Guthrie');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Clint', 'Beardsley');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Stephanie', 'Lopez');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Bindiya', 'Sameem');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('James', 'Cameron');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Alex', 'Harty');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Quinn', 'Sprouse');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Caitlin', 'Ho');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Ty', 'Owens');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Anish', 'Niroula');
 
-INSERT INTO student (first_name, last_name)
-VALUES ('Dominick', 'Hemphill');;
+INSERT INTO student (first_name, last_name) 
+VALUES ('Dominick', 'Hemphill');
 
 ----Top 4 INSERTS
 
@@ -547,10 +551,10 @@ VALUES (11, 2, 10);
 ---Schedule
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '16:00:00', '16:30:00');
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '15:00:00', '15:30:00');
 
 ----Employer Schedule
 
@@ -589,6 +593,9 @@ VALUES (10, 1);
 
 INSERT INTO employer_schedule (employer_id, schedule_id) 
 VALUES (10, 2);
+
+INSERT INTO employer_schedule (employer_id, schedule_id) 
+VALUES (10, 1);
 
 ---Admin Choice
 

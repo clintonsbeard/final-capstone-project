@@ -18,6 +18,8 @@ import com.techelevator.AdminFormChoice.AdminChoice;
 import com.techelevator.AdminFormChoice.AdminChoiceDAO;
 import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
+import com.techelevator.FinalSchedule.model.FinalSchedule;
+import com.techelevator.FinalSchedule.model.FinalScheduleDAO;
 import com.techelevator.JoinTable.StudentRanksAllEmployers;
 import com.techelevator.JoinTable.StudentRanksAllEmployersDAO;
 import com.techelevator.JoinTable.TopFourChoices;
@@ -53,6 +55,9 @@ public class DataInputOutputController {
     
     @Autowired
     private StudentRanksAllEmployersDAO studentRanksAllEmployersDAO;
+    
+    @Autowired
+    private FinalScheduleDAO finalScheduleDAO;
     
     @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -136,6 +141,16 @@ public class DataInputOutputController {
     @RequestMapping(path="/schedule/{id}", method=RequestMethod.GET)
     public Schedule getScheduleById(@PathVariable int id) {
     	return scheduleDAO.getSchedulesById(id);
+    }
+    
+    @RequestMapping(path="/submitFinalSchedule", method=RequestMethod.POST)
+    public void insertFinalSchedule(@RequestBody FinalSchedule finalSchedule) {
+    	finalScheduleDAO.submitFinalSchedule(finalSchedule);
+    }
+    
+    @RequestMapping(path="/getFinalSchedule/{id}", method=RequestMethod.GET)
+    public List<FinalSchedule> getFinalScheduleById(@PathVariable int id) {
+    	return finalScheduleDAO.getFinalScheduleById(id);
     }
 
 }

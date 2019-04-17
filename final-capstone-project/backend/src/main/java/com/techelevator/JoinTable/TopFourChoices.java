@@ -13,6 +13,7 @@ public class TopFourChoices {
 	private LocalDate employerPreferredDay;
 	private Time startTime;
 	private Time endTime;
+	private int choiceNumber;
 	
 	public int getStudentId() {
 		return studentId;
@@ -62,4 +63,11 @@ public class TopFourChoices {
 	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
 	}
+	public int getChoiceNumber() {
+		return choiceNumber;
+	}
+	public void setChoiceNumber(int choiceNumber) {
+		this.choiceNumber = choiceNumber;
+	}
+	
 }

@@ -52,6 +52,28 @@ public class JDBCScheduleDAO implements ScheduleDAO {
 		}
 		return listOfSchedules;
 	}
+	
+	@Override
+	public Schedule getSchedulesById(int scheduleId) {
+		String selectSql = "SELECT start_time, end_time, interview_length, "
+				+ "break_start_time, break_end_time from schedule " 
+				+ "WHERE schedule_id = ?";
+				
+		SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql, scheduleId);
+		
+		results.next();
+		return mapRowToSqlResultsById(results);
+	}
+	
+	private Schedule mapRowToSqlResultsById (SqlRowSet results) {
+        Schedule schedule = new Schedule();
+        schedule.setStartTime(results.getTime("start_time").toLocalTime());
+        schedule.setEndTime(results.getTime("end_time").toLocalTime());
+        schedule.setInterviewLength(results.getInt("interview_length"));
+        schedule.setBreakStartTime(results.getTime("break_start_time").toLocalTime());
+        schedule.setBreakEndTime(results.getTime("break_end_time").toLocalTime());
+        return schedule;
+    }
 
 	private Schedule mapRowToSqlResults (SqlRowSet results) {
         Schedule schedule = new Schedule();

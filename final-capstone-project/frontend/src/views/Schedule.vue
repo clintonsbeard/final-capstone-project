@@ -23,12 +23,12 @@
 
                 <hr class="my-4">
 
-                <form>
+                <form v-on:submit.prevent="submitFinalSchedule()">
                 <table class="table table-responsive table-borderless table-hover table-striped">
                 <thead>
                     <tr>
                         <th scope="col" style="width: 5%"></th>
-                        <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">{{employer.companyName}}</th>
+                        <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%"><input type="hidden" v-model="finalSchedule[employer.employerId]">{{employer.companyName}}</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -41,9 +41,9 @@
                             <tr v-else>
                                 <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
                                 <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
-                                    <select class="form-control" required>
+                                    <select class="form-control" v-model="finalSchedule[employer.employerId + time[0]]">
                                         <option value="" selected disabled>Choose...</option>
-                                        <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
+                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]">{{student.firstName}} {{student.lastName}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -72,7 +72,11 @@ export default {
             studentsBySchedule: [],
             students: [],
             timeSlots: [],
-            schedule: []
+            schedule: [],
+            finalSchedule: [{
+	            scheduleId: this.scheduleChoice,
+                studentNames: []
+            }]
         }
     },
     created() {
@@ -149,7 +153,25 @@ export default {
             this.students = students;
         }).catch(err => {
             console.log(err);
-        });
+        })
+    },
+    methods: {
+        submitFinalSchedule() {
+            console.table(this.finalSchedule)
+            fetch(`${process.env.VUE_APP_API_URL}/submitFinalSchedule`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify(this.finalSchedule),
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .catch((err) => console.error(err));
+        }
     },
     computed: {
         timeArray() {
@@ -162,6 +184,9 @@ export default {
             })
         })
         return timeArray;
+        },
+        getStudents() {
+            return [...this.students];
         }
     }
 }

@@ -55,6 +55,14 @@ CREATE TABLE schedule(
   
 );
 
+CREATE TABLE final_schedule(
+
+  slot_id SERIAL PRIMARY KEY,
+  schedule_id INT NOT NULL,
+  student_name TEXT NOT NULL
+  
+);
+
 CREATE TABLE employer_schedule(
 
   employer_id SERIAL,

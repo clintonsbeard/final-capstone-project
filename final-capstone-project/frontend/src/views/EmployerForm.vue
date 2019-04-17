@@ -7,7 +7,7 @@
                 <form v-on:submit.prevent="submitEmployerForm()">
                     <div class="form-group">
                         <label for="name">Company Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Company Name..." v-model="employer.name" required>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Company Name..." v-model="employer.companyName" required>
                     </div>
                     <div class="form-group">
                         <label for="companySummary">Company Summary</label>

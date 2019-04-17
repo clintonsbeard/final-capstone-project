@@ -12,12 +12,9 @@
                 </thead>
                     <tbody>
                         <tr>
-                            <td v-for="student in students" :key="student.studentId">
+                            <td v-for="student in students" :key="student.employerId">
                                 <ol>
-                                    <li>Test</li>
-                                    <li>Test</li>
-                                    <li>Test</li>
-                                    <li>Test</li>
+                                    <li v-for="studentSchedule in studentsBySchedule" v-if="student.studentId === studentSchedule.studentId" :key="studentSchedule.studentId">{{studentSchedule.companyName}}</li>
                                 </ol>
                             </td>
                         </tr>
@@ -30,80 +27,26 @@
                 <table class="table table-responsive table-borderless table-hover table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" style="width: 6%"></th>
+                        <th scope="col" style="width: 5%"></th>
                         <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">{{employer.companyName}}</th>
                     </tr>
                 </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">2:00 - 2:30 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">2:30 - 3:00 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">3:00 - 3:30 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="table-warning">
-                            <th scope="row" class="text-center align-middle">3:30 - 4:00 pm</th>
-                            <td colspan="11" class="text-center align-middle">
-                                BREAK
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">4:00 - 4:30 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">4:30 - 5:00 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">5:00 - 5:30 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center align-middle">5:30 - 6:00 pm</th>
-                            <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle">
-                                <select class="form-control" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
-                        </tr>
+                            <tr v-for="time in timeArray" class="table-warning" v-if="time[0] === schedule.breakStartTime">
+                                <th scope="row" class="text-center align-middle">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
+                                <td :colspan="employers.length" class="text-center align-middle">
+                                    BREAK
+                                </td>
+                            </tr>
+                            <tr v-else>
+                                <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
+                                <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
+                                    <select class="form-control" required>
+                                        <option value="" selected disabled>Choose...</option>
+                                        <option v-for="student in students" :key="student.studentId">{{student.firstName}} {{student.lastName}}</option>
+                                    </select>
+                                </td>
+                            </tr>
                     </tbody>
                 </table>
                 <div class="text-center">
@@ -117,15 +60,37 @@
 
 <script>
 export default {
+    props: [
+        'scheduleChoice'
+    ],
     data() {
         return{
             employers: [],
             everything: [],
-            students: []
+            studentsBySchedule: [],
+            students: [],
+            timeSlots: [],
+            schedule: []
         }
     },
-    created(){
-        fetch(`${process.env.VUE_APP_API_URL}/studentForm`)
+    created() {
+        fetch(`${process.env.VUE_APP_API_URL}/timeslots/${this.$route.params.scheduleChoice}`)
+        .then(response => {
+            return response.json();
+        }).then ((timeSlots) => {
+            this.timeSlots = timeSlots;
+        }).catch(err => {
+            console.log(err);
+        });
+        fetch(`${process.env.VUE_APP_API_URL}/studentsBySchedule/${this.$route.params.scheduleChoice}`)
+        .then(response => {
+            return response.json();
+        }).then ((studentsBySchedule) => {
+            this.studentsBySchedule = studentsBySchedule;
+        }).catch(err => {
+            console.log(err);
+        });
+        fetch(`${process.env.VUE_APP_API_URL}/employersBySchedule/${this.$route.params.scheduleChoice}`)
         .then(response => {
             return response.json();
         }).then ((employers) => {
@@ -133,12 +98,11 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        fetch(`${process.env.VUE_APP_API_URL}/getEverything`)
+        fetch(`${process.env.VUE_APP_API_URL}/schedule/${this.$route.params.scheduleChoice}`)
         .then(response => {
             return response.json();
-        }).then ((everything) => {
-            this.everything = everything;
-            console.table(everything);
+        }).then ((schedule) => {
+            this.schedule = schedule;   
         }).catch(err => {
             console.log(err);
         });
@@ -147,10 +111,22 @@ export default {
             return response.json();
         }).then ((students) => {
             this.students = students;
-            console.table(students);
         }).catch(err => {
             console.log(err);
         });
+    },
+    computed: {
+        timeArray() {
+            let timeSlots = [this.timeSlots]
+            let timeArray = []
+        timeSlots.forEach(timeSlot => {
+            timeSlot.forEach(slot => {
+                slot = String(slot)
+                timeArray.push(slot.split(" "))
+            })
+        })
+        return timeArray;
+        }
     }
 }
 </script>

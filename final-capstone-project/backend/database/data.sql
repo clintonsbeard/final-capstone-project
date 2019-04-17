@@ -58,6 +58,7 @@ INSERT INTO student (first_name, last_name)
 VALUES ('Bindiya', 'Sameem');
 
 INSERT INTO student (first_name, last_name) 
+<<<<<<< HEAD
 VALUES (‘James’, ‘Cameron’);
 
 INSERT INTO student (first_name, last_name) 
@@ -77,6 +78,27 @@ VALUES (‘Anish’, ’Niroula’);
 
 INSERT INTO student (first_name, last_name) 
 VALUES (‘Dominick’, ’Hemphill’);
+=======
+VALUES ('James', 'Cameron');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Alex', 'Harty');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Quinn', 'Sprouse');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Caitlin', 'Ho');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Ty', 'Owens');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Anish', 'Niroula');
+
+INSERT INTO student (first_name, last_name) 
+VALUES ('Dominick', 'Hemphill');
+>>>>>>> bee0855dab29f006347bff6b9be7011134f309a4
 
 ----Top 4 INSERTS
 
@@ -547,10 +569,12 @@ VALUES (11, 2, 10);
 ---Schedule
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '16:00:00', '16:30:00');
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '15:00:00', '15:30:00');
+
+----Employer Schedule
 
 ----Employer Schedule
 

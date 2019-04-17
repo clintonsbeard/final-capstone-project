@@ -112,4 +112,27 @@ public class JDBCEmployerProfileDAO implements EmployerProfileDAO{
         return employerProfile;
     }
     
+    private EmployerProfile mapRowToSqlResultsById (SqlRowSet results) {
+        EmployerProfile empProf = new EmployerProfile();
+        empProf.setEmployerId(results.getInt("employer_id"));
+        empProf.setCompanyName(results.getString("company_name"));
+        
+        return empProf;
+    }
+    
+    @Override
+    public List<EmployerProfile> showEmployersByScheduleId(int scheduleId) {
+        List<EmployerProfile> listOfEmployers = new ArrayList<>();
+        String selectSql = "SELECT employer.employer_id, employer.company_name FROM employer " 
+                + "JOIN employer_schedule on employer.employer_id = employer_schedule.employer_id " 
+                + "WHERE employer_schedule.schedule_id = ?";
+        
+        SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql, scheduleId);
+        
+        while(results.next()) {
+            listOfEmployers.add(mapRowToSqlResultsById(results));
+        }
+        return listOfEmployers;
+    }
+    
 }

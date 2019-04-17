@@ -29,8 +29,6 @@
 <script>
 export default {
   name: "studentForm",
-  props: {
-  },
   data() {
     return {
       employers: [],

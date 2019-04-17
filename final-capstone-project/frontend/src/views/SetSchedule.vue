@@ -66,10 +66,9 @@ export default {
                 body: JSON.stringify(this.schedule)
             })
             .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                this.$router.push('/thank-you');
+                if (response.ok) {
+                    this.$router.push('/thank-you');
+                }
             })
             .catch((err) => console.error(err));
         }

@@ -37,6 +37,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <router-link class="dropdown-item" to="/set-schedule">Add Matchmaking Day</router-link>
                             <router-link class="dropdown-item" to="/change-ranking">Change Ranking System</router-link>
+                            <router-link class="dropdown-item" to="/choose-schedule">Finalize and Publish Schedule</router-link>
                         </div>
                     </li>
                     <li class="nav-item">

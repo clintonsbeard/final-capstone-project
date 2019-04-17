@@ -5,9 +5,10 @@ import router from './router'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'vue-moment'
-import draggable from 'vuedraggable'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-Vue.use(draggable);
 Vue.config.productionTip = false
 
 new Vue({
@@ -16,3 +17,4 @@ new Vue({
 }).$mount('#app')
 
 Vue.use(require('vue-moment'));
+Vue.use(BootstrapVue)

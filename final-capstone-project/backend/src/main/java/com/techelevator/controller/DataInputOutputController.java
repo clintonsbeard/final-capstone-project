@@ -80,7 +80,7 @@ public class DataInputOutputController {
 	
 	@RequestMapping(path="/schedules/{id}", method=RequestMethod.GET)
 	public List<EmployerProfile> getAllEmployersIdByScheduleId(@PathVariable int id){
-	    return employerProfileDAO.showEmployersForScheduleId(id);
+	    return employerProfileDAO.showEmployersByScheduleId(id);
 	}
 	
 	@RequestMapping(path="/schedule/add", method=RequestMethod.POST)

@@ -28,7 +28,7 @@
 
 <!-- Uncomment/comment to remove authorization -->
 
-<!--       <mvc:interceptors>
+      <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.techelevator.authentication.JwtAuthInterceptor">
@@ -40,13 +40,13 @@
                 </property>
             </bean>
         </mvc:interceptor>
-    </mvc:interceptors> -->
+    </mvc:interceptors> 
     
     
 <!-- End Commented out section -->
-<!--     <mvc:cors>
+     <mvc:cors>
         <mvc:mapping path="/**" allowed-methods="*"/>
-    </mvc:cors>  -->
+    </mvc:cors>
 
     <!-- This view resolver contains logic for translating a logical view name 
         (e.g. "homePage") into a JSP file path (e.g. "/WEB-INF/jsp/homePage.jsp") -->

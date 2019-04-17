@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.text.ParseException;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
 import com.techelevator.JoinTable.StudentRanksAllEmployers;
 import com.techelevator.JoinTable.StudentRanksAllEmployersDAO;
+import com.techelevator.JoinTable.TopFourChoices;
+import com.techelevator.JoinTable.TopFourChoicesDAO;
 import com.techelevator.Schedule.model.Schedule;
 import com.techelevator.Schedule.model.ScheduleDAO;
 import com.techelevator.Student.model.Student;
@@ -43,6 +47,9 @@ public class DataInputOutputController {
     
     @Autowired
     private StudentAllDAO studentAllDAO;
+    
+    @Autowired
+    private TopFourChoicesDAO topFourChoicesDAO;
     
     @Autowired
     private StudentRanksAllEmployersDAO studentRanksAllEmployersDAO;
@@ -79,8 +86,9 @@ public class DataInputOutputController {
     }
     
     @RequestMapping(path="/schedule/add", method=RequestMethod.POST)
-    public Schedule addDayToSchedule(@RequestBody Schedule schedule){
-        return scheduleDAO.addDayToSchedule(schedule);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addDayToSchedule(@RequestBody Schedule schedule){
+        scheduleDAO.addDayToSchedule(schedule);
     }
     
     @RequestMapping(path="/toggleRankingChoice", method=RequestMethod.PUT)
@@ -108,6 +116,26 @@ public class DataInputOutputController {
     @RequestMapping(path="/getEverything", method=RequestMethod.GET)
     public List<StudentRanksAllEmployers> getEverything() {
     	return studentRanksAllEmployersDAO.getStudentRankingAllEmployersInfo();
+    }
+    
+    @RequestMapping(path="/timeslots/{id}", method=RequestMethod.GET)
+    public List<String> getTimeSlots(@PathVariable int id) throws ParseException {
+    	return scheduleDAO.getAllTimeSlots(scheduleDAO.getSchedulesById(id));
+    }
+    
+    @RequestMapping(path="/employersBySchedule/{id}", method=RequestMethod.GET)
+    public List<EmployerProfile> getEmployersInSchedule(@PathVariable int id) throws ParseException {
+    	return employerProfileDAO.showEmployersByScheduleId(id);
+    }
+
+    @RequestMapping(path="/studentsBySchedule/{id}", method=RequestMethod.GET)
+    public List<TopFourChoices> getStudentsBySchedule(@PathVariable int id) {
+    	return topFourChoicesDAO.getTopFourChoicesOfAllStudentsByScheduleId(id);
+    }
+    
+    @RequestMapping(path="/schedule/{id}", method=RequestMethod.GET)
+    public Schedule getScheduleById(@PathVariable int id) {
+    	return scheduleDAO.getSchedulesById(id);
     }
 
 }

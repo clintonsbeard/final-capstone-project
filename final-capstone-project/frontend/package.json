@@ -11,11 +11,12 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.18",
     "core-js": "^2.6.5",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
     "popper.js": "^1.15.0",
-    "vue": "^2.6.6",
+    "vue": "^2.6.10",
     "vue-moment": "^4.0.0",
     "vue-router": "^3.0.1"
   },

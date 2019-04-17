@@ -81,7 +81,6 @@ public class Schedule {
 	public void setBreakEndTime(LocalTime breakEndTime) {
 		this.breakEndTime = breakEndTime;
 	}
-	
 
 	public String incrementTime(LocalTime startTime, int lengthOfSlot) throws ParseException {
 		
@@ -96,7 +95,11 @@ public class Schedule {
 		return newTime;
 	}
 	
-	public List<String> listOfTimeSlots(LocalTime startTime, LocalTime endTime, int lengthOfSlot) throws ParseException{
+	/*
+	 * This method gives list of Time Slots on seprate index
+	 * This has to be called first
+	 */
+	public List<String> listOfTimeSlots(LocalTime startTime, LocalTime endTime, int lengthOfSlot) throws ParseException {
 		
 		List<String> listOfSlots = new ArrayList<>();
 		listOfSlots.add(startTime.toString());
@@ -120,17 +123,26 @@ public class Schedule {
 		return listOfSlots;
 	}
 	
-	public List<String> formattedSlots(List<String> oldList) throws ParseException{
+	/*
+	 * this method takes String list of Time Slots on separate index from listOfTimeSlots() method
+	 * and return a formatted version of <Start Time to End Time>
+	 */
+	public List<String> formattedSlots(List<String> listOfTimeSlots) throws ParseException {
 		
 		List<String> newList = new ArrayList<>();
 		
-		for(int i = 0; i < oldList.size() - 1; i++) {
+		for(int i = 0; i < listOfTimeSlots.size() - 1; i++) {
 			StringBuilder makeSlotString = new StringBuilder();
-			makeSlotString.append(oldList.get(i));
+			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			Date d = df.parse(listOfTimeSlots.get(i));
+			
+			makeSlotString.append(listOfTimeSlots.get(i));
 			makeSlotString.append(new String(" to "));
-			makeSlotString.append(oldList.get(i+1));
+			makeSlotString.append(listOfTimeSlots.get(i+1));
+			
 			newList.add(makeSlotString.toString());
 		}
 		return newList;
 	}
+	
 }

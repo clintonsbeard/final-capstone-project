@@ -45,60 +45,38 @@ VALUES ('The Picture of Dorian Gray', 'Don''t do it', 'test@test.com', 'http://w
 
 ---- Students
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Lincoln', 'Guthrie');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Clint', 'Beardsley');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Stephanie', 'Lopez');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Bindiya', 'Sameem');
 
-INSERT INTO student (first_name, last_name) 
-<<<<<<< HEAD
-VALUES (‘James’, ‘Cameron’);
-
-INSERT INTO student (first_name, last_name) 
-VALUES (‘Alex’, ‘Harty’);
-
-INSERT INTO student (first_name, last_name) 
-VALUES (‘Quinn’, ‘Sprouse’);
-
-INSERT INTO student (first_name, last_name) 
-VALUES (‘Caitlin’, ‘Ho’);
-
-INSERT INTO student (first_name, last_name) 
-VALUES (‘Ty’, ‘Owens’);
-
-INSERT INTO student (first_name, last_name) 
-VALUES (‘Anish’, ’Niroula’);
-
-INSERT INTO student (first_name, last_name) 
-VALUES (‘Dominick’, ’Hemphill’);
-=======
+INSERT INTO student (first_name, last_name)
 VALUES ('James', 'Cameron');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Alex', 'Harty');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Quinn', 'Sprouse');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Caitlin', 'Ho');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Ty', 'Owens');
 
-INSERT INTO student (first_name, last_name) 
+INSERT INTO student (first_name, last_name)
 VALUES ('Anish', 'Niroula');
 
-INSERT INTO student (first_name, last_name) 
-VALUES ('Dominick', 'Hemphill');
->>>>>>> bee0855dab29f006347bff6b9be7011134f309a4
+INSERT INTO student (first_name, last_name)
+VALUES ('Dominick', 'Hemphill');;
 
 ----Top 4 INSERTS
 
@@ -569,12 +547,10 @@ VALUES (11, 2, 10);
 ---Schedule
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '16:00:00', '16:30:00');
+VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '15:00:00', '15:30:00');
-
-----Employer Schedule
+VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
 
 ----Employer Schedule
 
@@ -613,9 +589,6 @@ VALUES (10, 1);
 
 INSERT INTO employer_schedule (employer_id, schedule_id) 
 VALUES (10, 2);
-
-INSERT INTO employer_schedule (employer_id, schedule_id) 
-VALUES (10, 1);
 
 ---Admin Choice
 

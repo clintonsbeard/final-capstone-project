@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                     <tbody>
-                            <tr v-for="time in timeArray" class="table-warning" v-if="time[0] === schedule.breakStartTime">
+                            <tr v-for="(time, index) in timeArray" :key="index" class="table-warning" v-if="time[0] === schedule.breakStartTime">
                                 <th scope="row" class="text-center align-middle">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
                                 <td :colspan="employers.length" class="text-center align-middle">
                                     BREAK
@@ -121,7 +121,6 @@ export default {
     },
     methods: {
         submitFinalSchedule() {
-            console.table(this.finalSchedule)
             fetch(`${process.env.VUE_APP_API_URL}/submitFinalSchedule`, {
                 method: 'POST',
                 headers: {

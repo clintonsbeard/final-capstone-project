@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <vue-headful title="Tech Elevator Matchmaking"/>
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">
                 <img src="./assets/img/te-logo.png" height="35" class="d-inline-block align-top">

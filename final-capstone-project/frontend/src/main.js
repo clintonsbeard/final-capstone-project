@@ -1,13 +1,25 @@
-import Vue from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarDay } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import App from './App.vue'
-import router from './router'
-
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'vue-moment'
-import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import BootstrapVue from 'bootstrap-vue'
+import router from './router'
+import 'vue-moment'
+import Vue from 'vue'
+
+library.add(faUsers)
+library.add(faClock)
+library.add(faCalendarDay)
+library.add(faMapMarkedAlt)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 

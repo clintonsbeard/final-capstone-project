@@ -1,48 +1,46 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import ChangeRanking from './views/ChangeRanking.vue'
+import ChooseSchedule from './views/ChooseSchedule.vue'
+import EmployerForm from './views/EmployerForm.vue'
+import EmployerProfile from './views/EmployerProfile.vue'
+import Employers from './views/Employers.vue'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
-import EmployerForm from './views/EmployerForm.vue'
-import Employers from './views/Employers.vue'
-import EmployerProfile from './views/EmployerProfile.vue'
-import StudentForm from './views/StudentForm.vue'
 import Logout from './views/Logout.vue'
-import ThankYou from './views/ThankYou.vue'
-import SetSchedule from './views/SetSchedule.vue'
-import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
-import ChangeRanking from './views/ChangeRanking.vue'
 import Register from './views/Register.vue'
 import RegisteredStudents from './views/RegisteredStudents.vue'
+import Router from 'vue-router'
 import Schedule from './views/Schedule.vue'
-import ChooseSchedule from './views/ChooseSchedule.vue'
+import SetSchedule from './views/SetSchedule.vue'
+import StudentForm from './views/StudentForm.vue'
+import ThankYou from './views/ThankYou.vue'
+import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
+import Vue from 'vue'
+import vueHeadful from 'vue-headful';
 
-// import auth from './auth'
+Vue.component('vue-headful', vueHeadful);
 
 Vue.use(Router)
+
+// import auth from './auth'
 
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: '/change-ranking',
+      name: 'change-ranking',
+      component: ChangeRanking
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: '/choose-schedule',
+      name: 'choose-schedule',
+      component: ChooseSchedule
     },
     {
       path: '/employer-form',
       name: 'employer-form',
       component: EmployerForm
-    },
-    {
-      path: '/employers',
-      name: 'employers',
-      component: Employers
     },
     {
       path: '/employers/:employer_id',
@@ -51,9 +49,22 @@ const router = new Router({
       props: true
     },
     {
-      path: '/student-form',
-      name: 'student-form',
-      component: StudentForm
+      path: '/employers',
+      name: 'employers',
+      component: Employers
+    },
+    {
+      path: '/',
+      name: 'home',
+      component: Home,
+      meta: {
+        title: 'Tech Elevator'
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/logout',
@@ -61,30 +72,9 @@ const router = new Router({
       component: Logout
     },
     {
-      path: '/thank-you',
-      name: 'thank-you',
-      component: ThankYou
-    },
-    {
-      path: '/update-employer-profile/:employer_id',
-      name: 'update-employer-profile',
-      component: UpdateEmployerProfile,
-      props: true
-    },
-    {
       path: '/register',
       name: 'register',
       component: Register
-    },
-    {
-      path: '/set-schedule',
-      name: 'set-schedule',
-      component: SetSchedule
-    },
-    {
-      path: '/change-ranking',
-      name: 'change-ranking',
-      component: ChangeRanking
     },
     {
       path: '/registered-students',
@@ -98,9 +88,25 @@ const router = new Router({
       props: true
     },
     {
-      path: '/choose-schedule',
-      name: 'choose-schedule',
-      component: ChooseSchedule
+      path: '/set-schedule',
+      name: 'set-schedule',
+      component: SetSchedule
+    },
+    {
+      path: '/student-form',
+      name: 'student-form',
+      component: StudentForm
+    },
+    {
+      path: '/thank-you',
+      name: 'thank-you',
+      component: ThankYou
+    },
+    {
+      path: '/update-employer-profile/:employer_id',
+      name: 'update-employer-profile',
+      component: UpdateEmployerProfile,
+      props: true
     }
   ]
 });

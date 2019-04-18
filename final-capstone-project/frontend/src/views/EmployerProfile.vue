@@ -7,9 +7,9 @@
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{employer.companyName}}</h5>
               <a href="#" class="edit-review">
-                  <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
-                      edit
-                  </router-link>
+                <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
+                  edit
+                </router-link>
               </a>
             </div>
             <hr>
@@ -43,7 +43,6 @@
 
 <script>
 export default {
-  name: "employerProfile",
   props: [
     'employer_id'
   ],

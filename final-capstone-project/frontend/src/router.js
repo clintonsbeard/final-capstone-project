@@ -1,5 +1,6 @@
 import ChangeRanking from './views/ChangeRanking.vue'
 import ChooseSchedule from './views/ChooseSchedule.vue'
+import ChooseViewSchedule from './views/ChooseViewSchedule.vue'
 import EmployerForm from './views/EmployerForm.vue'
 import EmployerProfile from './views/EmployerProfile.vue'
 import Employers from './views/Employers.vue'
@@ -14,6 +15,7 @@ import SetSchedule from './views/SetSchedule.vue'
 import StudentForm from './views/StudentForm.vue'
 import ThankYou from './views/ThankYou.vue'
 import UpdateEmployerProfile from './views/UpdateEmployerProfile.vue'
+import ViewSchedule from './views/ViewSchedule.vue'
 import Vue from 'vue'
 import vueHeadful from 'vue-headful';
 
@@ -21,7 +23,7 @@ Vue.component('vue-headful', vueHeadful);
 
 Vue.use(Router)
 
-import auth from './auth'
+// import auth from './auth'
 
 const router = new Router({
   mode: 'history',
@@ -36,6 +38,11 @@ const router = new Router({
       path: '/choose-schedule',
       name: 'choose-schedule',
       component: ChooseSchedule
+    },
+    {
+      path: '/choose-view-schedule',
+      name: 'choose-view-schedule',
+      component: ChooseViewSchedule
     },
     {
       path: '/employer-form',
@@ -106,6 +113,12 @@ const router = new Router({
       path: '/update-employer-profile/:employer_id',
       name: 'update-employer-profile',
       component: UpdateEmployerProfile,
+      props: true
+    },
+    {
+      path: '/view-schedule/:scheduleChoice',
+      name: 'view-schedule',
+      component: ViewSchedule,
       props: true
     }
   ]

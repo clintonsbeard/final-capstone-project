@@ -43,7 +43,7 @@
                                 <td v-for="(employer) in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
                                      <select class="form-control" v-model="finalSchedule['Key' + employer.employerId + time[0].replace(':','')]"> 
                                         <option value="" selected disabled>Choose...</option>
-                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]" :value="{startTime: time[0], endTime: time[2], studentId: student.studentId, employerId: employer.employerId}">{{student.firstName}} {{student.lastName}}</option>
+                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]" :value="{scheduleId: finalSchedule.scheduleId, startTime: time[0], endTime: time[2], studentId: student.studentId, employerId: employer.employerId}">{{student.firstName}} {{student.lastName}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -135,7 +135,6 @@ export default {
         .then(response => {
             return response.json();
         }).then ((schedule) => {
-            console.log(schedule)
             this.schedule = schedule;   
         }).catch(err => {
             console.log(err);
@@ -161,7 +160,7 @@ export default {
             //console.table(JSON.stringify(this.finalSchedule))
             //console.log(Object.keys(this.finalSchedule))
             const sendArray = [];
-            //sendArray.push("ScheduleId:" + this.finalSchedule.scheduleId);
+            // sendArray.push("ScheduleId: " + this.finalSchedule.scheduleId);
             Object.keys(this.finalSchedule).forEach(k => {
                 if(k.startsWith("Key")){
                     sendArray.push(this.finalSchedule[k])
@@ -175,14 +174,11 @@ export default {
                     Authorization: 'Bearer ' + auth.getToken(),   
                     "Content-Type" : "application/json"
                 },
-                body: JSON.stringify(this.sendArray),
+                body: JSON.stringify(sendArray),
                 credentials: 'same-origin'
-
             })
             .then((response) => {
-                if (response.ok) {
                     return response.json();
-                }
             })
             .catch((err) => console.error(err));
         }

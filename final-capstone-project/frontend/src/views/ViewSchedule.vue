@@ -2,13 +2,13 @@
     <div class="view-schedule">
         <div class="container-fluid">
             <div class="jumbotron">
-                <h1>View Final Schedule</h1>
+                <h1>View Final Schedule <small class="text-muted">{{ schedule.matchmakingDate | moment("dddd, MMMM Do YYYY") }} ({{ [ schedule.startTime, "HH:mm" ] | moment("h:mm A") }} - {{ [ schedule.endTime, "HH:mm" ] | moment("h:mm A") }})</small></h1>
                 <hr class="my-4">
                 <table class="table table-responsive table-borderless table-hover table-striped">
                 <thead>
                     <tr>
                         <th scope="col" style="width: 5%"></th>
-                        <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%"><input type="hidden" v-model="finalSchedule[employer.employerId]">{{employer.companyName}}</th>
+                        <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">{{employer.companyName}}</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -20,12 +20,7 @@
                         </tr>
                         <tr v-else>
                             <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
-                            <td v-for="(employer) in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
-                                    <select class="form-control" v-model="finalSchedule['Key' + employer.employerId + time[0].replace(':','')]"> 
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]" :value="{startTime: time[0], endTime: time[2], studentId: student.studentId, employerId: employer.employerId}">{{student.firstName}} {{student.lastName}}</option>
-                                </select>
-                            </td>
+                            <td v-for="student in filterStudents" :key="student.slotId" class="text-center align-middle" style="width: 5%">{{student.lastName}}, {{student.firstName}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -36,21 +31,13 @@
 
 <script>
 export default {
-    props: [
-        'scheduleChoice'
-    ],
     data() {
         return{
             employers: [],
-            everything: [],
-            studentsBySchedule: [],
-            students: [],
             timeSlots: [],
             schedule: [],
-            finalSchedule: {
-	            scheduleId: this.scheduleChoice,
-                studentNames: []
-            }
+            finalSchedule: [],
+            filteredStudents: []
         }
     },
     created() {
@@ -59,14 +46,6 @@ export default {
             return response.json();
         }).then ((timeSlots) => {
             this.timeSlots = timeSlots;
-        }).catch(err => {
-            console.log(err);
-        });
-        fetch(`${process.env.VUE_APP_API_URL}/studentsBySchedule/${this.$route.params.scheduleChoice}`)
-        .then(response => {
-            return response.json();
-        }).then ((studentsBySchedule) => {
-            this.studentsBySchedule = studentsBySchedule;
         }).catch(err => {
             console.log(err);
         });
@@ -86,42 +65,13 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        fetch(`${process.env.VUE_APP_API_URL}/students`)
-        .then(response => {
+        fetch(`${process.env.VUE_APP_API_URL}/getFinalSchedule/${this.$route.params.scheduleChoice}`, {
+        }).then( (response) => {
             return response.json();
-        }).then ((students) => {
-            this.students = students;
-        }).catch(err => {
-            console.log(err);
+        }).then ( (data) => {
+            console.table(data);
+            this.finalSchedule = data;
         })
-    },
-    methods: {
-        submitFinalSchedule() {
-            //console.table(JSON.stringify(this.finalSchedule))
-            //console.log(Object.keys(this.finalSchedule))
-            const sendArray = [];
-            //sendArray.push("ScheduleId:" + this.finalSchedule.scheduleId);
-            Object.keys(this.finalSchedule).forEach(k => {
-                if(k.startsWith("Key")){
-                    sendArray.push(this.finalSchedule[k])
-                }
-            })
-            console.log(JSON.stringify(sendArray));
-
-            fetch(`${process.env.VUE_APP_API_URL}/submitFinalSchedule`, {
-                method: 'POST',
-                headers: {
-                    "Content-Type" : "application/json"
-                },
-                body: JSON.stringify(this.sendArray),
-            })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-            })
-            .catch((err) => console.error(err));
-        }
     },
     computed: {
         timeArray() {
@@ -135,8 +85,14 @@ export default {
         })
         return timeArray;
         },
-        getStudents() {
-            return [...this.students];
+        filterStudents(vm) {
+            vm.filteredStudents = []
+            for (let i = 0; i < vm.employers.length; i++) {
+                vm.filteredStudents.push(vm.finalSchedule[i])
+                vm.finalSchedule.shift();
+            }
+            console.table(vm.finalSchedule);
+            return vm.filteredStudents;
         }
     }
 }

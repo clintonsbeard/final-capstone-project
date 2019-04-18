@@ -590,12 +590,6 @@ VALUES (9, 2);
 INSERT INTO employer_schedule (employer_id, schedule_id) 
 VALUES (10, 1);
 
-INSERT INTO employer_schedule (employer_id, schedule_id) 
-VALUES (10, 2);
-
-INSERT INTO employer_schedule (employer_id, schedule_id) 
-VALUES (10, 1);
-
 ---Admin Choice
 
 INSERT INTO admin_choice (choice)

@@ -21,30 +21,20 @@ public class JDBCFinalScheduleDAO implements FinalScheduleDAO {
 	}
 
 	@Override
-	public FinalSchedule submitFinalSchedule(FinalSchedule finalSchedule) {
-
-//		for (FinalSchedule thisSchedule : finalSchedule) {
+	public void submitFinalSchedule(FinalSchedule[] finalSchedule) {
+		for (FinalSchedule thisSchedule : finalSchedule) {
 		String insertScheduleQuery = "INSERT INTO final_schedule (slot_id, schedule_id, start_time, end_time, " + 
 				"student_id, first_name, last_name, company_name, employer_id) " + 
 				"VALUES (DEFAULT, ?, ?, ?, ?, (SELECT student.first_name from student " + 
 				"WHERE student_id = ?), (SELECT student.last_name from student " + 
 				"WHERE student_id = ?), (SELECT company_name FROM employer " + 
-				"WHERE employer_id = ?), ?) RETURNING schedule_id";
+				"WHERE employer_id = ?), ?);";
 		
-//		SqlRowSet results = jdbcTemplate.queryForRowSet(insertScheduleQuery, 2, thisSchedule.getStartTime(), thisSchedule.getEndTime(),
-//							thisSchedule.getStudentId(), thisSchedule.getStudentId(), thisSchedule.getStudentId(),
-//							thisSchedule.getEmployerId(), thisSchedule.getEmployerId());
-		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(insertScheduleQuery, 2, finalSchedule.getStartTime(), finalSchedule.getEndTime(),
-				finalSchedule.getStudentId(), finalSchedule.getStudentId(), finalSchedule.getStudentId(),
-				finalSchedule.getEmployerId(), finalSchedule.getEmployerId());
-
-		results.next();
-		Integer scheduleId = results.getInt(1);
-        FinalSchedule finalS = new FinalSchedule();
-//		finalSchedule.setScheduleId(results.getInt("schedule_id"));
-		return finalSchedule;
+		jdbcTemplate.update(insertScheduleQuery, thisSchedule.getScheduleId(), thisSchedule.getStartTime(), thisSchedule.getEndTime(),
+							thisSchedule.getStudentId(), thisSchedule.getStudentId(), thisSchedule.getStudentId(),
+							thisSchedule.getEmployerId(), thisSchedule.getEmployerId());
 		}
+	}
 
 	@Override
 	public List<FinalSchedule> getFinalScheduleById(int scheduleId) {
@@ -74,12 +64,6 @@ public class JDBCFinalScheduleDAO implements FinalScheduleDAO {
         finalSchedule.setEmployerId(results.getInt("employer_id"));
         return finalSchedule;
     }
-
-//	@Override
-//	public FinalSchedule submitFinalSchedule(FinalSchedule[] finalSchedule) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 
 }

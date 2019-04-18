@@ -20,6 +20,7 @@ import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
 import com.techelevator.FinalSchedule.model.FinalSchedule;
 import com.techelevator.FinalSchedule.model.FinalScheduleDAO;
+import com.techelevator.FinalSchedule.model.WrapperClass;
 import com.techelevator.JoinTable.StudentRanksAllEmployers;
 import com.techelevator.JoinTable.StudentRanksAllEmployersDAO;
 import com.techelevator.JoinTable.TopFourChoices;
@@ -143,9 +144,9 @@ public class DataInputOutputController {
     	return scheduleDAO.getSchedulesById(id);
     }
     
-    @RequestMapping(path="submitFinalSchedule", method=RequestMethod.POST)
-    public FinalSchedule insertFinalSchedule(@RequestBody FinalSchedule finalSchedule) {
-    	return finalScheduleDAO.submitFinalSchedule(finalSchedule);
+    @RequestMapping(path="/submitFinalSchedule", method=RequestMethod.POST)
+    public void insertFinalSchedule(@RequestBody FinalSchedule[] finalSchedule) {
+    	finalScheduleDAO.submitFinalSchedule(finalSchedule);
     }
     
     @RequestMapping(path="/getFinalSchedule/{id}", method=RequestMethod.GET)

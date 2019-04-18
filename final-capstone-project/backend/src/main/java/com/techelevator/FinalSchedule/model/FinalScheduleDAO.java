@@ -8,6 +8,6 @@ public interface FinalScheduleDAO {
 	
 	public List<FinalSchedule> getFinalScheduleById(int scheduleId);
 
-	FinalSchedule submitFinalSchedule(FinalSchedule finalSchedule);
+	public void submitFinalSchedule(FinalSchedule[] finalSchedule);
 	
 }

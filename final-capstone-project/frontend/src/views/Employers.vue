@@ -50,8 +50,8 @@ export default {
       .then(response => {
         return response.json();
       })
-      .then((schedules) => {
-        this.schedules = schedules;
+      .then((employers) => {
+        this.employers = employers;
       })
       .catch(err => {
           console.log(err);
@@ -66,8 +66,8 @@ export default {
       .then(response => {
         return response.json();
       })
-      .then(employers => {
-        this.employers = employers;
+      .then(schedules => {
+        this.schedules = schedules;
       })
       .catch(err => {
         console.log(err);

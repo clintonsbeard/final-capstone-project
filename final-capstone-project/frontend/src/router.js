@@ -23,7 +23,7 @@ Vue.component('vue-headful', vueHeadful);
 
 Vue.use(Router)
 
-// import auth from './auth'
+import auth from './auth'
 
 const router = new Router({
   mode: 'history',

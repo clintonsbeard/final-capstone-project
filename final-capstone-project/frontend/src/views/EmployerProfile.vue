@@ -54,7 +54,6 @@ export default {
       schedules: []
     };
   },
-  methods: {   
   created() {
     fetch(`${process.env.VUE_APP_API_URL}/employers/${this.$route.params.employer_id}`,  {
         method: 'GET',
@@ -89,6 +88,5 @@ export default {
           console.log(err);
       });
     }
-  }
 }
 </script>

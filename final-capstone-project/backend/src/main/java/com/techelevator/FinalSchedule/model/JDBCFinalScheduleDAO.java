@@ -30,7 +30,7 @@ public class JDBCFinalScheduleDAO implements FinalScheduleDAO {
 				"WHERE student_id = ?), (SELECT company_name FROM employer " + 
 				"WHERE employer_id = ?), ?);";
 		
-		jdbcTemplate.update(insertScheduleQuery, 2, thisSchedule.getStartTime(), thisSchedule.getEndTime(),
+		jdbcTemplate.update(insertScheduleQuery, thisSchedule.getScheduleId(), thisSchedule.getStartTime(), thisSchedule.getEndTime(),
 							thisSchedule.getStudentId(), thisSchedule.getStudentId(), thisSchedule.getStudentId(),
 							thisSchedule.getEmployerId(), thisSchedule.getEmployerId());
 		}

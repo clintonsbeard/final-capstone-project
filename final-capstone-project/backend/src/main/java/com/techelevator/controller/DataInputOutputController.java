@@ -20,6 +20,7 @@ import com.techelevator.EmployerProfile.model.EmployerProfile;
 import com.techelevator.EmployerProfile.model.EmployerProfileDAO;
 import com.techelevator.FinalSchedule.model.FinalSchedule;
 import com.techelevator.FinalSchedule.model.FinalScheduleDAO;
+import com.techelevator.FinalSchedule.model.WrapperClass;
 import com.techelevator.JoinTable.StudentRanksAllEmployers;
 import com.techelevator.JoinTable.StudentRanksAllEmployersDAO;
 import com.techelevator.JoinTable.TopFourChoices;

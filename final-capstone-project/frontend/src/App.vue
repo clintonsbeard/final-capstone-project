@@ -21,7 +21,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <router-link class="dropdown-item" to="/student-form">Student Submission Form</router-link>
-                            <router-link class="dropdown-item" to="/student-form">View Schedule</router-link>
+                            <router-link class="dropdown-item" to="/choose-view-schedule">View Schedule</router-link>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

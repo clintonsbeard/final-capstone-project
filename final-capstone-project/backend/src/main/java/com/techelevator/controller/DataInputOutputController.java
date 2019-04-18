@@ -93,8 +93,8 @@ public class DataInputOutputController {
     
     @RequestMapping(path="/schedule/add", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addDayToSchedule(@RequestBody Schedule schedule){
-        scheduleDAO.addDayToSchedule(schedule);
+    public Schedule addDayToSchedule(@RequestBody Schedule schedule){
+        return scheduleDAO.addDayToSchedule(schedule);
     }
     
     @RequestMapping(path="/toggleRankingChoice", method=RequestMethod.PUT)

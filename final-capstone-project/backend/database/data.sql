@@ -547,10 +547,10 @@ VALUES (11, 2, 10);
 ---Schedule
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (1, '2019-06-24', '14:00:00', '18:00:00', 30, '16:00:00', '16:30:00');
 
 INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, interview_length, break_start_time, break_end_time) 
-VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '12:00:00', '13:00:00');
+VALUES (2, '2019-06-25', '13:00:00', '18:00:00', 30, '15:00:00', '15:30:00');
 
 ----Employer Schedule
 

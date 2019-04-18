@@ -20,8 +20,7 @@
                         </tr>
                         <tr v-else>
                             <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
-                            <td v-for="(employer) in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
-                            </td>
+                            <td v-for="student in filterStudents" :key="student.slotId" class="text-center align-middle" style="width: 5%">{{student.lastName}}, {{student.firstName}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -32,14 +31,13 @@
 
 <script>
 export default {
-    props: [
-        'scheduleChoice'
-    ],
     data() {
         return{
             employers: [],
             timeSlots: [],
-            schedule: []
+            schedule: [],
+            finalSchedule: [],
+            filteredStudents: []
         }
     },
     created() {
@@ -67,6 +65,13 @@ export default {
         }).catch(err => {
             console.log(err);
         });
+        fetch(`${process.env.VUE_APP_API_URL}/getFinalSchedule/${this.$route.params.scheduleChoice}`, {
+        }).then( (response) => {
+            return response.json();
+        }).then ( (data) => {
+            console.table(data);
+            this.finalSchedule = data;
+        })
     },
     computed: {
         timeArray() {
@@ -79,6 +84,15 @@ export default {
             })
         })
         return timeArray;
+        },
+        filterStudents(vm) {
+            vm.filteredStudents = []
+            for (let i = 0; i < vm.employers.length; i++) {
+                vm.filteredStudents.push(vm.finalSchedule[i])
+                vm.finalSchedule.shift();
+            }
+            console.table(vm.finalSchedule);
+            return vm.filteredStudents;
         }
     }
 }

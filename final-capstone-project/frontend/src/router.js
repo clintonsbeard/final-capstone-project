@@ -116,9 +116,10 @@ const router = new Router({
       props: true
     },
     {
-      path: '/view-schedule',
+      path: '/view-schedule/:scheduleChoice',
       name: 'view-schedule',
-      component: ViewSchedule
+      component: ViewSchedule,
+      props: true
     }
   ]
 });

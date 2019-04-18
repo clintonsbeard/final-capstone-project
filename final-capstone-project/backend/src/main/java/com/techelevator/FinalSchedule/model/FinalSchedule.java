@@ -1,15 +1,22 @@
 package com.techelevator.FinalSchedule.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class FinalSchedule {
 
 	private int slotId;
+    @JsonProperty
 	private int scheduleId;
+    @JsonProperty
 	private String startTime;
+    @JsonProperty
 	private String endTime;
+    @JsonProperty
 	private int studentId;
 	private String firstName;
 	private String lastName;
 	private String companyName;
+    @JsonProperty
 	private int employerId;
 	
 	public int getEmployerId() {

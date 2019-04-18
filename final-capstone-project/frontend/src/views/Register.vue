@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
   name: 'register',
   data() {
@@ -56,11 +58,13 @@ export default {
     register() {
       fetch(`${process.env.VUE_APP_API_URL}/register`, {
         method: 'POST',
-        headers: {
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
           Accept: 'application/json',
           'Content-Type': 'application/json',
-        },
+        }),
         body: JSON.stringify(this.user),
+        credentials: 'same-origin'
       })
         .then((response) => {
           if (response.ok) {

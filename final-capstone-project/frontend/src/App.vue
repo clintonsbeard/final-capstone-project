@@ -16,7 +16,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" v-if="isAdminOrStudent()" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Student Menu
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -25,7 +25,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" v-if="isAdminOrEmployer()" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Employer Menu
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -33,7 +33,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" v-if="isAdmin()" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Administrator Menu
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -44,7 +44,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/logout" class="nav-link">Logout</router-link>
+                         <a class="nav-link" href="#" @click="logout">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -52,6 +52,40 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import auth from './auth';
+
+export default {
+  name: 'app',
+  components: {},
+  methods: {
+    logout() {
+      auth.logout();
+      this.$router.go('/');
+    },
+    isAdmin() {
+      if (auth.getUser() && auth.getUser().rol == 'admin') {
+        return true;
+      }
+      return false;
+    },
+    isAdminOrEmployer() {
+      if (auth.getUser() && auth.getUser().rol == 'admin' || auth.getUser() && auth.getUser().rol == 'employer') {
+        return true;
+      }
+      return false;
+    },
+    isAdminOrStudent() {
+      if (auth.getUser() && auth.getUser().rol == 'admin' || auth.getUser() && auth.getUser().rol == 'student') {
+        return true;
+      }
+      return false;
+    }    
+
+  }
+}
+</script>
 
 <style>
 @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';

@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
     name: 'rankingChoice',
     data () {
@@ -45,13 +47,16 @@ export default {
     },
     methods: {
         changeRanking() {
-            fetch(`${process.env.VUE_APP_API_URL}/toggleRankingChoice`, {
-                method: 'PUT',
-                headers:{
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(this.ranking)
-            }).then((response) => {
+            fetch(`${process.env.VUE_APP_API_URL}/toggleRankingChoice`,  {
+            method: 'PUT',
+            headers: new Headers({
+                "Authorization": 'Bearer ' + auth.getToken(),
+                "Content-Type": "application/json"
+            }),
+            body: JSON.stringify(this.ranking),
+            credentials: 'same-origin'
+            })
+            .then((response) => {
                 this.$router.push('/student-form');
             })
         }

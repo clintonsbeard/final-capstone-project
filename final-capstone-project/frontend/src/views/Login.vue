@@ -31,7 +31,7 @@
 </template>
 
 <script>
-// import auth from '../auth';
+import auth from '../auth';
 
 export default {
   name: 'login',
@@ -46,33 +46,33 @@ export default {
     };
   },
   methods: {
-    // login() {
-    //   fetch(`${process.env.VUE_APP_API_URL}/login`, {
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(this.user),
-    //   })
-    //     .then((response) => {
-    //       if (response.ok) {
-    //         return response.text();
-    //       } else {
-    //         this.invalidCredentials = true;
-    //       }
-    //     })
-    //     .then((token) => {
-    //       if (token != undefined) {
-    //         if (token.includes('"')) {
-    //           token = token.replace(/"/g, '');
-    //         }
-    //         auth.saveToken(token);
-    //         this.$router.push('/');
-    //       }
-    //     })
-    //     .catch((err) => console.error(err));
-    // },
+    login() {
+      fetch(`${process.env.VUE_APP_API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.user),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            this.invalidCredentials = true;
+          }
+        })
+        .then((token) => {
+          if (token != undefined) {
+            if (token.includes('"')) {
+              token = token.replace(/"/g, '');
+            }
+            auth.saveToken(token);
+            this.$router.push('/');
+          }
+        })
+        .catch((err) => console.error(err));
+    },
   },
 };
 </script>

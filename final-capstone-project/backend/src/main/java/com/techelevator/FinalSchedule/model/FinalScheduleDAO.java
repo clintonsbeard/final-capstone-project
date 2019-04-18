@@ -4,8 +4,10 @@ import java.util.List;
 
 public interface FinalScheduleDAO {
 
-	public void submitFinalSchedule(FinalSchedule[] finalSchedule);
+//	public FinalSchedule submitFinalSchedule(FinalSchedule[] finalSchedule);
 	
 	public List<FinalSchedule> getFinalScheduleById(int scheduleId);
+
+	public void submitFinalSchedule(FinalSchedule[] finalSchedule);
 	
 }

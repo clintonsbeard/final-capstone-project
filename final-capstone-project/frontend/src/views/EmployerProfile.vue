@@ -7,9 +7,9 @@
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{employer.companyName}}</h5>
               <a href="#" class="edit-review">
-                <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
-                  edit
-                </router-link>
+                  <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
+                    edit
+                  </router-link>
               </a>
             </div>
             <hr>
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
   props: [
     'employer_id'
@@ -52,8 +54,15 @@ export default {
       schedules: []
     };
   },
+  methods: {   
   created() {
-    fetch(`${process.env.VUE_APP_API_URL}/employers/${this.$route.params.employer_id}`)
+    fetch(`${process.env.VUE_APP_API_URL}/employers/${this.$route.params.employer_id}`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+      })
       .then(response => {
         return response.json();
       })
@@ -63,7 +72,13 @@ export default {
       .catch(err => {
         console.log(err);
       });
-    fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+    fetch(`${process.env.VUE_APP_API_URL}/schedules`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin',  
+      })
       .then(response => {
           return response.json();
       })
@@ -73,6 +88,7 @@ export default {
       .catch(err => {
           console.log(err);
       });
+    }
   }
 }
 </script>

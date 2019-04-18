@@ -61,7 +61,10 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
+
     name: 'employerForm',
     data () {
         return {
@@ -84,10 +87,12 @@ export default {
             console.table(this.employer)
             fetch(`${process.env.VUE_APP_API_URL}/employerForm`, {
                 method: 'POST',
-                headers: {
+                headers: new Headers({
+                    Authorization: 'Bearer ' + auth.getToken(),   
                     "Content-Type" : "application/json"
-                },
+                }),
                 body: JSON.stringify(this.employer),
+                credentials: 'same-origin'            
             })
             .then((response) => {
                 return response.json();
@@ -98,10 +103,16 @@ export default {
                 }
             })
             .catch((err) => console.error(err));
-        }
+        },
     },
     created() {
-        fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+        fetch(`${process.env.VUE_APP_API_URL}/schedules`,  {
+        method: 'GET',
+        headers: new Headers({
+          Authorization: 'Bearer ' + auth.getToken(),   
+        }),
+        credentials: 'same-origin'
+        })
         .then(response => {
             return response.json();
         })

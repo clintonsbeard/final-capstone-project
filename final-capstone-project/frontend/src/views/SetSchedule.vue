@@ -62,10 +62,13 @@ export default {
             console.table(this.schedule)
             fetch(`${process.env.VUE_APP_API_URL}/schedule/add`, {
                 method: 'POST',
-                headers: {
+                headers: new Headers({
+                    Authorization: 'Bearer ' + auth.getToken(),   
                     "Content-Type" : "application/json"
-                },
-                body: JSON.stringify(this.schedule)
+                }),
+                body: JSON.stringify(this.schedule),
+                credentials: 'same-origin'
+
             })
             .then((response) => {
                 if (response.ok) {

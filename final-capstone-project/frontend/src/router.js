@@ -63,10 +63,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      meta: {
-        title: 'Tech Elevator'
-      }
+      component: Home
     },
     {
       path: '/login',

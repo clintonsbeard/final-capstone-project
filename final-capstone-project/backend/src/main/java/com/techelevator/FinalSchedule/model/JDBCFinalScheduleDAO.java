@@ -41,7 +41,7 @@ public class JDBCFinalScheduleDAO implements FinalScheduleDAO {
 		List<FinalSchedule> finalSchedule = new ArrayList<>();
 		
 		String getSchedule = "SELECT slot_id, schedule_id, start_time, end_time, student_id, first_name, last_name, "
-				+ "company_name, employer_id FROM final_schedule WHERE schedule_id = ?;";
+				+ "company_name, employer_id FROM final_schedule WHERE schedule_id = ? ORDER BY slot_id;";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getSchedule, scheduleId);
 		
 		while(results.next()) {
@@ -64,6 +64,5 @@ public class JDBCFinalScheduleDAO implements FinalScheduleDAO {
         finalSchedule.setEmployerId(results.getInt("employer_id"));
         return finalSchedule;
     }
-
 
 }

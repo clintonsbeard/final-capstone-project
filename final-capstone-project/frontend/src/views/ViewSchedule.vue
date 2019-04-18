@@ -20,7 +20,7 @@
                         </tr>
                         <tr v-else>
                             <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
-                            <td v-for="student in filterStudents" :key="student.slotId" class="text-center align-middle" style="width: 5%">{{student.lastName}}, {{student.firstName}}</td>
+                            <td v-for="(student, index) in filterStudents" :key="index" class="text-center align-middle" style="width: 5%">{{student.lastName}}, {{student.firstName}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -88,9 +88,10 @@ export default {
         filterStudents(vm) {
             vm.filteredStudents = []
             for (let i = 0; i < vm.employers.length; i++) {
-                vm.filteredStudents.push(vm.finalSchedule[i])
+                vm.filteredStudents.push(vm.finalSchedule[0])
                 vm.finalSchedule.shift();
             }
+            console.table(vm.filteredStudents);
             console.table(vm.finalSchedule);
             return vm.filteredStudents;
         }

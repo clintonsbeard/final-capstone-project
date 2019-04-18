@@ -121,10 +121,7 @@ export default {
     },
     methods: {
         submitFinalSchedule() {
-            //console.table(JSON.stringify(this.finalSchedule))
-            //console.log(Object.keys(this.finalSchedule))
             const sendArray = [];
-            // sendArray.push("ScheduleId: " + this.finalSchedule.scheduleId);
             Object.keys(this.finalSchedule).forEach(k => {
                 if(k.startsWith("Key")){
                     sendArray.push(this.finalSchedule[k])
@@ -140,7 +137,9 @@ export default {
                 body: JSON.stringify(sendArray),
             })
             .then((response) => {
-                    return response.json();
+                if(response.ok){
+                    this.$router.push('/thank-you');
+                }
             })
             .catch((err) => console.error(err));
         }

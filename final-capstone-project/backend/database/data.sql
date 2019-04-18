@@ -6,7 +6,10 @@ INSERT INTO app_user (user_name, password, salt, role)
 VALUES ('admin', 'jy072QcO/8+CBk2Zdo2jVQ==', 'YOTgqH3wx3OfAUugPhLjwtWcsH/GQuo+pFIwTgYxsut24oJkBrLe/Ha+gFRGqHL/16dhJkR+QVfrSyi05vro69mE8tKpyQ8MiyWF6eGIzvpZ7HcOjzcFswn/3x17hwfzUXgNEyUu3URLmWDXMN3aVLwj7ZQEYkG+GktVUzhfpxQ=', 'admin');
 
 INSERT INTO app_user (user_name, password, salt, role) 
-VALUES ('dvega', 'FjZDm+sndmsdEDwNtfr6NA==', 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=', 'student');
+VALUES ('student2', 'ySOmxLWszlMWFhY7tuYDiA==', 'UWQZhSC9oggLcGnNl9JcCBKDzJ158AQqTbW9xhGeHsijDFjei3fZxG6qKKuvYRVF7pdBIr6FE+Ib+tvKMyxufc9O2A84mbfQHeXXba+RH7GoWUvyU+bg0f0bo/r6j/8s1KXJTTMgYR/+1IsMhLAIsGv7THkWRHvEBaXaxsXoXT0=', 'student');
+
+INSERT INTO app_user (user_name, password, salt, role) 
+VALUES ('employer3', 'ILxasvfUJbsPvVxw6XLsqw==', 'F2NJfNgiCbKbKTkOOqriKfrlj7jc/pkYzPiz+SMaIjLUMQFS4eixzy8ropUO0U3a/W/ExXTLW13RmXcKqS039q+2zfiBnUWPZO/rCNpH3MredodS6BkknAvaIWpBiwN94O1+/qy+4xDRRjdIZsIGhngtrPGYsuVDo/W6BP1Ptac=', 'employer');
 
 ---Employers
 
@@ -20,7 +23,7 @@ INSERT INTO employer (company_name, company_summary, email, website, positions_s
 VALUES ('CJB Beardsley', 'Taking Over the World with Vue', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 2, 'None');
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
-VALUES ('AEP Electric Company', 'Gas', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'None');
+VALUES ('Postman', 'API Development Environment', 'test@test.com', 'http://www.test.com', 'Postman an API Develpment Environmen that flexibly integrates with the software development cycle', 'Java', 1, 'None');
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
 VALUES ('Stepdad Corporation', 'Sorry', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'Lactose Intolerant');
@@ -41,42 +44,42 @@ INSERT INTO employer (company_name, company_summary, email, website, positions_s
 VALUES ('Tech Elevator', 'Not an elevator repair school', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'None');
 
 INSERT INTO employer (company_name, company_summary, email, website, positions_summary, path_preference, number_of_teams, restrictions)
-VALUES ('The Picture of Dorian Gray', 'Don''t do it', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 3, 'Yes');
+VALUES ('The Picture of Dorian Gray', 'Don''t do it', 'test@test.com', 'http://www.test.com', 'We got jobz', 'Java', 1, 'Yes');
 
 ---- Students
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Lincoln', 'Guthrie');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Clint', 'Beardsley');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Stephanie', 'Lopez');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Bindiya', 'Sameem');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('James', 'Cameron');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Alex', 'Harty');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Quinn', 'Sprouse');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Caitlin', 'Ho');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Ty', 'Owens');
 
-INSERT INTO student (first_name, last_name)
+INSERT INTO student (first_name, last_name) 
 VALUES ('Anish', 'Niroula');
 
-INSERT INTO student (first_name, last_name)
-VALUES ('Dominick', 'Hemphill');;
+INSERT INTO student (first_name, last_name) 
+VALUES ('Dominick', 'Hemphill');
 
 ----Top 4 INSERTS
 
@@ -586,9 +589,6 @@ VALUES (9, 2);
 
 INSERT INTO employer_schedule (employer_id, schedule_id) 
 VALUES (10, 1);
-
-INSERT INTO employer_schedule (employer_id, schedule_id) 
-VALUES (10, 2);
 
 ---Admin Choice
 

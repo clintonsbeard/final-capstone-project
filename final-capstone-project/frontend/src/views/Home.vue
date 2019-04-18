@@ -6,11 +6,11 @@
           <img src="../assets/img/matchmaking-logo.png" class="img-fluid">
         </div>
         <hr class="my-4">
-        <div class="col-xs-12 col-md-6 d-md-inline-block">
+        <div class="col-xs-12 col-lg-5 d-md-inline-block">
           <img src="../assets/img/matchmaking-infographic.png" class="img-fluid">
         </div>
-        <hr class="my-4 d-lg-none">
-        <div class="col-xs-12 col-lg-6 d-lg-inline-block align-middle">
+        <hr class="my-4">
+        <div class="col-xs-12 col-lg-7 d-md-inline-block align-middle">
           <p class="text-center">With growing need to fill your talent pipeline with qualified tech talent, we host Company Matchmaking events to introduce partner companies to graduating Java and .NET cohorts. Matchmaking gives your hiring managers an opportunity to meet and assess the fit of potential candidates in short, timed sessions over the course of two days.</p>
           <hr class="my-4">
           <blockquote class="blockquote text-center">

@@ -45,7 +45,6 @@
 import auth from '../auth';
 
 export default {
-  name: "employerProfile",
   props: [
     'employer_id'
   ],

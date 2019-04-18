@@ -22,13 +22,14 @@ public class JDBCScheduleDAO implements ScheduleDAO {
 	}
 	
 	@Override
-	public void addDayToSchedule(Schedule schedule) {
-		String insertSql = "INSERT INTO schedule (matchmaking_date, start_time, end_time, " +
+	public Schedule addDayToSchedule(Schedule schedule) {
+		String insertSql = "INSERT INTO schedule (schedule_id, matchmaking_date, start_time, end_time, " +
 						   "interview_length, break_start_time, break_end_time) VALUES " +
-						   "(?, ?, ?, ?, ?, ?)";
+						   "(DEFAULT, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(insertSql, schedule.getMatchmakingDate(), schedule.getStartTime(),
 							schedule.getEndTime(), schedule.getInterviewLength(),
 							schedule.getBreakStartTime(), schedule.getBreakEndTime());
+		return schedule;
 	}
 
 	@Override

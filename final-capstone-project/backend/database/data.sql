@@ -6,11 +6,10 @@ INSERT INTO app_user (user_name, password, salt, role)
 VALUES ('admin', 'jy072QcO/8+CBk2Zdo2jVQ==', 'YOTgqH3wx3OfAUugPhLjwtWcsH/GQuo+pFIwTgYxsut24oJkBrLe/Ha+gFRGqHL/16dhJkR+QVfrSyi05vro69mE8tKpyQ8MiyWF6eGIzvpZ7HcOjzcFswn/3x17hwfzUXgNEyUu3URLmWDXMN3aVLwj7ZQEYkG+GktVUzhfpxQ=', 'admin');
 
 INSERT INTO app_user (user_name, password, salt, role) 
-VALUES ('dvega', 'FjZDm+sndmsdEDwNtfr6NA==', 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=', 'student');
+VALUES ('student2', 'ySOmxLWszlMWFhY7tuYDiA==', 'UWQZhSC9oggLcGnNl9JcCBKDzJ158AQqTbW9xhGeHsijDFjei3fZxG6qKKuvYRVF7pdBIr6FE+Ib+tvKMyxufc9O2A84mbfQHeXXba+RH7GoWUvyU+bg0f0bo/r6j/8s1KXJTTMgYR/+1IsMhLAIsGv7THkWRHvEBaXaxsXoXT0=', 'student');
 
 INSERT INTO app_user (user_name, password, salt, role) 
-VALUES ('student', '07tHA1JERzCEni4VFTeh0w==', 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=', 'student');
-
+VALUES ('employer3', 'ILxasvfUJbsPvVxw6XLsqw==', 'F2NJfNgiCbKbKTkOOqriKfrlj7jc/pkYzPiz+SMaIjLUMQFS4eixzy8ropUO0U3a/W/ExXTLW13RmXcKqS039q+2zfiBnUWPZO/rCNpH3MredodS6BkknAvaIWpBiwN94O1+/qy+4xDRRjdIZsIGhngtrPGYsuVDo/W6BP1Ptac=', 'employer');
 
 ---Employers
 

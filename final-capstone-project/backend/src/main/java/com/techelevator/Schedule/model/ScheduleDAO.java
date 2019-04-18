@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ScheduleDAO {
 	
-	public void addDayToSchedule(Schedule schedule);
+	public Schedule addDayToSchedule(Schedule schedule);
 	
 	public List<Schedule> getAllSchedules();
 	

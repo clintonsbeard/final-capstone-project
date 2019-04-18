@@ -47,6 +47,7 @@ export default {
     data () {
         return {
             schedule: {
+                scheduleId: '',
                 matchmakingDate: '',
                 startTime: '',
                 endTime: '',
@@ -58,6 +59,7 @@ export default {
     },
     methods: {
         addDayToSchedule() {
+            console.table(this.schedule)
             fetch(`${process.env.VUE_APP_API_URL}/schedule/add`, {
                 method: 'POST',
                 headers: new Headers({

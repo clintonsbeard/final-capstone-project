@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <vue-headful title="Tech Elevator Matchmaking"/>
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">
                 <img src="./assets/img/te-logo.png" height="35" class="d-inline-block align-top">
@@ -20,7 +21,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <router-link class="dropdown-item" to="/student-form">Student Submission Form</router-link>
-                            <router-link class="dropdown-item" to="/student-form">View Schedule</router-link>
+                            <router-link class="dropdown-item" to="/choose-view-schedule">View Schedule</router-link>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

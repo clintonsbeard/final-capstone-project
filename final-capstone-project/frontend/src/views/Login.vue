@@ -1,38 +1,32 @@
-import draggable from 'vuedraggable'
-
 <template>
-  <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
-        Invalid username and password!
+  <div class="login">
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <form @submit.prevent="login">
+          <h1>Please Sign In</h1>
+          <hr class="my-4">
+          <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
+            Invalid username and password!
+          </div>
+          <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
+            Thank you for registering, please sign in.
+          </div>
+          <div class="form-group col-xs-12 col-md-6 d-md-inline-block">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" placeholder="Enter Username..." v-model="user.username" required autofocus/>
+          </div>
+          <div class="form-group col-xs-12 col-md-6 d-md-inline-block">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter Password..." v-model="user.password" required/>
+          </div>
+          <div class="form-group col-xs-12 col-md-6 d-md-inline-block">
+            <button class="btn btn-primary btn-custom" type="submit">
+              Sign In
+            </button>
+          </div>
+        </form>
       </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Sign in
-      </button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -82,56 +76,3 @@ export default {
   },
 };
 </script>
-
-<style>
-/* html,
-body {
-  height: 100%;
-}
-#app {
-  height: 100%;
-}
-#login {
-  height: 100%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-  font-family: 'Roboto Condensed', sans-serif;
-}
-
-form {
-  text-align: center;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type='text'] {
-  margin-bottom: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type='password'] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-} */
-</style>

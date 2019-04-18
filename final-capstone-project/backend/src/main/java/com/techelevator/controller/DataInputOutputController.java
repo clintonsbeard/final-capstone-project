@@ -59,7 +59,7 @@ public class DataInputOutputController {
     @Autowired
     private FinalScheduleDAO finalScheduleDAO;
     
-    @RequestMapping(path="/employerForm", method=RequestMethod.POST) 
+    @RequestMapping(path="/employerForm", method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public EmployerProfile submitEmployerForm(@RequestBody EmployerProfile employerProfile) {
          return employerProfileDAO.insertEmployerProfile(employerProfile);
@@ -143,9 +143,9 @@ public class DataInputOutputController {
     	return scheduleDAO.getSchedulesById(id);
     }
     
-    @RequestMapping(path="/submitFinalSchedule", method=RequestMethod.POST)
-    public void insertFinalSchedule(@RequestBody FinalSchedule[] finalSchedule) {
-    	finalScheduleDAO.submitFinalSchedule(finalSchedule);
+    @RequestMapping(path="submitFinalSchedule", method=RequestMethod.POST)
+    public FinalSchedule insertFinalSchedule(@RequestBody FinalSchedule finalSchedule) {
+    	return finalScheduleDAO.submitFinalSchedule(finalSchedule);
     }
     
     @RequestMapping(path="/getFinalSchedule/{id}", method=RequestMethod.GET)

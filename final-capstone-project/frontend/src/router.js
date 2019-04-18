@@ -16,7 +16,7 @@ import RegisteredStudents from './views/RegisteredStudents.vue'
 import Schedule from './views/Schedule.vue'
 import ChooseSchedule from './views/ChooseSchedule.vue'
 
-import auth from './auth'
+ import auth from './auth'
 
 Vue.use(Router)
 

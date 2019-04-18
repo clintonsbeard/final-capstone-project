@@ -35,7 +35,6 @@
                         <a class="nav-link dropdown-toggle" href="#" v-if="isAdmin()" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Administrator Menu
                         </a>
-                              <router-link to="/admin" >Admin</router-link> |
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <router-link class="dropdown-item" to="/register">Create Account</router-link>
                             <router-link class="dropdown-item" to="/set-schedule">Add Matchmaking Day</router-link>

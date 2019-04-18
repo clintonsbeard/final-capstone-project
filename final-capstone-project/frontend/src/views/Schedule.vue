@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th scope="col" style="width: 5%"></th>
-                        <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%"><input type="hidden" v-model="finalSchedule[employer.employerId]">{{employer.companyName}}</th>
+                        <!-- <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%"><input type="hidden" v-model="finalSchedule[employer.employerId]">{{employer.companyName}}</th> -->
                     </tr>
                 </thead>
                     <tbody>
@@ -171,9 +171,12 @@ export default {
             fetch(`${process.env.VUE_APP_API_URL}/submitFinalSchedule`, {
                 method: 'POST',
                 headers: {
+                    Authorization: 'Bearer ' + auth.getToken(),   
                     "Content-Type" : "application/json"
                 },
                 body: JSON.stringify(this.sendArray),
+                credentials: 'same-origin'
+
             })
             .then((response) => {
                 if (response.ok) {

@@ -97,11 +97,13 @@ export default {
       rankFourCompanies(){
           fetch(`${process.env.VUE_APP_API_URL}/studentForm`, {
               method: 'POST',
-              headers: {
+                headers: new Headers({
+                  Authorization: 'Bearer ' + auth.getToken(),   
                   "Content-Type": "application/json"
-              },
-              body: JSON.stringify(this.student)
-          })
+              }),
+              body: JSON.stringify(this.studentAll),
+              credentials: 'same-origin'
+              })
           .then( (response) => {
             return response.json();
           })
@@ -115,11 +117,14 @@ export default {
           console.table(this.studentAll)
           fetch(`${process.env.VUE_APP_API_URL}/rankAllCompanies`, {
               method: 'POST',
-              headers: {
+                headers: new Headers({
+                  Authorization: 'Bearer ' + auth.getToken(),   
                   "Content-Type": "application/json"
-              },
-              body: JSON.stringify(this.studentAll)
-          }).then( (response) => {
+              }),
+              body: JSON.stringify(this.studentAll),
+              credentials: 'same-origin',  
+              })
+              .then( (response) => {
               if(response.ok){
                 this.$router.push('/thank-you');
               }

@@ -106,7 +106,6 @@ export default {
         .then(response => {
             return response.json();
         }).then ((schedule) => {
-            console.log(schedule)
             this.schedule = schedule;   
         }).catch(err => {
             console.log(err);

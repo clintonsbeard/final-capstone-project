@@ -8,7 +8,7 @@
               <h5 class="mb-1">{{employer.companyName}}</h5>
               <a href="#" class="edit-review">
                   <router-link :to="{name: 'update-employer-profile', params:{employer: this.employer, schedules: this.schedules}}">
-                      edit
+                    edit
                   </router-link>
               </a>
             </div>
@@ -55,6 +55,7 @@ export default {
       schedules: []
     };
   },
+  methods: {   
   created() {
     fetch(`${process.env.VUE_APP_API_URL}/employers/${this.$route.params.employer_id}`,  {
         method: 'GET',
@@ -88,6 +89,7 @@ export default {
       .catch(err => {
           console.log(err);
       });
+    }
   }
 }
 </script>

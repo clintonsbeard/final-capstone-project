@@ -109,11 +109,11 @@ router.beforeEach((to, from, next) => {
   
   // Add the path of components you want to be public to the publicPages array.
   // this will allow a user to access them without being logged in.
-  const publicPages = ['/login', '/register'];
+  const publicPages = ['/login'];
 
   // Add the path of components you want only available for admins to the adminPages array.
   // You can add other user types by creating new arrays in the same way.
-  const adminPages = ['/admin'];
+  const adminPages = ['/admin', '/register', '/set-schedule', '/change-ranking', 'choose-schedule'];
 
   // Determines if the page the user is trying to get to requires a login.  to.path contains the path
   // the user is trying to access.  In this case, it is checking if the path is NOT in the Array, meaning it is not public

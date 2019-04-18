@@ -103,7 +103,7 @@ export default {
                 }
             })
             .catch((err) => console.error(err));
-        }
+        },
     },
     created() {
         fetch(`${process.env.VUE_APP_API_URL}/schedules`,  {

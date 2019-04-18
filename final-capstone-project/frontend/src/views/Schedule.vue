@@ -32,7 +32,11 @@
                     </tr>
                 </thead>
                     <tbody>
+<<<<<<< HEAD
                             <tr v-for="(time, index) in timeArray" :key="index" class="table-warning" v-if="time[0] === schedule.breakStartTime">
+=======
+                            <tr v-for="(time) in timeArray" class="table-warning" v-if="time[0] === schedule.breakStartTime">
+>>>>>>> d2aaa00be1d71ef104b41c36c6a7a19048ae81a7
                                 <th scope="row" class="text-center align-middle">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
                                 <td :colspan="employers.length" class="text-center align-middle">
                                     BREAK
@@ -40,10 +44,10 @@
                             </tr>
                             <tr v-else>
                                 <th scope="row" class="text-center align-middle" style="width: 5%">{{ [ time[0], "HH:mm" ] | moment("h:mm A") }} {{ time[1] }} {{ [ time[2], "HH:mm" ] | moment("h:mm A") }}</th>
-                                <td v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
-                                    <select class="form-control" v-model="finalSchedule[employer.employerId + time[0]]">
+                                <td v-for="(employer) in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">
+                                     <select class="form-control" v-model="finalSchedule['Key' + employer.employerId + time[0].replace(':','')]"> 
                                         <option value="" selected disabled>Choose...</option>
-                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]">{{student.firstName}} {{student.lastName}}</option>
+                                        <option v-for="student in getStudents" :key="student.studentId + employer.employerId + time[0]" :value="{startTime: time[0], endTime: time[2], studentId: student.studentId, employerId: employer.employerId}">{{student.firstName}} {{student.lastName}}</option>
                                     </select>
                                 </td>
                             </tr>
@@ -71,10 +75,10 @@ export default {
             students: [],
             timeSlots: [],
             schedule: [],
-            finalSchedule: [{
+            finalSchedule: {
 	            scheduleId: this.scheduleChoice,
                 studentNames: []
-            }]
+            }
         }
     },
     created() {
@@ -121,12 +125,26 @@ export default {
     },
     methods: {
         submitFinalSchedule() {
+<<<<<<< HEAD
+=======
+            //console.table(JSON.stringify(this.finalSchedule))
+            //console.log(Object.keys(this.finalSchedule))
+            const sendArray = [];
+            //sendArray.push("ScheduleId:" + this.finalSchedule.scheduleId);
+            Object.keys(this.finalSchedule).forEach(k => {
+                if(k.startsWith("Key")){
+                    sendArray.push(this.finalSchedule[k])
+                }
+            })
+            console.log(JSON.stringify(sendArray));
+
+>>>>>>> d2aaa00be1d71ef104b41c36c6a7a19048ae81a7
             fetch(`${process.env.VUE_APP_API_URL}/submitFinalSchedule`, {
                 method: 'POST',
                 headers: {
                     "Content-Type" : "application/json"
                 },
-                body: JSON.stringify(this.finalSchedule),
+                body: JSON.stringify(this.sendArray),
             })
             .then((response) => {
                 if (response.ok) {

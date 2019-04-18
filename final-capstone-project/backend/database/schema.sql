@@ -59,8 +59,13 @@ CREATE TABLE final_schedule(
 
   slot_id SERIAL PRIMARY KEY,
   schedule_id INT NOT NULL,
-  student_name TEXT NOT NULL
-  
+  start_time VARCHAR NOT NULL,
+  end_time VARCHAR NOT NULL,
+  student_id INT NOT NULL,
+  first_name VARCHAR NULL,
+  last_name VARCHAR NULL,
+  company_name VARCHAR NULL,
+  employer_id INT NOT NULL  
 );
 
 CREATE TABLE employer_schedule(

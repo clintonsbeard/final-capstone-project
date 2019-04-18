@@ -33,48 +33,44 @@ public class Schedule {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime breakEndTime;
 	
+	private List<String> timeSlots;
+
 	public int getScheduleId() {
 		return scheduleId;
 	}
 	public void setScheduleId(int scheduleId) {
 		this.scheduleId = scheduleId;
 	}
-	
 	public LocalDate getMatchmakingDate() {
 		return matchmakingDate;
 	}
 	public void setMatchmakingDate(LocalDate matchmakingDate) {
 		this.matchmakingDate = matchmakingDate;
 	}
-	
 	public LocalTime getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
-	
 	public LocalTime getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
-	
 	public int getInterviewLength() {
 		return interviewLength;
 	}
 	public void setInterviewLength(int interviewLength) {
 		this.interviewLength = interviewLength;
 	}
-	
 	public LocalTime getBreakStartTime() {
 		return breakStartTime;
 	}
 	public void setBreakStartTime(LocalTime breakStartTime) {
 		this.breakStartTime = breakStartTime;
 	}
-	
 	public LocalTime getBreakEndTime() {
 		return breakEndTime;
 	}
@@ -89,7 +85,7 @@ public class Schedule {
 		Date d = df.parse(myTime);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
-		cal.add(Calendar.MINUTE, lengthOfSlot);
+		cal.add(Calendar.MINUTE, interviewLength);
 		String newTime = df.format(cal.getTime());
 		
 		return newTime;
@@ -113,7 +109,7 @@ public class Schedule {
 			Date d = df.parse(startTimeString);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(d);
-			cal.add(Calendar.MINUTE, lengthOfSlot);
+			cal.add(Calendar.MINUTE, interviewLength);
 			incrementedTime = df.format(cal.getTime());
 			listOfSlots.add(incrementedTime);
 			startTime = LocalTime.parse(incrementedTime);

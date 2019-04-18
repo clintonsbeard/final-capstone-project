@@ -144,7 +144,7 @@ public class DataInputOutputController {
     }
     
     @RequestMapping(path="/submitFinalSchedule", method=RequestMethod.POST)
-    public void insertFinalSchedule(@RequestBody FinalSchedule finalSchedule) {
+    public void insertFinalSchedule(@RequestBody FinalSchedule[] finalSchedule) {
     	finalScheduleDAO.submitFinalSchedule(finalSchedule);
     }
     

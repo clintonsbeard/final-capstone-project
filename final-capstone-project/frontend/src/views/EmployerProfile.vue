@@ -2,6 +2,8 @@
   <div class="employers-profile">
     <div class="container-fluid">
       <div class="jumbotron">
+        <h1>Employer Profile</h1>
+        <hr class="my-4">
         <div class="list-group">
           <div class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">

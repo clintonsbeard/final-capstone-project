@@ -153,5 +153,9 @@ public class DataInputOutputController {
     public List<FinalSchedule> getFinalScheduleById(@PathVariable int id) {
     	return finalScheduleDAO.getFinalScheduleById(id);
     }
+    @RequestMapping(path="/getSchedulesAndEmployers", method=RequestMethod.GET)
+    public List<Schedule> getSchedulesAndEmployers() {
+    	return scheduleDAO.getAllSchedulesAndAttachedEmployers();
+    }
 
 }

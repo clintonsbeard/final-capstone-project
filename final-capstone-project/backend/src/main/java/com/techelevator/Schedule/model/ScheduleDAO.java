@@ -13,4 +13,6 @@ public interface ScheduleDAO {
 	
 	public Schedule getSchedulesById(int scheduleId);
 	
+	public List<Schedule> getAllSchedulesAndAttachedEmployers();
+	
 }

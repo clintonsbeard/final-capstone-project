@@ -1,6 +1,9 @@
 <template> 
     <div class="update-employer-profile">
         <div class="container-fluid">
+            <div class="jumbotron">
+            <h1>Employer Profile</h1>
+            <hr class="my-4">
             <div class="list-group">
                 <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between"> 
@@ -62,6 +65,7 @@
                             <button type="submit" class="btn btn-primary">Submit Updates</button>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     </div>

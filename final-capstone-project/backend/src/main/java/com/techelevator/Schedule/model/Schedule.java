@@ -33,6 +33,8 @@ public class Schedule {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime breakEndTime;
 	
+	private List<EmployerProfile> employers;
+	
 	private List<String> timeSlots;
 
 	public int getScheduleId() {
@@ -41,41 +43,61 @@ public class Schedule {
 	public void setScheduleId(int scheduleId) {
 		this.scheduleId = scheduleId;
 	}
+	
 	public LocalDate getMatchmakingDate() {
 		return matchmakingDate;
 	}
 	public void setMatchmakingDate(LocalDate matchmakingDate) {
 		this.matchmakingDate = matchmakingDate;
 	}
+	
 	public LocalTime getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
+	
 	public LocalTime getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
+	
 	public int getInterviewLength() {
 		return interviewLength;
 	}
 	public void setInterviewLength(int interviewLength) {
 		this.interviewLength = interviewLength;
 	}
+	
 	public LocalTime getBreakStartTime() {
 		return breakStartTime;
 	}
 	public void setBreakStartTime(LocalTime breakStartTime) {
 		this.breakStartTime = breakStartTime;
 	}
+	
 	public LocalTime getBreakEndTime() {
 		return breakEndTime;
 	}
 	public void setBreakEndTime(LocalTime breakEndTime) {
 		this.breakEndTime = breakEndTime;
+	}
+	
+	public List<EmployerProfile> getEmployers() {
+		return employers;
+	}
+	public void setEmployers(List<EmployerProfile> employers) {
+		this.employers = employers;
+	}
+	
+	public List<String> getTimeSlots() {
+		return timeSlots;
+	}
+	public void setTimeSlots(List<String> timeSlots) {
+		this.timeSlots = timeSlots;
 	}
 	
 	public String incrementTime(LocalTime startTime, int lengthOfSlot) throws ParseException {

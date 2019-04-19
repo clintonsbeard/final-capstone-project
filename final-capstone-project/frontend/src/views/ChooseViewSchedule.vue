@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import auth from '../auth';
+
 export default {
     data() {
         return {
@@ -32,7 +34,13 @@ export default {
         };
     },
     created() {
-        fetch(`${process.env.VUE_APP_API_URL}/schedules`)
+        fetch(`${process.env.VUE_APP_API_URL}/schedules`, {
+            method: 'GET',
+            headers: new Headers({
+            Authorization: 'Bearer ' + auth.getToken(),   
+            }),
+            credentials: 'same-origin',  
+        })
         .then(response => {
             return response.json();
         })

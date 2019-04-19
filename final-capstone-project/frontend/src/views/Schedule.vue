@@ -25,10 +25,10 @@
 
                 <form v-on:submit.prevent="submitFinalSchedule()">
                 <table class="table table-responsive table-borderless table-hover table-striped">
-                <thead>
+                 <thead>
                     <tr>
                         <th scope="col" style="width: 5%"></th>
-                        <!-- <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%"><input type="hidden" v-model="finalSchedule[employer.employerId]">{{employer.companyName}}</th> -->
+                        <th scope="col" v-for="employer in employers" :key="employer.employerId" class="text-center align-middle" style="width: 5%">{{employer.companyName}}</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -110,12 +110,12 @@ export default {
             console.log(err);
         });
 
-        fetch(`${process.env.VUE_APP_API_URL}/employersBySchedule/${this.$route.params.scheduleChoice}`,  {
-        method: 'GET',
-        headers: new Headers({
-          Authorization: 'Bearer ' + auth.getToken(),   
-        }),
-        credentials: 'same-origin',  
+        fetch(`${process.env.VUE_APP_API_URL}/employersBySchedule/${this.$route.params.scheduleChoice}`, {
+            method: 'GET',
+            headers: new Headers({
+            Authorization: 'Bearer ' + auth.getToken(),   
+            }),
+            credentials: 'same-origin',  
         })
         .then(response => {
             return response.json();
